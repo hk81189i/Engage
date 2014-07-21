@@ -1,0 +1,189 @@
+<div class="page-header">
+  <h2> <strong>Payment plan item</strong></h2>
+</div>
+
+<% if @total_pplan < @sale.selling_price %>
+
+<%= form_for(@pplan) do |f| %>
+<% if @pplan.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@pplan.errors.count, "error") %> prohibited this pplan from being saved:</h2>
+
+  <ul>
+    <% @pplan.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"> <strong><%=  %></strong></h2>
+  </div>    
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table">
+
+	<tr>
+	    <td>    <%= f.label :paying_date %> </td>
+	      <td>    <%= f.date_select :paying_date %> </td>
+	      </tr>
+	<tr>
+
+<%= f.hidden_field :sale_id, :value => @id %>
+<tr>
+    <td>    <%= f.label :amount %></td>
+      <td>    <%= f.number_field :amount %> </td>
+      </tr> 
+<tr>  
+
+      </table>
+      <%= f.submit "Add New Item to Payment Plan"   %> </tr>      
+</div>
+</div>
+</div>
+
+
+<% end %>
+
+<% else %>
+
+<% if  @total_pplan ==  @sale.selling_price %>
+
+<div class="alert alert-success">
+  <p> <strong>Congrats!</strong> Payment plan is equal to Selling Price! 
+  </p>
+</div>
+
+<% else %>
+
+<div class="alert alert-danger">
+  <p> <strong>Heads up!</strong> Payment plan is more than Selling Price! 
+  </p>
+</div>
+<% end %>
+<% end %>
+
+
+
+
+
+
+<div class="row">
+<div class="col-md-5">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title"> <strong><%= @sale.contact.name %>  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; Selling Price  <%= @sale.selling_price %></strong></h4>
+  </div>    
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+
+	<tr>
+	    <% if @collection_now.empty? %>
+	      <th> No payment is done yet</th>
+
+	        <%   else    %>
+		  <th>Date </th>
+		    <th>Amount </th>
+		    </tr>
+	<%       @collection_now.each do |collection|%>
+	<tr>
+	    <td><%= collection.date.to_time.strftime("%B %d, %Y")   %></td>
+	      <td><%= collection.amount %> </td> 
+	        <td> <span class="label label-success">Paid</span></td>
+		  <%   end    %> </tr>
+	<%   end    %>
+
+	<tr>
+	    <% if @pplan_now.empty? %>
+	      <th> Payment Plan is empty</th>
+
+	        <%   else    %>
+		  <th>Paying Date </th>
+		    <th>Amount </th>
+		      <th>Modify </th>
+		        <th>Delete </th>
+			</tr>
+	<%       @pplan_now.each do |pplan|%>
+	<tr>
+	    <td><%= pplan.paying_date.to_time.strftime("%B %d, %Y")      %></td>
+	      <td><%= pplan.amount %></td>
+          <td><%= link_to 'Edit', edit_pplan_path(pplan) %></td>
+<!--Delete with button 
+    <td><%= button_to 'Destroy', pplan, method: :delete, :onclick => "return confirm('Are you sure you want to delete this item?')" %> </td> 
+--->
+          <td><%= link_to 'Remove', pplan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<!-- Button start         <td>   
+	        <%= form_for(pplan, :html => { :class=> "form-inline", :role=> "form" }) do |f| %>
+
+		    <%= f.hidden_field :payment_complete, :value => 1  %>
+            <div class="form-actions">
+	            <button type="submit" class="btn btn-default btn-xs" > Mark Paid</button>
+            </div>
+	      </td>
+<!-- Button end --->
+<% end %>
+
+
+
+  <%   end    %> </tr>
+	<tr>
+	    <th>Total </th>
+	      <th> <%= @total_pplan %> </th>
+	      </tr>
+	<%   end    %>
+	<p>
+
+      </table>      
+    </div>
+  </div>
+</div>
+</div> <!-- col-md-4 -->
+
+<div class="col-md-4 col-sm-offset-3">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"> <strong> Payments Made <%=  %></strong></h2>
+  </div>    
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+	<tr>
+	    <% if @collection_now.empty? %>
+	      <th> No payment is done yet</th>
+
+	        <%   else    %>
+		  <th>Date </th>
+		    <th>Amount </th>
+		    </tr>
+	<%       @collection_now.each do |collection|%>
+	<tr>
+	    <td><%= collection.date.to_time.strftime("%B %d, %Y")   %></td>
+	      <td><%= collection.amount %> <span class="label label-success">Paid</span></td>
+	        <%   end    %> </tr>
+	<tr>
+	    <th>Total </th>
+	      <th> <%= @total_collection %> </th>
+	      </tr>
+	<%   end    %>
+	<p>
+
+      </table>      
+    </div>
+  </div>
+</div>
+</div> <!-- col-md-4 col-md-offset-4 -->
+</div> <!-- Row closed -->
+
+
+</p> 
+<a class=" btn btn-sm btn-default" role="button"       <%= link_to 'Back to Dashboard', dashboard_index_path %>
+
+</div>
+
+</p>
+
+
+

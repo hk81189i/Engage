@@ -1,0 +1,55 @@
+<h1>Listing payment_plans</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>July</th>
+      <th>Aug</th>
+      <th>Sept</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Lead</th>
+      <th>Bdm</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @payment_plans.each do |payment_plan| %>
+      <tr>
+        <td><%= payment_plan.year %></td>
+        <td><%= payment_plan.jan %></td>
+        <td><%= payment_plan.feb %></td>
+        <td><%= payment_plan.mar %></td>
+        <td><%= payment_plan.apr %></td>
+        <td><%= payment_plan.may %></td>
+        <td><%= payment_plan.jun %></td>
+        <td><%= payment_plan.july %></td>
+        <td><%= payment_plan.aug %></td>
+        <td><%= payment_plan.sept %></td>
+        <td><%= payment_plan.oct %></td>
+        <td><%= payment_plan.nov %></td>
+        <td><%= payment_plan.dec %></td>
+        <td><%= payment_plan.lead_id %></td>
+        <td><%= payment_plan.bdm_id %></td>
+        <td><%= link_to 'Show', payment_plan %></td>
+        <td><%= link_to 'Edit', edit_payment_plan_path(payment_plan) %></td>
+        <td><%= link_to 'Destroy', payment_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Payment plan', new_payment_plan_path %>

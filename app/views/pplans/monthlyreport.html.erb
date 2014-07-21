@@ -1,0 +1,153 @@
+
+Please enter the Year and Month  for which the Monthly report is to be generated.(Eg: 2013, 6 for June 2013 )
+<%= form_tag :action => "monthlyreport" %>
+ <%= label_tag(:temp_year, "Year (2013)") %>
+   <%= text_field_tag :temp_year %> </t>
+
+
+<%= form_tag :action => "monthlyreport" %>
+ <%= label_tag(:temp_month, "Month (6)") %>
+    <%= text_field_tag :temp_month %> </>
+ <br> </p>
+<%= submit_tag("See Report") %> </p> </p>
+
+
+<h3> Report 1: Projection: <h3> </p>
+<div class="table-responsive">
+
+<table class="table table-striped" style="font-size: 14px !important">
+  <tr>
+    <th>Year & Month</th>
+    <th>Total sale</th>
+    <th>Total revenue</th>
+    <th>Not in payment Plan</th>
+  </tr>
+  <tr>
+    <td  ><%= @month%>, <%= @year%> </td>
+    <td  ><%= @tsale  %></td>
+    <td  > Rs: <%= @tsr %></td>
+    <td  > Rs: <%= @npp %></td>
+  </tr>
+</table>
+</div>
+
+
+<div>
+<p></p>
+<h3>Report: </h3>
+</p>
+Total sales revenue:<strong> <%= number_to_human(@tsr) %> </p></strong>
+
+</p>
+
+
+<font size="2" color="grey">Monthly Distribution</font>
+
+<% year =  @year.to_i %> 
+ <% month = @month.to_i %> 
+<% length = month + 10 %>
+<% count= month  %>
+<div class="table-responsive">
+
+<table class="table table-striped">
+
+ <thead>
+   <tr> 
+ <th> Month</th>
+	<% while count < length  %>
+<% if month == 1 %>
+<%$month = "January"%> <% else %>
+<% if month == 2 %>
+<%$month = "February"%> <% else %>
+
+<% if month == 3 %>
+<%$month = "March"%> <% else %>
+<% if month == 4 %>
+<%$month = "April"%> <% else %>
+<% if month == 5 %>
+<%$month = "May"%> <% else %>
+<% if month == 6 %>
+<%$month = "June"%> <% else %>
+<% if month == 7 %>
+<%$month = "July"%> <% else %>
+<% if month == 8 %>
+<%$month = "August"%> <% else %>
+<% if month == 9 %>
+<% $month = "September"%> <% else %>
+<% if month == 10 %>
+<%$month = "October"%> <% else %>
+<% if month == 11 %>
+<%$month = "November"%> <% else %>
+<% if month == 12 %>
+<%$month = "December"%> <% else %>
+<% end %><% end %><% end %><% end %><% end %><% end %><% end %><% end %><% end %><% end %><% end %><% end %>
+      <th ><%= $month %></th> 
+    
+<% if month == 12  %>
+<% month = 0 %>
+<% end %>
+<% count += 1 %>
+<% month += 1 %>
+<% end %>
+ </tr>
+  </thead>
+
+ <tbody>
+<tr>
+  <td > Amount in Payment Plan</td>
+ <% year =  @year.to_i %> 
+ <% month = @month.to_i %> 
+<% length = month + 9 %>
+<% count=month  %>
+<% while count <= length  %>
+
+    <td ><%= (Pplan.where("MONTH(saledate) = ?", @month).where("YEAR(saledate) = ?", @year ).where("MONTH(paying_date) = ?" , month).sum :amount) %> </td> 
+<% if month == 12  %>
+<% month = 0 %>
+<% year = year+1 %>
+<% end %>
+<% count += 1 %>
+<% month += 1 %>
+<% end %>
+ </tr>
+ <tr>
+   <td>Expected by Batch </td>
+ <% year =  @year.to_i %> 
+ <% month = @month.to_i %> 
+<% length = month + 9 %>
+<% count=month  %>
+<% while count <= length  %>
+
+    <td ><%=  ( (Sale.where("MONTH(saledate) = ?", @month).where("YEAR(saledate) = ?", @year ).joins(:batch).where("YEAR(batches.date) = ?", year).where("MONTH(batches.date) = ?" , month)).sum :selling_price ) - ( (Pplan.where("MONTH(saledate) = ?", @month).where("YEAR(saledate) = ?", @year ).where("MONTH(paying_date) = ?" , month).joins(:batch).where("YEAR(batches.date) = ?", year).where("MONTH(batches.date) = ?" , month)).sum :amount )  %> </td> 
+<% if month >= 12  %>
+<% month = 0 %>
+<% year = year+1 %>
+<% end %>
+<% count += 1 %>
+<% month += 1 %>
+<% end %>
+ </tr>
+ <tr>
+   <td > Payment Done</td>
+ <% year =  @year.to_i %> 
+ <% month = @month.to_i %> 
+ <% length = month + 9 %>
+<% count=month  %>
+<% while count <= length  %>
+
+    <td ><%=  Collection.joins(:sale).where("YEAR(sales.saledate) = ?", year).where("MONTH(sales.saledate) = ?" , @month).where("MONTH(date) = ?" , count).sum :amount %> </td> 
+<% if month >= 12  %>
+<% month = 0 %>
+<% year = year+1 %>
+<% end %>
+<% count += 1 %>
+<% month += 1 %>
+<% end %>
+ </tr>
+  
+</table>
+</div>
+
+
+
+</div>

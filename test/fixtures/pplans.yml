@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  paying_date: 2013-11-11
+  amount: 1
+  user_id: 1
+  sale_id: 1
+
+two:
+  paying_date: 2013-11-11
+  amount: 1
+  user_id: 1
+  sale_id: 1

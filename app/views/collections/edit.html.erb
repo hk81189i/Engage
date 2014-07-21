@@ -1,0 +1,105 @@
+
+
+<div class="page-header">
+  <h2> <strong>Match the following:</strong></h2>
+</div>
+
+
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong> Payment details</strong></h3>
+        </div>
+        <div class="panel-body">
+	   <p>
+	     <strong>Date:</strong>
+	     <%= @collection.date.to_time.strftime("%v") %>
+	   </p>
+
+	   <p>
+	     <strong>Amount:</strong>
+	     <%= @collection.amount %>
+	   </p>
+
+	   <p>
+	     <strong>Mode of Payment </strong>
+	     <%= @collection.mode %>
+	   </p>
+
+	   <p>
+	     <strong>Payment Details </strong>
+	     <%= @collection.payment_details %>
+	   </p>
+
+	   <p>
+	     <strong>Comment: </strong>
+	     <%= @collection.comments %>
+	   </p>
+
+
+	   <p>
+	     <strong>Marked to </strong>
+	     <% if @collection.contact.nil? %>
+	     'UnClaimed'
+	     <% else %>
+	     <%= @collection.contact.name %>
+	     <% end %>
+	   </p>
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+<div class="row">
+  <div class="col-sm-4">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong>New Customer</strong></h3>
+      </div>
+      <div class="panel-body">
+        <%= render 'select_new_customer' %>
+      </div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong>Existing upwithNLP Customer</strong></h3>
+      </div>
+      <div class="panel-body">
+        <%= render 'select_old_prac' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Existing Super Master and Combo Customer</strong></h3>
+        </div>
+        <div class="panel-body">
+          <%= render 'select_old_master_prac' %>
+        </div>
+      </div>
+</div>
+
+</div>
+
+</div>
+
+
+</p> 
+<a class=" btn btn-sm btn-default" role="button"       <%= link_to 'Back to Dashboard', dashboard_index_path %>
+
+</div>
+
+</p>
+
+
+

@@ -1,0 +1,23 @@
+
+Monthly Cash distribution  for June  batch: 
+
+ <p><b>January:</b> <%= @total %> </p>  
+  <tr><p>  <b>February: </b>  <%= @totalfeb %> </p>   </tr>
+  <tr><p>  <b>March:   </b><%= @totalmar %> </p>   </tr>
+  <tr><p>  <b>April: </b>  <%= @totalapr %> </p>   </tr>
+  <tr><p>  <b>May: </b>  <%= @totalmay %> </p>   </tr>
+  <tr><p>  <b>June: </b>  <%= @totaljun %> </p>   </tr>
+  <tr><p>  <b>July : </b>  <%= @totaljuly %> </p>   </tr>
+  <tr><p>  <b>September : </b>  <%= @totalsept %> </p>   </tr>
+  <tr><p>  <b>October : </b>  <%= @totaloct %> </p>   </tr>
+  <tr><p>  <b>November : </b>  <%= @totalnov %> </p>   </tr>
+  <tr><p>  <b>December : </b>  <%= @totaldec %> </p>  </tr>
+
+
+
+
+<tr><b>Total for the month - received </b> <red><%= @grandtotal %>  </red></p>
+
+
+
+

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  infu_owner_id: MyString
+  infu_id: MyString
+  date: 2014-04-16 04:22:19
+
+two:
+  infu_owner_id: MyString
+  infu_id: MyString
+  date: 2014-04-16 04:22:19

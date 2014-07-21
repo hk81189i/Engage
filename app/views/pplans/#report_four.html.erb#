@@ -1,0 +1,149 @@
+
+
+Please enter the Year and Month  for which the Monthly report is to be generated.(Eg: 2013, 6 for June 2013 )
+<%= form_tag :action => "report_four" %>
+ <%= label_tag(:_year, "Year (2013)") %>
+   <%= month_field(:rep2_year, :month)  %> </t>
+
+
+<%= form_tag :action => "report_four" %>
+ <%= label_tag(:temp_month, "Month (6)") %>
+    <%= text_field_tag :rep2_month %> </>
+ <br> </p>
+<%= submit_tag("See Report") %> </p> </p>
+
+
+
+
+<h3> Report 4 : </h3> </p>
+
+
+<h3> Not in payment Plan </h3> </p>
+
+
+</p>
+
+ <table class="tg-table-brown", style="float: left; width: 500px">
+  <thead>
+    <tr>
+      <th> Name</th>
+      <th>Batch</th>
+      <th>Selling Price</th>
+      <th> Not in Payment Plan </th>
+
+
+    </tr>
+  </thead>
+
+ 
+ <tbody>
+
+<%  sale = Sale.where(batchdate: (Time.now.midnight - 1.day)..Time.now + 1.year)  %>
+<% sale.each do |sale| %> 
+<% sp = sale.selling_price %> 
+<% pplan= (Pplan.where(:user_id => sale.user_id).sum :amount) %>
+<% sp - pplan %> 
+<% puts(sp -  pplan) %> 
+<% if sp - pplan != 0 %>
+<% out = sale.user.name %>
+ <tr class="tg-even">
+<td class="tg-bf"> <%=  sale.user.name %> </td>
+<td class="tg-bf"> <%=  sale.batch.name %> </td>
+<td class="tg-bf"> <%=  sale.selling_price %> </td>
+<td class="tg-bf"> <%=  sp - pplan %> </td>
+
+<% else %>
+<% end %>
+<% end %>
+     
+
+  </tbody>
+</table>
+
+
+
+
+
+</p>
+
+ <div style="float: right;  margin-right:45px; width: 500px; margin-left:45px;  margin-bottom:45px">
+
+<h3><font color="red"> Payment over due - According to payment Plan</font></h3> </p>  
+
+ <table class="tg-table-brown", style="float: right; width: 500px">
+  <thead>
+    <tr>
+      <th> Name</th>
+      <th> Amount </th>
+      <th>Days Overdue</th>
+    </tr>
+  </thead>
+
+ 
+ <tbody>
+
+   <% pplan = Pplan.where(['paying_date < ?', DateTime.now - 1.day ]).order("paying_date ASC")  %>
+<% pplan.each do |sale| %> 
+<% if pplan != 0 %>
+<% out = sale.user.name %>
+
+ <tr class="tg-even">
+<td class="tg-bf"> <%=  sale.user.name %> </td>
+<td class="tg-bf"> <%=  sale.amount %> </td>
+
+<td class="tg-bf"> <%= distance_of_time_in_words(sale.paying_date, Date.today) %> </td>
+</tr>
+<% else %>
+<tr>
+<td> Entry found </td>
+</tr>
+<% end %>
+<% end %>
+
+     
+
+  </tbody>
+</table>
+
+<h3>.    </h3>
+</p>
+
+
+<h3><font color="red"> Payment over due -  According to Batch</font>
+<br><br><font color="blue"> Batch from Month of <%= Time.now.strftime("%B %Y") %> </font> </h3>
+<table class="tg-table-brown", style="float: right; margin-right:45px; width: 500px">
+  <thead>
+    <tr>
+      <th> Name</th>
+      <th>Batch</th>
+      <th> Amount </th>
+     <th>Days Overdue</th>
+    </tr>
+  </thead>
+
+ 
+ <tbody>
+
+<% pplan = Pplan.where(['paying_date < ?', DateTime.now - 1.day ]).order("batch_id ASC")  %>
+<% pplan.each do |sale| %> 
+<% if pplan != 0 %>
+<% out = sale.user.name %>
+ <tr class="tg-even">
+<td class="tg-bf"> <%=  sale.user.name %> </td>
+<td class="tg-bf"> <%=  sale.batch.name %> </td>
+<td class="tg-bf"> <%=  sale.amount %> </td>
+
+<td class="tg-bf"> <%= distance_of_time_in_words(sale.paying_date, Date.today) %> </td>
+</tr>
+<% else %>
+<tr>
+<td> Entry found </td>
+</tr>
+<% end %>
+<% end %>
+     
+
+  </tbody>
+</table>
+
+</div>

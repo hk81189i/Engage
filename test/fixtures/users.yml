@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  email: MyString
+  phone: MyString
+  bdm_id: 1
+  saledate: 2013-11-11
+  selling_price: 1
+  token: 1
+
+two:
+  name: MyString
+  email: MyString
+  phone: MyString
+  bdm_id: 1
+  saledate: 2013-11-11
+  selling_price: 1
+  token: 1

@@ -1,0 +1,34 @@
+<h1>Payment plans for all Sales</h1>
+<div class="table-responsive">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Paying date</th>
+      <th>Amount</th>
+      <th>contact</th>
+      <th>Sale</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pplans.each do |pplan| %>
+      <tr>
+        <td><%= pplan.paying_date.strftime("%B %d, %Y")  %></td>
+        <td><%= pplan.amount %></td>
+        <td><%= pplan.contact.name %></td>
+        <td><%= pplan.sale.product.name%></td>
+	<td><%= link_to 'Show', pplan %></td>
+        <td><%= link_to 'Edit', edit_pplan_path(pplan) %></td>
+        <td><%= link_to 'Destroy', pplan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div>
+<br>
+
+<%= link_to 'Add New Payment Plan', new_pplan_path %>
+<br><%= link_to 'List of Users', users_path %>
+
+

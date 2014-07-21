@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Prac name:</strong>
+  <%= @prac.name %>
+</p>
+
+<p>
+  <strong>Change agent:</strong>
+  <%= @change_agent.name %>
+</p>
+
+<p>
+  <strong>Precondition:</strong>
+  <%= @oncourse_exercise.precondition %>
+</p>
+
+<p>
+  <strong>Technique:</strong>
+  <%= @oncourse_exercise.technique %>
+</p>
+
+<p>
+  <strong>Postcondition:</strong>
+  <%= @oncourse_exercise.postcondition %>
+</p>
+
+<p>
+  <strong>Tti date:</strong>
+  <%= @oncourse_exercise.tti_date.strftime(" %v ") %>
+</p>
+
+<p>
+  <strong>Test:</strong>
+  <%= @oncourse_exercise.test %>
+</p>
+
+<p>
+  <strong>Futurepacing:</strong>
+  <%= @oncourse_exercise.futurepacing %>
+</p>
+
+<p>
+  <strong>Coach name:</strong>
+  <%= @oncourse_exercise.coach_name %>
+</p>
+
+<%= link_to 'Edit', edit_oncourse_exercise_path(@oncourse_exercise) %> |
+<%= link_to 'Back', oncourse_exercises_path %>

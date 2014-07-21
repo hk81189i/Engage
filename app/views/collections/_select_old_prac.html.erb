@@ -1,0 +1,30 @@
+
+
+
+<%= form_for(@collection) do |f| %>
+  <% if @collection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
+
+      <ul>
+      <% @collection.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :old_sale_practitioner %><br>
+<%= select("collection", "sale_id", Collection.old_customer_paymnet_pending_prac_for_select , { include_blank: true }) %>  </div>
+
+<p>
+
+  <div class="actions">
+    <%= f.submit "Claim sale" %>
+  </div>
+
+<% end %>
+
+

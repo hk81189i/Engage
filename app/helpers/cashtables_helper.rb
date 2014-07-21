@@ -1,0 +1,2 @@
+module CashtablesHelper
+end

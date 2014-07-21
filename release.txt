@@ -1,0 +1,31 @@
+Version  0.02
+release 1
+Sale to be marked on  Infusion soft
+screens: 
+http://treasurehunt.schoolofexcellence.in/
+http://treasurehunt.schoolofexcellence.in/collections
+http://treasurehunt.schoolofexcellence.in/collections/new
+http://treasurehunt.schoolofexcellence.in/pplans
+http://treasurehunt.schoolofexcellence.in/pplans/new
+http://treasurehunt.schoolofexcellence.in/users
+http://treasurehunt.schoolofexcellence.in/pplans/monthlyreport
+http://treasurehunt.schoolofexcellence.in/pplans/report_two
+http://treasurehunt.schoolofexcellence.in/pplans/report_three
+http://treasurehunt.schoolofexcellence.in/pplans/report_four
+
+Requirement: Batch on Infusionsoft has to exactly match the batch name in this application. 
+
+
+
+version 0.01
+release 1
+
+added basic screens
+http://localhost:3000/payment_plans
+http://localhost:3000/leads
+http://localhost:3000/bdms
+http://localhost:3000/cashflows
+
+release 2
+added screen for monthly report - General
+http://localhost:3000/payment_plans/1/reportone.html

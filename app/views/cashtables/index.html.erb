@@ -1,0 +1,55 @@
+<h1>Listing cashtables</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Year</th>
+      <th>Jan</th>
+      <th>Feb</th>
+      <th>Mar</th>
+      <th>Apr</th>
+      <th>May</th>
+      <th>Jun</th>
+      <th>July</th>
+      <th>Aug</th>
+      <th>Sept</th>
+      <th>Oct</th>
+      <th>Nov</th>
+      <th>Dec</th>
+      <th>Lead</th>
+      <th>Bdm</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cashtables.each do |cashtable| %>
+      <tr>
+        <td><%= cashtable.year %></td>
+        <td><%= cashtable.jan %></td>
+        <td><%= cashtable.feb %></td>
+        <td><%= cashtable.mar %></td>
+        <td><%= cashtable.apr %></td>
+        <td><%= cashtable.may %></td>
+        <td><%= cashtable.jun %></td>
+        <td><%= cashtable.july %></td>
+        <td><%= cashtable.aug %></td>
+        <td><%= cashtable.sept %></td>
+        <td><%= cashtable.oct %></td>
+        <td><%= cashtable.nov %></td>
+        <td><%= cashtable.dec %></td>
+        <td><%= cashtable.lead_id %></td>
+        <td><%= cashtable.bdm_id %></td>
+        <td><%= link_to 'Show', cashtable %></td>
+        <td><%= link_to 'Edit', edit_cashtable_path(cashtable) %></td>
+        <td><%= link_to 'Destroy', cashtable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cashtable', new_cashtable_path %>

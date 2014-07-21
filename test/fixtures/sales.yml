@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  sale_id: 1
+  batch_id: 1
+  bd_id: 1
+
+two:
+  user_id: 1
+  sale_id: 1
+  batch_id: 1
+  bd_id: 1

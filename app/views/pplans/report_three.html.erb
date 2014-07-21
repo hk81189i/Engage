@@ -1,0 +1,205 @@
+<h3> <font size="2" color="grey">Self Diagionstic</font> </h3>
+
+Description:<br> Report of <strong>total monthly revenue</strong> and respective distribution of <strong> money collected, money not collected</strong>, money not collected but is <strong>in payment plan</strong> and the money not collected which is <strong>not in payment plan</strong>. <br>These details are shown for past 12 months to the next six months (19 months altogether), with reference to today. 
+ </p>
+
+Date of report starting: <% a= Date.today - 12.months %> <%= a.strftime("%B, %Y") %> <br>
+ <% year =  a.year %> 
+ <% month = a.month %> 
+<% count=0  %>
+<div class="table-responsive">
+
+<table class="table table-striped">
+ <thead>
+    <tr>
+Pplan = Payment Plan
+<th style="background-color: #bdc3c7">Month</th>
+<% while count <=18  %>
+<% if month == 1 %>
+<%$month = "January"%> <% else %>
+<% if month == 2 %>
+<%$month = "February"%> <% else %>
+<% if month == 3 %>
+<%$month = "March"%> <% else %>
+<% if month == 4 %>
+<%$month = "April"%> <% else %>
+<% if month == 5 %>
+<%$month = "May"%> <% else %>
+<% if month == 6 %>
+<%$month = "June"%> <% else %>
+<% if month == 7 %>
+<%$month = "July"%> <% else %>
+<% if month == 8 %>
+<%$month = "August"%> <% else %>
+<% if month == 9 %>
+<% $month = "September"%> <% else %>
+<% if month == 10 %>
+<%$month = "October"%> <% else %>
+<% if month == 11 %>
+<%$month = "November"%> <% else %>
+nn<% if month == 12 %>
+<%$month = "December"%> <% else %>
+<% end %><% end %><% end %><% end %><% end %><% end %><% end %><% end %><% end %><% end %><% end %><% end %>
+      <th style="background-color: #bdc3c7"><%= $month %></th> 
+<% if month >= 12  %>
+<% month = 0 %>
+<% year = year + 1 %>
+<% end %>
+<% count += 1 %>
+<% month += 1 %>
+<% end %>
+<th> Grand Total</th> </tr>
+  </thead>
+ <tbody>
+ <tr>
+   <th >< Total Revenue ></th>
+<% a= Date.today - 12.months %>
+<% year =  a.year %> 
+<% month = a.month %> 
+<% count=0  %>
+<% @a = 0 %> 
+<% @E = 0 %>
+<% while count <=18  %>
+
+    <th><%= @a= Sale.tsr_month(year, month) %> </th> 
+
+<% if month >= 12  %>
+<% month = 0 %>
+<% year = year+1 %>
+<% end %>
+<% count += 1 %>
+<% month += 1 %>
+<% @E = @a + @E %>
+<% end %>
+<td> <%= number_with_delimiter(@E, :delimiter => ',') %> </td>
+
+ </tr>
+ <tr>
+   <th> Amount Not in payment Plan</th>
+<% a= Date.today - 12.months %> <br>
+<% year =  a.year %> <br>
+<% month = a.month %> <br>
+<% count=0  %>
+<% @a = 0 %> 
+<% @E = 0 %>
+<% while count <=18  %>
+
+    <th><%= @a = Pplan.npp(year, month) %> </th>
+<% if month >= 12  %>
+<% month = 0 %>
+<% year = year+1 %>
+<% end %>
+<% count += 1 %>
+<% month += 1 %>
+<% @E = @a + @E %>
+<% end %>
+<td> <%= number_with_delimiter(@E, :delimiter => ',') %> </td>
+
+ </tr>
+<tr>
+   <th> Amount  in payment Plan</th>
+<% a= Date.today - 12.months %>
+<% year =  a.year %>
+<% month = a.month %> 
+<% count=0  %>
+<% @a = 0 %> 
+<% @E = 0 %>
+<% while count <=18  %>
+    <th><%= @a = ( Pplan.where('extract(year  from saledate) = ?', year).where('extract(month from saledate) = ?', month).sum :amount)  %> </th>
+<% if month >= 12  %>
+<% month = 0 %>
+<% year = year+1 %>
+<% end %>
+<% count += 1 %>
+<% month += 1 %>
+<% @E = @a + @E %>
+<% end %>
+<td> <%= number_with_delimiter(@E, :delimiter => ',') %> </td>
+ </tr>
+  <tr> <th style="background-color: #bdc3c7"> Total of Not in Pplan and Pplan</th>
+<% a= Date.today - 12.months %> 
+<% year =  a.year %>
+<% month = a.month %>
+<% count=0  %>
+<% @a = 0 %> 
+<% @E = 0 %>
+<% while count <=18  %>
+
+    <th style="background-color: #bdc3c7"><%= @a = (Pplan.npp(year, month))+( Pplan.where('extract(year  from saledate) = ?', year).where('extract(month from saledate) = ?', month).sum :amount) %> </th>
+<% if month >= 12  %>
+<% month = 0 %>
+<% year = year+1 %>
+<% end %>
+<% count += 1 %>
+<% month += 1 %>
+<% @E = @a + @E %>
+<% end %>
+<td> <%= number_with_delimiter(@E, :delimiter => ',') %> </td>
+
+ </tr>
+ <tr> <th> Amount Collected</th>
+<% a= Date.today - 12.months %> 
+<% year =  a.year %>
+<% month = a.month %>
+<% count=0  %>
+<% while count <=18  %>
+    <th><%= @a = Collection.joins(:sale).where("YEAR(sales.saledate) = ?", year).where("MONTH(sales.saledate) = ?" , month).sum :amount %> </th>
+<% if month >= 12  %>
+<% month = 0 %>
+<% year = year+1 %>
+<% end %>
+<% count += 1 %>
+<% month += 1 %>
+<% @E = @a + @E %>
+<% puts @E %>
+<% end %>
+<td> <%= number_with_delimiter(@E, :delimiter => ',') %> </td>
+ </tr>
+ <tr> <th> Amount to be Collected</th>
+<% a= Date.today - 12.months %> 
+<% year =  a.year %>
+<% month = a.month %>
+<% count=0  %>
+<% @a = 0 %> 
+<% @E = 0 %>
+<% while count <=18  %>
+
+    <th><%= @a = ((Sale.tsr_month(year, month)) - (Collection.joins(:sale).where("YEAR(sales.saledate) = ?", year).where("MONTH(sales.saledate) = ?" , month).sum :amount)) %> </th>
+
+<% if month >= 12  %>
+<% month = 0 %>
+<% year = year+1 %>
+<% end %>
+<% count += 1 %>
+<% month += 1 %>
+<% @E = @a + @E %>
+<% end %>
+<td> <%= number_with_delimiter(@E, :delimiter => ',') %> </td>
+ </tr>
+ <tr> <th style="background-color: #bdc3c7"> Total Collection + TB Collected</th>
+<% a= Date.today - 12.months %> 
+<% year =  a.year %>
+<% month = a.month %>
+<% count=0  %>
+<% @a = 0 %> 
+<% @E = 0 %>
+<% while count <=18  %>
+
+    <th style="background-color: #bdc3c7"><%= @a= (Collection.joins(:sale).where("YEAR(sales.saledate) = ?", year).where("MONTH(sales.saledate) = ?" , month).sum :amount)+ ((Sale.tsr_month(year, month)) - (Collection.joins(:sale).where("YEAR(sales.saledate) = ?", year).where("MONTH(sales.saledate) = ?" , month).sum :amount)) %> </th>
+<% if month >= 12  %>
+<% month = 0 %>
+<% year = year+1 %>
+<% end %>
+<% count += 1 %>
+<% month += 1 %>
+<% @E = @a + @E %>
+<% end %>
+<td> <%= number_with_delimiter(@E, :delimiter => ',') %> </td>
+ </tr>
+
+</table>
+</div>
+
+
+
+</div>

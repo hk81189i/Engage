@@ -1,0 +1,8 @@
+class Lead < ActiveRecord::Base
+belongs_to :leadstatus
+scope :all_fresh, -> {where lead_status_id: 1}
+scope :all_contacting, -> {where lead_status_id: 2}
+scope :all_working, -> {where lead_status_id: 3}
+scope :all_closing, -> {where lead_status_id: 4}
+
+end

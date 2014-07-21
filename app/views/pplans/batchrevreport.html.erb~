@@ -1,0 +1,6 @@
+
+
+batch revenue report!! 
+
+
+<%= collection_select(:batch_id, 0, Batches.all, :id, :name) %>

@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  year: MyString
+  jan: MyString
+  feb: MyString
+  mar: MyString
+  apr: MyString
+  may: MyString
+  jun: MyString
+  july: MyString
+  aug: MyString
+  sept: MyString
+  oct: MyString
+  nov: MyString
+  dec: MyString
+  lead_id: 1
+  bdm_id: 1
+
+two:
+  year: MyString
+  jan: MyString
+  feb: MyString
+  mar: MyString
+  apr: MyString
+  may: MyString
+  jun: MyString
+  july: MyString
+  aug: MyString
+  sept: MyString
+  oct: MyString
+  nov: MyString
+  dec: MyString
+  lead_id: 1
+  bdm_id: 1

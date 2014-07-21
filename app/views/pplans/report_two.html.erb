@@ -1,0 +1,133 @@
+
+Please enter the Year and Month  for which the Monthly report is to be generated.(Eg: 2013, 6 for June 2013 )
+<%= form_tag :action => "report_two" %>
+ <%= label_tag(:_year, "Year (2013)") %>
+   <%= text_field_tag :rep2_year %> </t>
+
+
+<%= form_tag :action => "report_two" %>
+ <%= label_tag(:temp_month, "Month (6)") %>
+    <%= text_field_tag :rep2_month %> </>
+ <br> </p>
+<%= submit_tag("See Report") %> </p> </p>
+
+
+
+
+<h3> Report 2 : Reverse Projection for the month of <%= @month%>, <%= @year%> </h3> </p>
+
+<div class="table-responsive">
+  <table class="table">
+  <thead>
+    <tr>
+      <th>Month</th>
+      <th>Amount in Pplan</th>
+      <th>Estimate (Batch)</th>
+
+    </tr>
+  </thead>
+
+ 
+ <tbody>
+    <% @temp.order("date ASC").each do |pplan| %>
+      <tr>
+        <td><%= pplan.date.strftime("%B, %Y")  %></td>
+        <td><%= pplan.amount %></td>
+        <td><%= pplan.estimate %></td>    
+	<% end %>
+      <tr class="tg-even">
+<td > Total</td>
+<td ><%= Temp.all.sum :amount %> </td>
+<td ><%= Temp.all.sum :estimate %> </td>
+      </tr>
+
+  </tbody>
+</table>
+
+
+
+
+
+<% $inpplan_for_batch= (Pplan.joins(:batch).where("MONTH(batches.date) = ?" ,@month).sum :token) + (Pplan.joins(:batch).where("MONTH(batches.date) = ?" , @month).sum :amount) %>
+
+<% $collection = (Collection.joins(:sale).where("MONTH(sales.batchdate) = ?" , @month).sum :amount )%> </p>
+
+<% if $collection ==  nil %>
+<% $collection = 0 %> 
+<% end %>
+<% if $collection ==  nil %>
+<% $collection = 0 %> 
+<% end %>
+
+
+<div class="table-responsive">
+  <table class="table">
+  <thead>
+    <tr>
+      <th> Type</th>
+      <th>Collected</th>
+      <th>Not Collected</th>
+
+    </tr>
+  </thead>
+
+ 
+ <tbody>
+
+      <tr>
+	   <td > Amount in Payment Plan</td>
+	   <td ><%= @in_payment_collected   %></td>
+	   <td ><%=  @in_payment_not_collected %></td>
+      </tr>
+
+  </tbody>
+</table>
+
+</p>
+ <div style="float: right;  margin-right:45px; width: 500px; margin-left:45px;  margin-bottom:45px">
+ <table class="tg-table-brown", style="float: right; width: 500px">
+  <thead>
+    <tr>
+      <th> Name</th>
+      <th>Selling Price</th>
+      <th> To be collected </th>
+
+
+    </tr>
+  </thead>
+
+ 
+ <tbody>
+
+
+<% sale = Sale.where("YEAR(batchdate) = ?", @year).where("MONTH(batchdate) = ?", @month) %> 
+<% sale.each do |sale| %> 
+<% sp = sale.selling_price %> 
+<% collected= Collection.where(:contact_id => sale.contact_id).sum :amount %>
+<% puts(collected) %> 
+<% sp - collected %> 
+<% puts(sp -  collected) %> 
+<% if sp - collected != 0 %>
+<% out = sale.contact.name %>
+ <tr class="tg-even">
+<td > <%=  sale.contact.name %> </td>
+<td > <%=  sale.selling_price %> </td>
+<td > <%=  sp - collected %> </td>
+
+ </tr>
+<% else %>
+<tr>
+<td > No- Not collected entries found </td>
+ </tr>
+<% end %>
+<% end %>
+     
+
+  </tbody>
+</table>
+
+
+</div>
+
+
+</p>

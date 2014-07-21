@@ -1,0 +1,32 @@
+<h1>Listing invoices</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Invoice ID</th>
+      <th>Created On</th>
+      <th>Approval</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.name %></td>
+ <td><%= invoice.id %></td>
+ <td><%= invoice.created_at %></td>
+ <td><% if invoice.approve == 1%> Done <% else %>
+Pending <% end %>
+</td>
+        <td><%= link_to 'Show', invoice %></td>
+        <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+        <td><%= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Invoice', new_invoice_path %>

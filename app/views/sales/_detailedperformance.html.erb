@@ -1,0 +1,56 @@
+
+
+  <div class="row">
+    <div class="col-sm-6 col-md-2"> 
+      <td> <strong>FRESH </strong> </td><br>
+      <% Lead.all_fresh.where(:infu_owner_id => admin.infu_id).each_with_index do |lead, i| %>
+<%= i+1 %><%= lead.fname.to_s + " " + lead.lname.to_s %><br>
+      <% end %>
+    </div>
+
+    <div class="col-sm-6 col-md-2">
+      <td> <strong>CONTACTING </strong> </td><br>
+      <% Lead.all_contacting.where(:infu_owner_id => admin.infu_id).each_with_index do |lead, i| %>
+      <tr class="info"><td> <%= i+1 %></td>
+ <%= lead.name %></td> </tr><br>
+      <% end %>
+    </div>
+
+    <div class="col-sm-6 col-md-2">
+      <td> <strong>WORKING </strong> </td><br>
+      <% Lead.all_working.where(:infu_owner_id => admin.infu_id).each_with_index do |lead, i| %>
+<tr>      <td> <%= i+1 %></td>
+      <td> <%= lead.name %></td></tr><br>
+      <% end %>
+    </div>
+
+    <div class="col-sm-6 col-md-2">
+      <td> <strong>Booked </strong> </td><br>
+      <% Lead.all_closing.where(:infu_owner_id => admin.infu_id).each do |lead| %>
+      <td> <%= lead.name %></td>
+      <% end %>
+    </div>
+
+ <div class="col-sm-6 col-md-2">
+      <td> <strong>DND </strong> </td><br>
+      <% Lead.all_dnd.where(:infu_owner_id => admin.infu_id).each_with_index do |lead, i| %>
+<tr>      <td> <%= i+1 %></td>
+      <td> <%= lead.name %></td></tr><br>
+      <% end %>
+    </div>
+
+ <div class="col-sm-6 col-md-2">
+      <td> <strong>Paid </strong> </td><br>
+      <% Lead.all_dnd.where(:infu_owner_id => admin.infu_id).each_with_index do |lead, i| %>
+<tr>      <td> <%= i+1 %></td>
+      <td> <%= lead.name %></td></tr><br>
+      <% end %>
+    </div>
+
+
+ </div>
+
+
+
+
+

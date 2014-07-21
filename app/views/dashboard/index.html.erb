@@ -1,0 +1,203 @@
+
+<div class="jumbotron">
+  <h1>Hello, Welcome to Treasure Hunt! </h1>
+  <p>This is a SOE application for a simple operational assiatance and invoice automation. Kindly bear with me for the ugly, not so friendly UI- this is a beta release, which also pre-supposes that you are also prepared to report bugs. Use it as a starting point to create something more unique.</p>
+
+</div>
+
+<% if admin_signed_in? %>
+
+<% if (current_admin.id == 1)||(current_admin.id == 2)||(current_admin.id == 3)||(current_admin.id == 4)||(current_admin.id == 5)||(current_admin.id == 6) ||(current_admin.id == 27)%>
+
+<div class="row-fluid">
+  <div class="span4 well">
+    <fieldset>
+      <%= form_for(Collection.new, :html => { :class=> "form-inline", :role=> "form" }) do |m| %>
+      <legend>Add a new payment</legend>
+      <div class="span4 well">
+	<div class="form-group">
+	  <%= m.label :date %>
+	  <%= m.date_field :date %>
+	</div>
+	<div class="form-group">
+	  <%= m.label :amount %>
+	  <%= m.text_field :amount %>
+	</div>
+	<div class="form-group">
+	  <%= m.label :mode_of_payment %>
+	  <%= m.select :mode, options_for_select(%w[Cheque DoAttend NEFT Cash CreditCard WireTransfer] , {:class => 'form-control'}) %>
+	</div>
+	<div class="form-group">
+	  <%= m.label :payment_details %>
+	  <%= m.text_field :payment_details %>
+	</div>
+	<div class="form-group">
+	  <%= m.label :comments %>
+	  <%= m.text_field :comments %>
+	</div>
+
+        <div class="form-actions">
+	  <button type="submit" class="btn btn-default">Add</button>
+        </div>
+      </div>
+    </fieldset>
+    <% end %>
+  </div>
+</div>
+<% end %>
+
+<% else %>
+
+<% end %>
+
+
+<%= render "collections/collectionlist" %>
+
+
+
+<p><a class=" btn btn-xs btn-default" role="button"        <%= link_to 'Show More' , collections_path %>  &raquo;</a></p>
+      <br>
+</p>
+
+
+<div class="page-header">
+        <h2> <strong>Sales details</strong></h2>
+      </div>
+
+<%= render "sales/salelist" %>
+
+<p><a class=" btn btn-xs btn-default" role="button"        <%= link_to 'Show More' , sales_path %>  &raquo;</a></p>
+      <br>
+</p>
+
+
+
+
+
+<div class="page-header">
+  <h2>Snippet </h2>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong><%= Time.now.strftime("%B %Y") %> Revenue</strong></h3>
+      </div>
+      <div class="panel-body">
+	<table class="table">
+	  <tr>
+	    <th>Year & Month</th>
+	    <th>Total sale</th>
+	    <th>Total revenue</th>
+	    <th>Not in payment Plan</th>
+	  </tr>
+	  <tr class="tg-even">
+	    <td class="tg-bf"><%= @month%>, <%= @year%> </td>
+	    <td class="tg-bf"><%= @tsale   %></td>
+	    <td class="tg-bf"> Rs: <%= @tsr %></td>
+	    <td class="tg-bf"> Rs: <%= @npp %></td>
+	  </tr>
+	</table>
+	<%= link_to 'Show More', monthlyreport_pplans_path %>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><strong> Amount in Payment Plan</strong></h3>
+      </div>
+      <div class="panel-body">
+
+
+	<table class="table">
+
+	  <thead>
+	    <tr>
+
+	      <th>Collected</th>
+	      <th>Not Collected</th>
+
+	    </tr>
+	  </thead>
+
+	  
+	  <tbody>
+
+	    <tr class="tg-even">
+
+	      <td ><%= @in_payment_collected   %></td>
+	      <td ><%=  @in_payment_not_collected %></td>
+	    </tr>
+
+	  </tbody>
+	</table>
+<!---	<%= link_to 'Show More', report_two_pplans_path %>  -->
+      </div>
+    </div>
+  </div><!-- /.col-sm-4 -->
+  <div class="col-sm-6">
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"> <strong>Alert Update! </strong></h3>
+      </div>
+      <div class="panel-body">
+
+
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th> Not in Payment Plan </th>
+	      <th> Payment Over due </th>
+
+
+	    </tr>
+	  </thead>
+
+	  
+	  <tbody>
+
+
+	    <tr class="tg-even">
+	      <td class="tg-bf"> <%=  @count %> </td>
+	      <td class="tg-bf"> <%=  @overdue_count %> </td>
+	    </tr>
+
+	  </tbody>
+	</table>
+	<%= link_to 'Show More', report_four_pplans_path %>
+      </div>
+    </div>
+  </div><!-- /.col-sm-4 -->
+  <div class="col-sm-6">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title"> <strong> System Self Check </strong></h3>
+      </div>
+      <div class="panel-body">
+
+
+	<table class="table">
+	  <thead>
+	    <tr>
+	      <th> System Self Check - SUCCESS! </th>
+
+
+
+	    </tr>
+	  </thead>
+
+	  
+	  <tbody>
+
+
+	    <tr class="tg-even">
+	      <td class="tg-bf"> PS: Feature disabled.</td>
+	      <td class="tg-bf"> <%=   %> </td>
+	    </tr>
+
+	  </tbody>
+	</table>
+	<%= link_to 'Show More', report_three_pplans_path %>
+      </div>
+    </div>
+  </div><!-- /.col-sm-4 -->
+</div>

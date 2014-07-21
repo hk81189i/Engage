@@ -1,0 +1,26 @@
+class Pplan < ActiveRecord::Base
+belongs_to :user
+belongs_to :sale
+belongs_to :batch
+
+def self.pp_month_rm(month, rm)
+  self.where(:amount => 10000, :token=> 6000)
+ end
+
+
+
+#  def
+
+ def self.exp_cc
+  where(paying_date: (Time.now.midnight - 1.year)..Time.now.midnight+1.month).sum :amount
+end
+
+def self.inpp_batch
+
+end  
+
+
+
+
+
+end

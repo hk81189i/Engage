@@ -1,0 +1,39 @@
+Hello, Please remember to add token advance/initial payment also as a payment plan. </p>
+
+
+<%= form_for(@pplan) do |f| %>
+  <% if @pplan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pplan.errors.count, "error") %> prohibited this pplan from being saved:</h2>
+
+      <ul>
+      <% @pplan.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table>
+
+ <tr>
+ <div class="field">
+    <%= f.label :paying_date %><br>
+    <%= f.date_select :paying_date %>
+  </div> 
+
+<td>  <div class="field">
+    <%= f.label :amount %><br>
+    <%= f.number_field :amount %>
+  </div></td>
+
+
+
+
+<td>  <div class="actions">
+    <%= f.submit "Update Payment item" %>
+  </div> </td>
+</tr>
+
+<% end %>
+
+</table>

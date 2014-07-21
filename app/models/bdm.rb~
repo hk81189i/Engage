@@ -1,0 +1,2 @@
+class Bdm < ActiveRecord::Base
+end

@@ -1,0 +1,106 @@
+
+<div class="page-header">
+  <h2> <strong>Team Payments</strong></h2>
+</div>
+
+
+
+<div class="table-responsive">
+  <table class="table table-striped">
+    <thead>
+      <tr><div class="row">
+	  <th><div class="col-xs-12 col-sm-12">  Date</div></th>
+	  <th><div class="col-xs-12 col-sm-12">  Customer</div></th>          
+	  <th><div class="col-xs-12 col-sm-12">  Amount</div></th>      
+	  
+	  <th><div class="col-xs-12 col-sm-12">  Mode</div></th>     
+	  <th><div class="col-xs-12 col-sm-12">  Payment Details</div></th>  
+
+	  <th><div class="col-xs-12 col-sm-12">  Payment Status</div></th> 
+	  <th><div class="col-xs-12 col-sm-12">  Change</div></th>    
+	  <% if @dlp %>
+	  <th><div class="col-xs-12 col-sm-12">  Remove</div></th>    
+	  <% end %>
+	  <th><div class="col-xs-12 col-sm-12">  Payment Plan</div></th>     
+	  <th><div class="col-xs-12 col-sm-12">  Verify Receipt </div></th>      
+	  <th><div class="col-xs-12 col-sm-12">  Comments</div></th>  
+      </tr></div>
+    </thead>
+
+    <tbody>
+
+      <% @collections.order("date DESC").each do |collection| %>
+
+      <tr><div class="row">
+	  <td><div class="col-xs-12 col-sm-12">  <%= collection.date.to_time.strftime("%v") %></div></td> 
+	  <td><div class="col-xs-12 col-sm-12">
+	      <% if collection.contact.nil? %>
+	      <span class="label label-info">  UnClaimed </span>
+	      <% else %>
+	      <%= collection.contact.name %>
+	      <% end %>
+	  </div></td>        
+	  <td><div class="col-xs-12 col-sm-12">  <%= collection.amount%></div></td> 
+	  <td><div class="col-xs-12 col-sm-12">  <%= collection.mode%></div></td> 
+	  <td><div class="col-xs-12 col-sm-12">  <%= collection.payment_details%></div></td>       
+	  <% if !collection.contact.nil?%>   
+	  <td> Claimed </td> 
+	  <% else %> 
+	  <td><div class="col-xs-12 col-sm-12"><%= link_to 'Claim Now', edit_collection_path(collection) %></div></td>       
+	  <% end %>
+	  <td><div class="col-xs-12 col-sm-12"><%= link_to 'Correct', edit_collection_path(collection) %></div></td>    
+	  <% if @dlp %>  <!-- Check if FInance team -->
+	  <td><div class="col-xs-12 col-sm-12"><%= link_to 'Destroy', collection, method: :delete, data: { confirm: 'Are you sure?' } %></div></td>
+	  <% end %>
+	  <td><div class="col-xs-12 col-sm-12">
+	      <% if collection.sale_id == nil %> Not claimed
+	      <% else  %>
+	      <% if Pplan.where(:sale_id => collection.sale_id).empty?  %> 
+<a class=" btn btn-xs btn-info" role="button" 	      <%= link_to 'Add New', new_pplan_path(:id => collection.sale_id) %> </a>
+
+	      <% else %>
+	      <% if collection.sale.selling_price != ((Pplan.where(:sale_id => collection.sale_id).where(:payment_complete => nil).sum :amount)) %>
+	      <!--- (Collection.where(:sale_id => collection.sale_id).sum :amount))  %> -->
+
+<a class=" btn btn-xs btn-warning" role="button" 	      <%= link_to 'Error', new_pplan_path(:id => collection.sale_id) %> </a>
+
+	      <% else %>
+<a class=" btn btn-xs btn-success" role="button" 	     <%= link_to 'Available', new_pplan_path(:id => collection.sale_id) %> </a>	      
+	      <% end %>
+	      <% end %>
+	      <% end %>
+	  </div></td>
+
+	  <% if collection.sale_id == nil %>
+
+	  <td><div class="col-xs-12 col-sm-12">  Payment Not claimed  </div></td>
+	  <% else  %>
+	  <% if collection.sale.selling_price == (Pplan.where(:sale_id => collection.sale_id).sum :amount)  %> 
+	  <% if collection.invoice != nil %>
+	  <% if collection.invoice.approve != 1 %>
+	  <td><div class="col-xs-12 col-sm-12"><%= link_to 'Show' , collection.invoice %> </div></td>
+	  <% else %>
+	  <td><div class="col-xs-12 col-sm-12"><%= link_to 'Verified & Sent' , collection.invoice %> </div></td>
+	  <% end %>
+	  <% else %>
+	  <td><div class="col-xs-12 col-sm-12"> Not Generated </div></td>
+	  <% end %>
+      </tr></div>
+      <td><div class="col-xs-12 col-sm-12">  <%= collection.comments %></div></td> 
+
+      <% end %>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<h4><strong>
+<% if current_page?(collections_path) %>
+ <%= will_paginate @collections %></a></li>
+<% end %></strong></h4>
+
+
+
+
+

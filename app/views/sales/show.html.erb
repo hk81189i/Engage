@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<div class="page-header">
+        <h2> <strong>Sales details</strong></h2>
+      </div>
+
+ 
+
+
+<p>
+  <strong>Contact:</strong>
+  <%= @sale.contact.name %>
+</p>
+
+<p>
+  <strong>Sale:</strong>
+  <%= @sale.product.name %>
+</p>
+
+<p>
+  <strong>Batch:</strong>
+  <%= @sale.batch.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_sale_path(@sale) %> |
+<%= link_to 'Back', sales_path %>

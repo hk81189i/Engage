@@ -1,0 +1,31 @@
+<h1>Listing bdms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bdms.each do |bdm| %>
+      <tr>
+        <td><%= bdm.name %></td>
+        <td><%= bdm.email %></td>
+        <td><%= bdm.phone %></td>
+        <td><%= link_to 'Show', bdm %></td>
+        <td><%= link_to 'Edit', edit_bdm_path(bdm) %></td>
+        <td><%= link_to 'Destroy', bdm, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Bdm', new_bdm_path %>

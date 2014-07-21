@@ -1,0 +1,72 @@
+
+<%= form_for(@oncourse_exercise) do |f| %>
+ <% if @oncourse_exercise.errors.any? %>
+    <div id="error_explanation">
+      <h4><%= pluralize(@oncourse_exercise.errors.count, "error") %> prohibited this sale from being saved:</h4>
+
+      <ul>
+      <% @oncourse_exercise.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+  <%= f.label :date_of_Exercise %> <br>
+	  <%= f.date_field :date, :class=>'form-control' %>
+
+ </div>
+
+
+<div class="form-group">
+  <%= f.label :name_of_Practitioner %> <br>
+  <%= collection_select(:oncourse_exercise, :prac_id, @sales, :contact_id, :full_name) %>
+ </div>
+
+  <div class="form-group">
+  <%= f.label :name_of_the_change_agent %> <br>
+  <%= collection_select(:oncourse_exercise, :change_agent_id, @sales, :contact_id, :full_name) %>
+ </div><br>
+
+<div class="field">
+	<%= f.label "Precondition" %>
+	<%= f.text_area :precondition, :class=>'form-control', :placeholder => "What was the condition of the practitioner before the session?"   %>
+</div><br>
+
+<div class="field">
+	<%= f.label "Technique" %>
+	<%= f.text_area :technique, :class=>'form-control', :placeholder => "What was the technique used for the  session?"   %>
+</div><br>
+
+<div class="field">
+	<%= f.label "Postcondition" %>
+	<%= f.text_area :postcondition, :class=>'form-control', :placeholder => "What was the condition of the practitioner after the session?"   %>
+</div><br>
+
+  <div class="form-group">
+  <%= f.label :time_to_impact %> (in days)  <br>
+  <%= f.number_field :tti_days, :placeholder => "Eg: 5" %>
+ </div>
+
+<div class="field">
+	<%= f.label "Test" %>
+	<%= f.text_area :test, :class=>'form-control', :placeholder => "What was the test used to check the transformation after the session?"   %>
+</div><br>
+
+
+    <div class="field">
+      <%= f.label :futurepacing  %>  <br>
+    <%= f.text_area :futurepacing, :class=>'form-control'  %>
+ </div>
+
+  <div class="form-group">
+  <%= f.label :coach_name %>  <br>
+    <%= f.text_field :coach_name %>
+ </div>
+
+ <div class="actions">
+    <%= f.submit "Submit" %>
+  </div>
+
+  <% end %>
+  

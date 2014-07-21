@@ -1,0 +1,84 @@
+<%= form_for @pconfirm, html: {name: "classic"} do |f| %>
+
+<div class="form-group">
+    <%= f.label :your_name %><br>
+    <%= f.text_field :name %>
+  </div>
+ <div class="form-group">
+    <%= f.label :email%><br>
+    <%= f.email_field :email%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :phone  %><br>
+    <%= f.number_field :phone %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag 'Please choose your Batch and City' %><br>
+
+  <div class="form-group">
+    <%= label_tag 'What are three most important transformation or changes you desire during the 6 days?' %><br>
+    <%= f.text_area :transformations %>
+  </div>
+  <div class="form-group">
+    <%= label_tag 'What are the top three things that you want to Learn during the 6 Days?' %><br>
+    <%= f.text_area :topthreethings %>
+  </div>
+  <div class="form-group">
+    <%= label_tag 'What are your top three dreams that you want to come true this year?' %><br>
+    <%= f.text_area :topthreedreams %>
+  </div>
+<br>
+ </div>
+<select name="countries" size="4" onChange="updatecities(this.selectedIndex)" style="width: 150px">
+<option selected>Select A City</option>
+<option value="Chennai">Chennai</option>
+<option value="Bangalore">Bangalore</option>
+<option value="Delhi">Delhi</option>
+<option value="Mumbai">Mumbai</option>
+<option value="Pune">Pune</option>
+<option value="Pune">Hyderabad</option>
+<option value="Pune">Will Decide Later</option>
+</select>
+
+
+<select name="cities" size="4" style="width: 150px">
+</select>
+
+
+<div class="actions">
+	<center><%= f.submit "I Confirm my Participation ",class:"btn btn-info"%></center>
+</div>
+
+
+<% end %>
+</form>
+
+
+
+<script type="text/javascript">
+
+var countrieslist=document.classic.countries
+var citieslist=document.classic.cities
+
+var cities=new Array()
+cities[0]=""
+cities[1]=["June 2014|June 2014", "Will Decide Later|willdecidelater"]
+cities[2]=["July 2014|July 2014", "Will Decide Later|willdecidelater"]
+cities[3]=["April 2014|April 2014", "August 2014|August 2014", "Will Decide Later|willdecidelater"]
+cities[4]=["July 2014|July 2014", "Will Decide Later|willdecidelater"]
+cities[5]=["June 2014|July 2014", "Will Decide Later|willdecidelater"]
+cities[6]=["August 2014|August 2014", "Will Decide Later|willdecidelater"]
+
+function updatecities(selectedcitygroup){
+citieslist.options.length=0
+if (selectedcitygroup>0){
+for (i=0; i<cities[selectedcitygroup].length; i++)
+citieslist.options[citieslist.options.length]=new Option(cities[selectedcitygroup][i].split("|")[0], cities[selectedcitygroup][i].split("|")[1])
+}
+}
+
+</script>
+
+

@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @payment_plan.year %>
+</p>
+
+<p>
+  <strong>Jan:</strong>
+  <%= @payment_plan.jan %>
+</p>
+
+<p>
+  <strong>Feb:</strong>
+  <%= @payment_plan.feb %>
+</p>
+
+<p>
+  <strong>Mar:</strong>
+  <%= @payment_plan.mar %>
+</p>
+
+<p>
+  <strong>Apr:</strong>
+  <%= @payment_plan.apr %>
+</p>
+
+<p>
+  <strong>May:</strong>
+  <%= @payment_plan.may %>
+</p>
+
+<p>
+  <strong>Jun:</strong>
+  <%= @payment_plan.jun %>
+</p>
+
+<p>
+  <strong>July:</strong>
+  <%= @payment_plan.july %>
+</p>
+
+<p>
+  <strong>Aug:</strong>
+  <%= @payment_plan.aug %>
+</p>
+
+<p>
+  <strong>Sept:</strong>
+  <%= @payment_plan.sept %>
+</p>
+
+<p>
+  <strong>Oct:</strong>
+  <%= @payment_plan.oct %>
+</p>
+
+<p>
+  <strong>Nov:</strong>
+  <%= @payment_plan.nov %>
+</p>
+
+<p>
+  <strong>Dec:</strong>
+  <%= @payment_plan.dec %>
+</p>
+
+<p>
+  <strong>Lead:</strong>
+  <%= @payment_plan.lead_id %>
+</p>
+
+<p>
+  <strong>Bdm:</strong>
+  <%= @payment_plan.bdm_id %>
+</p>
+
+<%= link_to 'Edit', edit_payment_plan_path(@payment_plan) %> |
+<%= link_to 'Back', payment_plans_path %>

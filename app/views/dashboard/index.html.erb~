@@ -1,0 +1,102 @@
+-
+
+
+<h1> Team payment</h1>
+ <table class="tg-table-brown", style="float: left; width: 1000px">
+
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>User</th>
+      <th>Mode</th>
+      <th>Details</th>
+      <th>Update</th>
+      <th>Remove</th>
+      <th>Enter Payment Plan</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @collections.each do |collection| %>
+      <tr>
+        <td><%= collection.date %></td>
+        <td><%= collection.amount %></td>
+        <td><%= collection.user.name %></td>
+        <td><%= collection.mode %></td>
+        <td><%= collection.payment_details %></td>
+        <td><%= link_to 'Update', edit_collection_path(collection) %></td>
+        <td><%= link_to 'Destroy', collection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<td><%= link_to 'Payment Plan', new_pplan_path(:id => collection.sale_id) %></td>
+
+
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</p>
+       <%= link_to 'Show More' , collections_path %>
+
+
+======================================
+
+
+
+<h1>Sales</h1>
+
+<table border = 1>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Selling Price</th>
+
+      <th>Sale Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sales.order("saledate ASC").each do |sale| %>
+      <tr>
+        <td><%= sale.fname %></td>
+        <td><%= sale.lname %></td>
+        <td><%= sale.selling_price %></td>
+        <td><%= sale.saledate %></td>
+	<td><%= link_to 'Show', sale %></td>
+        <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
+        <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sale', new_sale_path %>
+<%= link_to 'Users', users_path %>
+
+++++++++++=============++++++++==================================
+
+
+<table class="tg-table-brown">
+  <tr>
+    <th>Year & Month</th>
+    <th>Total sale</th>
+    <th>Total revenue</th>
+    <th>Not in payment Plan</th>
+  </tr>
+  <tr class="tg-even">
+    <td class="tg-bf"><%= @month%>, <%= @year%> </td>
+    <td class="tg-bf"><%= @salesbymonth   %></td>
+    <td class="tg-bf"> Rs: <%= @tsr %></td>
+    <td class="tg-bf"> Rs: <%= @npp %></td>
+  </tr>
+</table>
+
+<%= link_to 'Show More', payment_plans_path %>

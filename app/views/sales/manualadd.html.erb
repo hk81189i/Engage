@@ -1,0 +1,87 @@
+<%= form_for @sale  do |f| %>
+  <% if @sale.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
+
+      <ul>
+      <% @sale.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fname %>
+    <%= f.text_field :fname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :lname %>
+    <%= f.text_field :lname %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.number_field :phone %>
+  </div>
+
+ <div class="field">
+    <%= f.label :email%>
+    <%= f.email_field :email%>
+  </div>
+
+  <div class="field">
+    <%= f.label :product_id %>
+<%= collection_select(:sale, :product_id, Product.all, :id, :name, {:prompt => true}) %>  </div>
+
+  <div class="field">
+    <%= f.label :batch_id %>
+<%= collection_select(:sale, :infu_batch, Batch.where.not(:date => nil), :name, :name, {:prompt => true})%>  </div>
+
+  <div class="field">
+    <%= f.label :selling_Price %>
+    <%= f.number_field :selling_price %>
+  </div>
+
+ <div class="field">
+    <%= f.label :selling_Date %>
+    <%= f.date_field :saledate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Indusionsoft_Id %>
+    <%= f.number_field :infu_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :infu_owner_name %>
+    <%= f.text_field :infu_owner_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :infu_owner_email%>
+    <%= f.email_field :infu_owner_email%>
+  </div>
+
+  <div class="field">
+    <%= f.label :sponsor_email%>
+    <%= f.email_field :sponsor_email %>
+  </div>
+
+ <div class="field">
+    <%= f.label :infu_owner_id   %>
+    <%= f.number_field :infu_owner_id   %>
+  </div>
+  
+
+  <div class="field">
+    <%= check_box("sale", "payment_complete") %>
+    <%= f.label :payment_complete?   %>
+  </div>
+
+<div class="actions">
+    <%= f.submit "Submit to TreasureHunt" %>
+  </div>
+<% end %>
+

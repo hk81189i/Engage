@@ -1,0 +1,9 @@
+
+Hello....!! 
+
+WELCOME TO TREASURE HUNT! </p>
+
+
+
+<%= link_to 'Report 1',  monthlyreport_pplans_path %> </p> </p> 
+You have successfully signed up! 

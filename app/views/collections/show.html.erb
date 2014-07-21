@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @collection.date.to_time.strftime("%v") %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @collection.amount %>
+</p>
+
+<p>
+  <strong>Mode </strong>
+  <%= @collection.mode %>
+</p>
+
+<p>
+  <strong>Marked to </strong>
+  <% if @collection.contact.nil? %>
+  'UnClaimed'
+  <% else %>
+  <%= @collection.contact.name %>
+  <% end %>
+</p>
+
+<p>
+
+
+     <a class=" btn btn-sm btn-default" role="button" <%= link_to 'Team Payments', collections_path %></a>
+	<a class=" btn btn-sm btn-default" role="button" <%= link_to 'Go to Dashboard', dashboard_index_path  %> </a>

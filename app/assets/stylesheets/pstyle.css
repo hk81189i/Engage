@@ -1,0 +1,173 @@
+/* Reset */
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);	html,body,div,span,applet,object,iframe,input,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; 
+		margin:0;
+		padding:0;
+	}
+	.clear { clear:both; }
+	input:focus, a:focus { outline: none; }
+	/* General Section */
+	
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+.clearfix:after { clear: both; }	
+	
+body {
+  background:#2bad95;
+  margin: 0;
+  font-family: 'Lato', Calibri, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+}
+	
+/** The wrapper that will contain our two forms **/
+
+.form-login {
+	background:#fff;
+	right: 0px;
+	margin: 0px auto;	
+	margin-top:10px;
+	width: 90%;
+	max-width:1000px;
+	padding:30px;
+	margin-bottom:50px;
+}
+/* header */
+.header {
+	background: #00a88d;
+	text-align:center;
+	font-size:18px;
+	font-weight:400;
+	color:#fff;
+	margin-bottom:30px;
+	padding:14px;
+	position:relative;
+}
+.header span{
+	text-align:center;
+	line-height:22px;
+}
+.link-head-left {
+	display:block;
+	float:left;
+	height:60px;
+	width:60px;
+	border-right:1px solid #232323;
+}
+.link-head-right {
+	display:block;
+	float:right;
+	height:60px;
+	width:60px;
+	border-left:1px solid #232323;
+}
+
+/* inputs */
+.inputs {
+	margin-top:10px;
+	color:#4d4d4d;
+}
+
+.inputs label{text-transform:uppercase; font-weight:700; color:#666; display:block; margin-top:10px; margin-bottom:4px;}
+.inputs label span{font-size:12px; text-transform: none; color:#999;}
+.inputs input[type="text"], .inputs [type="password"], .inputs [type="email"], .inputs [type="number"]{
+	width:340px;
+	height:45px;
+	background:tranparent;
+	color:#4d4d4d;
+	font-size:14px;
+	margin-top:15px;
+	border:1px solid #e0e0e0;
+	padding:0px 10px;
+	margin:0px 0 5px;
+}
+
+select{width:165px;
+	height:45px;
+	background:tranparent;
+	color:#4d4d4d;
+	font-size:14px;
+	margin-top:15px;
+	border:1px solid #e0e0e0;
+	padding:0px 10px;
+	margin:0px 0 5px;
+	margin-right:10px;
+	}
+
+
+/* info box */
+.link-1 {
+	margin-top:15px;
+	margin-left:20px;
+	float:left;
+	color:#4d4d4d;
+}
+input[type="checkbox"] {
+	display:none;
+}
+
+input[type="checkbox"] + label {
+	font-size:13px;
+}
+input[type="checkbox"] + label span {
+	display:inline-block;
+	width:22px;
+	height:22px;
+	vertical-align:middle;
+	background:url(../images/check_radio_sheet.png) -1px top no-repeat;
+	background-position:-0px 0px; 
+	cursor:pointer;
+}
+input[type="checkbox"]:checked + label span {
+	background:url(../images/check_radio_sheet.png) -23px top no-repeat;
+}
+.link-2 {
+	float:right;
+	margin-top:15px;
+	margin-right:20px;
+}
+.link-2 a, .link-2 a:hover {
+	color:#4d4d4d;
+}
+.link-2 a:hover {
+	text-decoration:none;
+}
+
+/* send button */
+.button-login input[type="submit"] {
+	width:340px;
+	height:55px;
+	margin-top:25px;
+	font-size:18px;
+	font-weight:400;
+	text-transform:uppercase;
+	outline: none;
+	position: relative;
+	cursor: pointer;
+	color: #fff;
+	border:0;
+	background: #52a2c6;
+}
+.button-login input[type="submit"]:hover { opacity:0.9; }
+.button-login input[type="submit"]:active {
+	top: 3px;
+	background: #e84c3d;
+	box-shadow: inset 0 1px 2px #ba3c30;
+}
+
+
+.tngl{width: 0px;
+height: 0px;
+border-style: solid;
+border-width: 15px 15px 0 15px;
+border-color: #00a88d transparent transparent transparent;
+line-height: 0px;
+_border-color: #00a88d #000000 #000000 #000000;
+_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+position:absolute;
+bottom:-14px;
+left:50%;
+margin-left:-15px;
+}
+
+.inf{float:left;}
+.infp p{ padding-top:13px; padding-left:10px; float:left;}

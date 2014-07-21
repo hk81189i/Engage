@@ -1,0 +1,187 @@
+<h5> 
+
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"> <strong><%=  %></strong></h2>
+  </div>    
+  <div class="panel-body">
+    <div class="table-responsive">
+
+
+<div class="page-header">
+  <h2> <strong> Payment Plan - Missing and  Over due</strong></h2>
+</div>
+
+</div>
+</div>
+
+<div class="jumbotron" style="font-size: 14px !important">
+
+<div class="row">
+<div class="col-md-5">
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <h4 style="font-size: 14px !important" class="panel-title"> <strong>Payments Over due by Batch</strong></h4>
+  </div>    
+  <div class="panel-body">
+    <div class="table-responsive">
+<table class="table table-striped" style="font-size: 14px !important">
+
+    <tr>
+      <th> Name</th>
+      <th>Batch</th>
+      <th>Phone</th>
+      <th> Amount </th>
+     <th>Days Overdue</th>
+    </tr>
+
+ 
+
+
+<!-- <% @plan = Pplan.where.not(payment_complete: 1) %> --->
+<% @pplan = @pplan.order("batch_id ASC")  %>
+<% @pplan.each do |pplan| %> 
+<% if (pplan != 0 && pplan.contact != nil ) %>
+
+<tr>
+<td > <%=  pplan.contact.name %> </td>
+<td > <%=  pplan.batch.name %> </td>
+<td > <%=  pplan.contact.phone %> </td>
+<td > <%=  pplan.amount %> </td>
+<% if pplan.paying_date > Date.today %> <!--  Check if paying date has past -->
+<td> in <%= distance_of_time_in_words(pplan.paying_date, Date.today) %> </td>
+
+<% else %>
+
+<td > since <%= distance_of_time_in_words(pplan.paying_date, Date.today) %> </td>
+
+<% end %></tr>
+
+<% else %>
+<tr>
+<td> No entry found </td>
+</tr>
+<% end %>
+<% end %>
+</table>
+
+
+    </div>
+  </div>
+</div>
+</div> <!-- col-md-4 -->
+
+<div class="col-md-6 col-sm-offset-1">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"> <strong> Payments Overdue <%=  %></strong></h2>
+  </div>    
+  <div class="panel-body">
+    <div class="table-responsive">
+<table class="table table-striped" style="font-size: 14px !important">
+     
+  <thead>
+    <tr>
+      <th> Name</th>
+      <th> Email</th>
+      <th> Phone</th>
+      <th> Amount </th>
+      <th> Due by </th>
+    </tr>
+  </thead>
+ <tbody>
+   <% @pplan =  @pplan.order("paying_date ASC")  %>
+   <% @pplan.each do |pplan| %> 
+   <% if (Sale.where(:pplan_id => pplan.id)) %>
+   <tr>
+     <% if ( pplan.contact == nil ) %>
+     <td> Customer details not found </td>
+     <% else %>
+     <% if ( pplan.contact.name == nil ) %>
+     <td> Customer details not found </td>
+  <tr>
+     <% else %>
+     <td > <%=  pplan.contact.name %> </td>
+     <td > <%=  pplan.contact.email%> </td>
+     <td > <%=  pplan.contact.phone%> </td>
+     <td > <%=  pplan.amount %> </td>
+     <% if pplan.paying_date > Date.today %>
+     <td> in <%= distance_of_time_in_words(pplan.paying_date, Date.today) %> </td>
+     <% else %>
+     <td > since <%= distance_of_time_in_words(pplan.paying_date, Date.today) %> </td>
+     <% end %>
+  </tr>
+   <% end %>
+   <% end %>
+   <% else %>
+   <% end %>
+   <% end %>
+  </tbody>
+</table>
+    </div>
+  </div>
+</div>
+</div> <!-- col-md-4 col-md-offset-4 -->
+</div> <!-- Row closed -->
+
+
+</p> 
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading"><strong>Amount "Not" in Payment Plan</strong> Not submitted</div>  <div class="panel-body">
+
+<table class="table table-striped" style="font-size: 14px !important">
+  <thead>
+    <tr>
+      <th> Name</th>
+      <th>Batch</th>
+      <th>Selling Price</th>
+      <th> Not in Payment Plan </th>
+
+
+    </tr>
+  </thead>
+
+ 
+ <tbody>
+
+<% @sale =  @sale.order("batch_id ASC") %> 
+<% @sale.each_with_index do |sale, i| %> 
+<% @sp = sale.selling_price %> 
+<% @pplan_amt= (Pplan.where(:sale_id => sale.id).sum :amount) %>
+<% @sp - @pplan_amt %> 
+<% @collected_till_now  = Collection.where(:sale_id => sale.id).sum :amount %> 
+<% if  @collected_till_now.nil? %>
+<%  @collected_till_now = 0 %>
+<% end %>
+<% if  ( (@sp - @pplan_amt) -  @collected_till_now ) != 0 %>
+
+<tr>
+
+<td > <%= i+1 %>  <%=  sale.contact.name %> </td>
+<td > <%=  sale.batch.name %> </td>
+<td > <%=  sale.selling_price %> </td>
+<td > <%=  (@sp - @pplan_amt) -  @collected_till_now  %> </td>
+
+<% else %>
+<% end %>
+<% end %>
+</table>
+
+  </div>
+</div>
+
+
+</div>  <!-- Jumbotron closed -->
+
+<a class=" btn btn-sm btn-default" role="button"       <%= link_to 'Back to Dashboard', dashboard_index_path %>
+<p>
+</p>
+
+</div>
+
+
+</h5>

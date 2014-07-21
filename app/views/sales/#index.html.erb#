@@ -1,0 +1,35 @@
+<h1>Listing sales</h1>
+
+<table border = 1>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Selling Price</th>
+
+      <th>Sale Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sales.order("saledate ASC").each do |sale| %>
+      <tr>
+        <td><%= sale.fname %></td>
+        <td><%= sale.lname %></td>
+        <td><%= sale.selling_price %></td>
+        <td><%= sale.saledate %></td>
+	<td><%= link_to 'Show', sale %></td>
+        <td><%= link_to 'Edit', edit_sale_path(sale) %></td>
+        <td><%= link_to 'Destroy', sale, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Sale', new_sale_path %>
+<%= link_to 'Users', users_path %>

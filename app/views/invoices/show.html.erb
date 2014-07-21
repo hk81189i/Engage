@@ -1,0 +1,208 @@
+
+
+<% @sale = Sale.find(@invoice.sale_id) %>
+<% @pplan_now = Pplan.where(:sale_id => @invoice.sale_id) %> 
+<% @total_pplan = @pplan_now.sum :amount %>
+
+<% @collection_now = Collection.where(:sale_id => @invoice.sale_id) %> 
+<% @total_collection = @collection_now.sum :amount %>
+
+
+<div class="page-header">
+  <h2> <strong>Invoice for </strong>  <%= @sale.contact.name %></h2>
+</div>
+
+
+
+<div class="row">
+<p><div class="col-md-10">
+<div class="panel panel-primary">
+
+
+
+
+
+  <div class="row">
+    <div class="col-md-4 col-sm-offset-1">
+
+      <p>
+	<strong>Invoice ID:</strong>
+	<%= @invoice.id %>
+      </p>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-4 col-sm-offset-1">
+      <p>
+	<strong>Name:</strong>
+	<%= @invoice.name %>
+      </p>
+    </div>
+    <div class="col-md-4 col-md-offset-8">
+      Date:  <%= @invoice.created_at.strftime("%B %d, %Y") %> </p>
+</div>
+</div>
+
+
+
+
+<div class="row">
+<div class="col-md-4 col-sm-offset-1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h4 class="panel-title"> <strong>Items &emsp;&emsp;&emsp; Fee in INR <%= @sale.selling_price %></strong></h4>
+  </div>    
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+	<tr>
+	  <% if @pplan_now.empty? %>
+	  <th> Payment Plan is empty</th>
+
+	  <%   else    %>
+	  <th>Paying Date </th>
+	  <th>Amount </th>
+	</tr>
+	<%       @pplan_now.each do |pplan|%>
+	<tr>
+	  <td><%= pplan.paying_date.strftime("%B %d, %Y")   %></td>
+	  <td><%= pplan.amount %></td>
+	  <%   end    %> </tr>
+	<tr>
+	  <th>Total </th>
+	  <th> <%= @total_pplan %> </th>
+	</tr>
+	<%   end    %>
+	<p>
+
+      </table>      
+    </div>
+  </div>
+</div>
+</div> <!-- col-md-4 -->
+
+<div class="col-md-4 col-sm-offset-2">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h2 class="panel-title"> <strong> Payments Made <%=  %></strong></h2>
+  </div>    
+  <div class="panel-body">
+    <div class="table-responsive">
+      <table class="table table-striped">
+	<tr>
+	  <% if @collection_now.empty? %>
+	  <th> No payment is done yet</th>
+
+	  <%   else    %>
+	  <th>Date </th>
+	  <th>Amount </th>
+	</tr>
+	<%       @collection_now.each do |collection|%>
+	<tr>
+	  <td><%= collection.date.strftime("%B %d, %Y")   %></td>
+	  <td><%= collection.amount %></td>
+
+	  <%   end    %> </tr>
+	<tr>
+	  <th>Total </th>
+	  <th> <%= @total_collection %> </th>
+	</tr>
+	<%   end    %>
+	<p>
+
+      </table>      
+    </div>
+  </div>
+</div>
+</div> <!-- col-md-4 col-md-offset-4 -->
+</div> <!-- Row closed -->
+
+
+
+</div>
+</div> <!-- col-md-4 col-md-offset-4 -->
+</div> <!-- outer Row closed -->
+
+
+
+
+</p> 
+<a class=" btn btn-sm btn-default" role="button"       <%= link_to 'Back to Dashboard', dashboard_index_path %>
+
+
+</p>
+
+
+
+<% if current_admin.id.between?(0, 5) %>
+
+
+
+<% if @invoice.approve != 1 %>
+
+<%= form_for(@invoice) do |f| %>
+<div class="field">
+  <%= f.check_box :approve %><br>
+
+</div>
+<div class="actions">
+  <%= f.submit "Approve & Send"%>
+</div>
+<% end %>
+
+</div>
+
+<% else %>
+<% if @invoice.invoice_sent != 1 %>
+<% if @sale.product_id == 1 %>
+<% if @sale.sent_first_invoice != 1 %>
+<% UserMailer.prac_finvoice(@invoice).deliver %>
+<% @sale.update(:sent_first_invoice => 1)%>
+<% else %>
+<% if @invoice.sale.pplans.where(['paying_date > ?', DateTime.now]).empty? %>
+<% UserMailer.prac_linvoice(@invoice).deliver %>
+<% else %>
+<% UserMailer.prac_sinvoice(@invoice).deliver %>
+<% end %>
+<% end %>
+<% else %>
+<% if @sale.product_id == 2 %>
+<% if @sale.sent_first_invoice != 1 %>
+<% @sale.update(:sent_first_invoice => 1)%>
+<% UserMailer.mprac_finvoice(@invoice).deliver %>
+<% else %>
+<% if @invoice.sale.pplans.where(['paying_date > ?', DateTime.now]).empty? %>
+<% UserMailer.mprac_linvoice(@invoice).deliver %>
+<% else %>
+<% UserMailer.mprac_sinvoice(@invoice).deliver %>
+<% end %>
+<% end %>
+<% else %>
+<% if @sale.product_id == 3 %>
+<% if @sale.sent_first_invoice != 1 %>
+<% @sale.update(:sent_first_invoice => 1)%>
+<% UserMailer.combo_finvoice(@invoice).deliver %>
+<% else %>
+<% if @invoice.sale.pplans.where(['paying_date > ?', DateTime.now]).empty? %>
+<% UserMailer.combo_linvoice(@invoice).deliver %>
+<% else %>
+<% UserMailer.combo_sinvoice(@invoice).deliver %>
+<% end %>
+<% end %>
+<% else %>
+<% UserMailer.alert(@invoice).deliver %>
+<% end %>
+<% end %>
+<% end %>
+<% @invoice.update(:invoice_sent => 1) %>
+  <% else %>
+  <% end %>
+
+  <% end %>
+
+
+  <% end %>
+
+

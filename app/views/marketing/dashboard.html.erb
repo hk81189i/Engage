@@ -1,0 +1,648 @@
+<% cycle =  @cycle %>
+
+<div class="page-header">
+  <h2> <strong> The world of Marketing! Dashboard</strong></h2>
+</div>
+<div class="well">
+  <form class="form-inline" role="form">
+    <label> Enter a Sale Cycle</label>  <br>
+    <%= form_tag :action => "dashboard" %> 
+    <div class="form-group">
+      <label class="sr-only" for="getbatch">Please select a Batch</label>
+      <%= text_field_tag 'cycle', nil, class: 'form-control'  %>
+    </div>
+    <button type="submit" class="btn btn-primary">Go</button>
+  </form>
+</div>
+
+<!-- panel daily-->
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2 class="panel-title"> <strong> Daily</strong></h2>
+  </div>
+  <div class="panel-body">
+    <div class="page-header">
+      <h4> <strong>Day before yesterday</strong></h4>
+    </div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Lead.db_yesterday.order("date ASC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+	<td> <%= lead.date.strftime("%d-%b-%y") %></td>
+    </tr></div>
+    <% end %>
+</table>
+
+<div class="well">
+
+Fresh: <%= Lead.all_fresh.db_yesterday.count %> <br>
+Contacting: <%= Lead.all_contacting.db_yesterday.count %> <br>
+Working: <%= Lead.all_working.db_yesterday.count %> <br>
+Booking: <%= Lead.all_closing.db_yesterday.count %> <br>
+Paid: <%= Lead.all_paid.db_yesterday.count %> <br><br>
+<p>
+
+Lead to sale ratio::<strong> <%= Lead.db_yesterday.count %>:<%= Sale.today.to_a.count %></strong><br>
+Booking to sale ratio::<strong> <%= Lead.all_closing.db_yesterday.count %>:<%= Sale.today.to_a.count %></strong></p>
+
+ </div>
+
+<!-- yesterday -->
+
+
+<div class="page-header">
+      <h4> <strong>Yesterday</strong></h4>
+    </div>
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Lead.yesterday.order("date ASC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+	<td> <%= lead.date.strftime("%d-%b-%y") %></td>
+    </tr></div>
+    <% end %>
+</table>
+
+<div class="well">
+
+Fresh: <%= Lead.all_fresh.yesterday.count %> <br>
+Contacting: <%= Lead.all_contacting.yesterday.count %> <br>
+Working: <%= Lead.all_working.yesterday.count %> <br>
+Booking: <%= Lead.all_closing.yesterday.count %> <br>
+Paid: <%= Lead.all_paid.yesterday.count %> <br> <br>
+
+
+Lead to sale ratio::<strong> <%= Lead.yesterday.count %>:<%= Sale.today.to_a.count %></strong><br>
+Booking to sale ratio::<strong> <%= Lead.all_closing.yesterday.count %>:<%= Sale.today.to_a.count %></strong>
+
+ </div>
+
+<!-- Today -->
+
+
+<div class="page-header">
+      <h4> <strong>Today</strong></h4>
+    </div>
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Lead.today.order("date ASC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+	<td> <%= lead.date.strftime("%d-%b-%y") %></td>
+    </tr></div>
+    <% end %>
+</table>
+
+<div class="well">
+<p>
+Fresh: <%= Lead.all_fresh.today.count %> <br>
+Contacting: <%= Lead.all_contacting.today.count %> <br>
+Working: <%= Lead.all_working.today.count %> <br>
+Booking: <%= Lead.all_closing.today.count %> <br>
+Paid: <%= Lead.all_paid.today.count %> <br></p>
+
+Lead to sale ratio::<strong> <%= Lead.today.count %>:<%= Sale.today.to_a.count %></strong><br>
+Booking to sale ratio::<strong> <%= Lead.all_closing.today.count %>:<%= Sale.today.to_a.count %></strong>
+
+ </div>
+
+  </div>
+</div> <!--/panel -->
+
+<!-- panel Weekly-->
+
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h2 class="panel-title"> <strong> Weekly</strong></h2>
+  </div>
+  <div class="panel-body">
+    <div class="page-header">
+      <h4> <strong>Week before last Week</strong></h4>
+    </div>
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Lead.wblast_week.order("date ASC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+	<td> <%= lead.date.strftime("%d-%b-%y") %></td>
+    </tr></div>
+    <% end %>
+</table>
+
+<div class="well">
+
+Fresh: <%= Lead.all_fresh.wblast_week.count %> <br>
+Contacting: <%= Lead.all_contacting.wblast_week.count %> <br>
+Working: <%= Lead.all_working.wblast_week.count %> <br>
+Booking: <%= Lead.all_closing.wblast_week.count %> <br>
+Paid: <%= Lead.all_paid.wblast_week.count %> <br><br>
+<p>
+
+Lead to sale ratio::<strong> <%= Lead.wblast_week.count %>:<%= Sale.today.to_a.count %></strong><br>
+Booking to sale ratio::<strong> <%= Lead.all_closing.wblast_week.count %>:<%= Sale.today.to_a.count %></strong></p>
+
+ </div>
+
+<!-- Last Week -->
+
+
+<div class="page-header">
+      <h4> <strong>Last Week</strong></h4>
+    </div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Lead.last_week.order("date ASC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+	<td> <%= lead.date.strftime("%d-%b-%y") %></td>
+    </tr></div>
+    <% end %>
+</table>
+
+<div class="well">
+
+Fresh: <%= Lead.all_fresh.last_week.count %> <br>
+Contacting: <%= Lead.all_contacting.last_week.count %> <br>
+Working: <%= Lead.all_working.last_week.count %> <br>
+Booking: <%= Lead.all_closing.last_week.count %> <br>
+Paid: <%= Lead.all_paid.last_week.count %> <br> <br>
+
+
+Lead to sale ratio::<strong> <%= Lead.last_week.count %>:<%= Sale.today.to_a.count %></strong><br>
+Booking to sale ratio::<strong> <%= Lead.all_closing.last_week.count %>:<%= Sale.today.to_a.count %></strong>
+
+ </div>
+
+<!-- This week -->
+
+
+<div class="page-header">
+      <h4> <strong>This week</strong></h4>
+    </div>
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Lead.this_week.order("date ASC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+	<td> <%= lead.date.strftime("%d-%b-%y") %></td>
+    </tr></div>
+    <% end %>
+</table>
+
+<div class="well">
+<p>
+Fresh: <%= Lead.all_fresh.this_week.count %> <br>
+Contacting: <%= Lead.all_contacting.this_week.count %> <br>
+Working: <%= Lead.all_working.this_week.count %> <br>
+Booking: <%= Lead.all_closing.this_week.count %> <br>
+Paid: <%= Lead.all_paid.this_week.count %> <br></p>
+
+Lead to sale ratio::<strong> <%= Lead.this_week.count %>:<%= Sale.this_week.to_a.count %></strong><br>
+Booking to sale ratio::<strong> <%= Lead.all_closing.this_week.count %>:<%= Sale.this_week.to_a.count %></strong>
+
+ </div>
+
+  </div>
+</div> <!--/panel -->
+
+
+
+<!-- panel Monthly-->
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h2 class="panel-title"> <strong> Monthly</strong></h2>
+  </div>
+  <div class="panel-body">
+    <div class="page-header">
+      <h4> <strong>Last Month</strong></h4>
+    </div>
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Lead.last_month.order("date ASC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+	<td> <%= lead.date.strftime("%d-%b-%y") %></td>
+    </tr></div>
+    <% end %>
+</table>
+
+<div class="well">
+
+Fresh: <%= Lead.all_fresh.last_month.count %> <br>
+Contacting: <%= Lead.all_contacting.last_month.count %> <br>
+Working: <%= Lead.all_working.last_month.count %> <br>
+Booking: <%= Lead.all_closing.last_month.count %> <br>
+Paid: <%= Lead.all_paid.last_month.count %> <br><br>
+<p>
+
+Lead to sale ratio::<strong> <%= Lead.last_month.count %>:<%= Sale.last_month.to_a.count %></strong><br>
+Booking to sale ratio::<strong> <%= Lead.all_closing.last_month.count %>:<%= Sale.last_month.to_a.count %></strong></p>
+
+ </div>
+
+<!-- This Month -->
+
+
+<div class="page-header">
+      <h4> <strong>This Month</strong></h4>
+    </div>
+
+
+<div class="page-header">
+      <h4> <strong>This week</strong></h4>
+    </div>
+
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Lead.this_month.order("date ASC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+	<td> <%= lead.date.strftime("%d-%b-%y") %></td>
+    </tr></div>
+    <% end %>
+</table>
+
+<div class="well">
+<p>
+Fresh: <%= Lead.all_fresh.this_month.count %> <br>
+Contacting: <%= Lead.all_contacting.this_month.count %> <br>
+Working: <%= Lead.all_working.this_month.count %> <br>
+Booking: <%= Lead.all_closing.this_month.count %> <br>
+Paid: <%= Lead.all_paid.this_month.count %> <br></p>
+
+Lead to sale ratio::<strong> <%= Lead.this_month.count %>:<%= Sale.this_month.to_a.count %></strong><br>
+Booking to sale ratio::<strong> <%= Lead.all_closing.this_month.count %>:<%= Sale.this_month.to_a.count %></strong>
+
+ </div>
+
+  </div>
+</div> <!--/panel -->
+
+
+<!-- panel Cycle Period-->
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <h2 class="panel-title"> <strong> Sale Cycle Period: <%= @cycle %> days</strong></h2>
+  </div>
+  <div class="panel-body">
+    <div class="page-header">
+      <h4> <strong> 2 Cycles Before</strong></h4>
+    </div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Lead.twocycles_before_period(@cycle).order("date ASC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+	<td> <%= lead.date.strftime("%d-%b-%y") %></td>
+    </tr></div>
+    <% end %>
+</table>
+
+<div class="well">
+
+Fresh: <%= Lead.all_fresh.twocycles_before_period(@cycle).count %> <br>
+Contacting: <%= Lead.all_contacting.twocycles_before_period(@cycle).count %> <br>
+Working: <%= Lead.all_working.twocycles_before_period(@cycle).count %> <br>
+Booking: <%= Lead.all_closing.twocycles_before_period(@cycle).count %> <br>
+Paid: <%= Lead.all_paid.twocycles_before_period(@cycle).count %> <br><br>
+<p>
+
+Lead to sale ratio::<strong> <%= Lead.twocycles_before_period(@cycle).count %>:<%= Sale.twocycles_before_period(@cycle).to_a.count %></strong><br>
+Booking to sale ratio::<strong> <%= Lead.all_closing.twocycles_before_period(@cycle).count %>:<%= Sale.twocycles_before_period(@cycle).to_a.count %></strong></p>
+
+ </div>
+
+<!-- cycle belore Last -->
+
+
+<div class="page-header">
+      <h4> <strong>Cycle Before Last Cycle</strong></h4>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cycle_before_last.order("date ASC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+	<td> <%= lead.date.strftime("%d-%b-%y") %></td>
+    </tr></div>
+    <% end %>
+</table>
+
+<div class="well">
+<p>
+Fresh: <%= Lead.all_fresh.cycle_before_period(@cycle).count %> <br>
+Contacting: <%= Lead.all_contacting.cycle_before_period(@cycle).count %> <br>
+Working: <%= Lead.all_working.cycle_before_period(@cycle).count %> <br>
+Booking: <%= Lead.all_closing.cycle_before_period(@cycle).count %> <br>
+Paid: <%= Lead.all_paid.cycle_before_period(@cycle).count %> <br></p>
+
+Lead to sale ratio::<strong> <%= Lead.cycle_before_period(@cycle).count %>:<%= Sale.cycle_before_period(@cycle).to_a.count %></strong><br>
+Booking to sale ratio::<strong> <%= Lead.all_closing.cycle_before_period(@cycle).count %>:<%= Sale.cycle_before_period(@cycle).to_a.count %></strong>
+
+ </div>
+
+  <div class="panel-body">
+    <div class="page-header">
+      <h4> <strong> 2 Cycles Before</strong></h4>
+    </div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Lead.twocycles_before_period(@cycle).order("date ASC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+	<td> <%= lead.date.strftime("%d-%b-%y") %></td>
+    </tr></div>
+    <% end %>
+</table>
+
+<div class="well">
+
+Fresh: <%= Lead.all_fresh.twocycles_before_period(@cycle).count %> <br>
+Contacting: <%= Lead.all_contacting.twocycles_before_period(@cycle).count %> <br>
+Working: <%= Lead.all_working.twocycles_before_period(@cycle).count %> <br>
+Booking: <%= Lead.all_closing.twocycles_before_period(@cycle).count %> <br>
+Paid: <%= Lead.all_paid.twocycles_before_period(@cycle).count %> <br><br>
+<p>
+
+Lead to sale ratio::<strong> <%= Lead.twocycles_before_period(@cycle).count %>:<%= Sale.twocycles_before_period(@cycle).to_a.count %></strong><br>
+Booking to sale ratio::<strong> <%= Lead.all_closing.twocycles_before_period(@cycle).count %>:<%= Sale.twocycles_before_period(@cycle).to_a.count %></strong></p>
+
+ </div>
+
+<!-- cycle belore Last -->
+
+  <div class="panel-body">
+    <div class="page-header">
+      <h4> <strong> Sale Cycle Period </strong></h4>
+    </div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Lead.cycle_period(@cycle).order("date ASC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+	<td> <%= lead.date.strftime("%d-%b-%y") %></td>
+    </tr></div>
+    <% end %>
+</table>
+
+<div class="well">
+
+Fresh: <%= Lead.all_fresh.cycle_period(@cycle).count %> <br>
+Contacting: <%= Lead.all_contacting.cycle_period(@cycle).count %> <br>
+Working: <%= Lead.all_working.cycle_period(@cycle).count %> <br>
+Booking: <%= Lead.all_closing.cycle_period(@cycle).count %> <br>
+Paid: <%= Lead.all_paid.cycle_period(@cycle).count %> <br><br>
+<p>
+
+Lead to sale ratio::<strong> <%= Lead.cycle_period(@cycle).count %>:<%= Sale.cycle_period(@cycle).to_a.count %></strong><br>
+Booking to sale ratio::<strong> <%= Lead.all_closing.cycle_period(@cycle).count %>:<%= Sale.cycle_period(@cycle).to_a.count %></strong></p>
+
+</div>
+<!-- cycle period -->
+
+  </div>
+</div> <!--/panel -->
+
+
+</div></div>
+
+<div class="page-header">
+  <h2> <strong> Performers</strong></h2>
+</div>
+
+<!-- panel daily-->
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h2 class="panel-title"> <strong> Convertions </strong></h2>
+  </div>
+  <div class="panel-body">
+    <div class="page-header">
+      <h4> <strong></strong></h4>
+    </div>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source</th>
+      <th>Type</th>
+       <th>Campaign</th>
+       <th>Content</th>
+       <th>Name</th>
+       <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% Lead.all_paid.order("date DESC").each do |lead| %>
+    <tr><div class="row">
+	<td> <%= lead.gasource %></td> 
+	<td> <%= lead.gatype %></td>
+	<td> <%= lead.gacampaign %></td>
+	<td> <%= lead.gacontent %></td>
+	<td> <%= lead.name %></td>
+
+
+    </tr></div>
+    <% end %>
+</table>
+
+
+</div>
+</div>
+
+
+
+ 

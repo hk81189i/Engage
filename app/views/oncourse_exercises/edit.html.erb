@@ -1,0 +1,38 @@
+
+<% if @batch.nil? %>
+<%    @sales =  Sale.where(:batch_id => 42) %>
+<% @batch  =  Batch.all %>
+<% end %>
+
+
+
+<div class="well">
+   <form class="form-inline" role="form">
+ <label  >Please select a Batch</label>  <br>
+ <%= form_tag :action => "new" %> 
+  <div class="form-group">
+ <label class="sr-only" for="getbatch">Please select a Batch</label>
+ <%= select_tag "getbatch", options_from_collection_for_select(@batch, "id", "name"), class: 'form-control'  %>
+</div>
+  <button type="submit" class="btn btn-primary">Go</button>
+
+  </form>
+</div>
+
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"> <strong> Update Exercise</strong></h3>
+  </div>
+  <div class="panel-body">
+
+    <%= render 'form' %>
+
+
+  </div>
+</div>
+
+
+<%= link_to 'Show', @oncourse_exercise %> |
+<%= link_to 'Back', oncourse_exercises_path %>

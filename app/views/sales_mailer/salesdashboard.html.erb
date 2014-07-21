@@ -1,0 +1,670 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>E-mail</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body style="margin: 0; padding: 0; background:#f1f1f1">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">	
+      <tr>
+	<td style="padding: 10px 0 20px 0;">
+	  <table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse;">
+	    <tr>
+	      <td align="center" bgcolor="#434a54" style="padding: 15px 0 15px 0; color: #153643; font-size: 28px; font-weight: bold; font-family: Arial, sans-serif;">
+		<img src="http://treasurehunt.soexcellence.com/logo.png" alt="School of Excellence" width="160" height="77" style="display: block;" />
+	      </td>
+	    </tr>
+	    <tr>
+	      <td bgcolor="#ffffff" style="padding: 20px 10px 10px 10px;">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		  <tr>
+		    <td style="color: #153643; font-family: Arial, sans-serif; font-size: 20px;">
+		      <h3 style="margin:0; padding:0;"></h3>
+		    </td>
+		  </tr>
+		  <tr>
+		    <td style="padding: 10px 0 10px 0; color: #153643; font-family: Arial, sans-serif; font-size: 13px; line-height: 15px;">
+		    </td>                     
+		  </tr>
+                  
+                  <tr>
+		    <td style="padding: 10px 0 10px 0; color: #153643; font-family: Arial, sans-serif; font-size: 13px; line-height:18px;">
+		      <b>
+			What are you going accomplish today? <br>
+			What can you do to double your sales again? <br>
+			How much pleasure can you feel in doubling sales again!	</b><br />		</td>
+                    
+		  </tr>
+                  
+                  
+                  <tr>
+		    <td style="padding: 10px 0 10px 0; color: #153643; font-family: Arial, sans-serif; font-size: 13px; line-height:18px;">
+		      <br />
+                      
+                      Cheers! 
+                      
+		    </td>
+                    
+		  </tr>
+                  
+                  
+                  <tr>
+		    <td style="padding: 10px 0 10px 0; color: #ffffff; background:#434a54; text-align:center; font-family: Arial, sans-serif; font-size: 18px; line-height:18px;">
+		      Team Performance
+		    </td>
+                    
+		  </tr>
+                  
+		  <tr>
+		    <td>
+		      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-family: Arial, sans-serif; margin-top:10px;">
+                        
+                        
+                        
+			<tr>
+			  <td width="120" valign="top">
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                              <tr>
+				<td style="width:100%; background:#fb6e52;">
+				  <h4 style="text-align:center; color:#fff; margin:0; padding:8px 0;">Last Week</h4>
+				</td>
+			      </tr>
+                              
+                              
+			      <tr>
+				<td style="width:100%;height:70px; background:#e9573e;">
+				  <h2 style="text-align:center; color:#fff;"><%= Sale.last_week.to_a.count %></h2>
+				</td>
+			      </tr>
+			      <tr>
+				<td width="120" style="padding: 6px 0 0 0; color: #153643; font-family: Arial, sans-serif; font-size: 12px; line-height: 20px;">	    <% if Sale.last_week.to_a.count != 0 %>
+                                  
+				  <% Sale.last_week.order("infu_owner_email ASC").each do |sale| %>
+				  <table width="100%" border="0" style="background:#e6e9ee; padding:5px; margin-top:4px;">
+				    <tr>
+				      <td width="100%" style="padding: 0; color: #153643; font-family: Arial, sans-serif; font-size: 11px; line-height: 1; margin:0;">
+					<p style="margin:1px 0; padding:0; line-height:14px;"> <%= sale.infu_owner_name %>: <span style="font-weight:bold;"><%= sale.fname %> </span></p> </td> 
+				      <td><%= sale.product.code %>  </td>
+				    </tr>
+				  </table>
+				  <% end %>
+				  <% end %>
+				</td>
+			      </tr>
+			    </table>
+			  </td>
+			  <td style="font-size: 0; line-height: 0;" width="10">&nbsp;
+			    
+			  </td>
+                          
+                          <td width="120" valign="top">
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			      <tr>
+				<td style="width:100%; background:#ffce55;">
+				  <h4 style="text-align:center; color:#fff; margin:0; padding:8px 0;">This Week</h4>
+				</td>
+			      </tr>
+                              
+                              
+			      <tr>
+				<td style="width:100%;height:70px; background:#f6bb43;">
+				  <h2 style="text-align:center; color:#fff;"><%= Sale.this_week.to_a.count %> <small><br>  ..and counting</small></h2>
+			      </td>      </tr>
+			      <tr>
+				<td width="120" style="padding: 6px 0 0 0; color: #153643; font-family: Arial, sans-serif; font-size: 12px; line-height: 20px;">	
+                                  
+				  <% if Sale.this_week.to_a.count != 0 %>
+                                  
+				  <% Sale.this_week.order("infu_owner_email ASC").each do |sale| %>
+				  <table width="100%" border="0" style="background:#e6e9ee; padding:5px; margin-top:4px;">
+				    <tr>
+				      <td width="100%" style="padding: 0; color: #153643; font-family: Arial, sans-serif; font-size: 11px; line-height: 1; margin:0;">
+					<p style="margin:1px 0; padding:0; line-height:14px;"> <%= sale.infu_owner_name %>: <span style="font-weight:bold;"><%= sale.fname %> </span></p> </td> 
+				      <td><%= sale.product.code %>  </td>
+				    </tr>
+				  </table>
+				  <% end %>
+				  <% end %>
+
+				</td>
+			      </tr>
+			    </table>
+			  </td>
+			  <td style="font-size: 0; line-height: 0;" width="10">&nbsp;
+			    
+			  </td>
+                          
+                          
+                          
+                          <td width="120" valign="top">
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			      <tr>
+				<td style="width:100%; background:#a0d468;">
+				  <h4 style="text-align:center; color:#fff; margin:0; padding:8px 0;">Yesterday</h4>
+				</td>
+			      </tr>
+                              
+                              
+			      <tr>
+				<td style="width:100%;height:70px; background:#8dc153;">
+				  <h2 style="text-align:center; color:#fff;">	    <%= Sale.yesterday.to_a.count%></h2>
+				</td>
+			      </tr>
+			      <tr>
+				<td width="120" style="padding: 6px 0 0 0; color: #153643; font-family: Arial, sans-serif; font-size: 12px; line-height: 20px;"> 
+				  <% if Sale.yesterday.to_a.count != 0 %>                            
+				  <% Sale.yesterday.order("infu_owner_email ASC").each do |sale| %>
+				  <table width="100%" border="0" style="background:#e6e9ee; padding:5px; margin-top:4px;">
+				    <tr>
+				      <td width="100%" style="padding: 0; color: #153643; font-family: Arial, sans-serif; font-size: 11px; line-height: 1; margin:0;">
+					<p style="margin:1px 0; padding:0; line-height:14px;"> <%= sale.infu_owner_name %>: <span style="font-weight:bold;"><%= sale.fname %> </span></p> 
+				      </td> 
+				      <td><%= sale.product.code %>  </td>
+				    </tr>
+				  </table>
+				  <% end %>
+				  <% end %>
+				</td>
+			      </tr>
+
+			    </table>
+			  </td>
+			  <td style="font-size: 0; line-height: 0;" width="10">&nbsp;
+			    
+			  </td>
+                          
+                          
+			  <td width="120" valign="top">
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			      <tr>
+				<td style="width:100%; background:#48cfae;">
+				  <h4 style="text-align:center; color:#fff; margin:0; padding:8px 0;">Today</h4>
+				</td>
+			      </tr>
+                              
+                              
+			      <tr>
+				<td style="width:100%;height:70px; background:#37bd9c;">
+				  <h5 style="text-align:center; color:#fff;"><%= Date.today.to_time.localtime.strftime("%A %n %t  %d %B  %Y") %></h5>
+				</td>
+			      </tr>
+			      <tr>
+				<td style="padding: 25px 0 0 0; color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px;">
+				  <p></p>
+                                  
+                                  
+				</td>
+			      </tr>
+			    </table>
+			  </td>
+			</tr>
+		      </table>
+		    </td>
+		  </tr>
+                  
+                  <tr>
+		    <td>
+                      
+                      
+                      
+                      <!-- Summary --><table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#e6e9ee;font-family: Arial, sans-serif; padding:12px; margin-top:10px; margin-bottom:10px;">
+                        
+                        
+                        <tr>
+			  <td>
+			    
+                            
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                              <h2 style="margin:0; padding:0;margin-bottom:10px; font-size:20px; border-bottom:1px solid #bbb; padding-bottom:7px;">Leads</h2>
+                              
+                              
+                            </table>
+                            
+                          </td>
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+			  <td>
+			    
+                            
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin:0; padding:0;">
+                              
+			      <tr>
+				<td width="260" valign="top">
+				  <h4 style="margin:0; padding:0;">Yesterday</h4>				  
+
+				  <div style="font-size:13px;">				   
+				    Leads to: <br> <% Lead.yesterdaysleads.each do |lead| %>
+				    <p style="padding:0; margin:0;margin:2px 0;color:#666;"><span><%= lead.second %></span> to
+				      <% if !lead.first.nil? %>
+				      <%= lead.first %> 
+				      <% else %> Technology Team for testing/ Unknown
+				      <% end %> </p>
+				    <% end %>
+				  </div>				  
+				</td>
+				
+				
+				<td style="font-size: 0; line-height: 0;" width="10">&nbsp;
+				  
+				</td>
+				<td width="260" valign="top">
+				  <h4 style="margin:0; padding:0;">Today</h4>
+				  
+				  <div style="font-size:13px;">				   
+				    Today's Leads to: <br> <% @member.each do |i| %>
+				    <p style="padding:0; margin:0;margin:2px 0;color:#666;"><span><%= i %></span> 
+				      <% end %> </p>
+				  </div>				  
+				  
+				  
+				  
+				</td>
+			      </tr>
+			    </table>
+                            
+                          </td>
+                        </tr>
+                        
+                        
+                      </table><!-- Summary -->
+                      
+                      
+                      <!-- header -->
+                      <tr>
+			<td style="padding: 10px 0 10px 0; color: #ffffff; background:#434a54; text-align:center; font-family: Arial, sans-serif; font-size: 18px; line-height:18px;">		  Individual Performance Sheet
+			</td>
+                      </tr>
+                      
+                      <!-- Summary --><table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#e6e9ee;font-family: Arial, sans-serif; padding:12px; margin-top:10px;">
+                        
+                        <% Admin.where.not(:infu_id => 0).each_with_index do |admin, i|  %> 
+                        <tr>
+			  <td> 
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                              <h2 style="margin:0; padding:0;margin-bottom:10px; font-size:20px; border-bottom:1px solid #bbb; padding-bottom:7px;"><%= i+1 %>. <%= admin.admin_name %>'s Summary</h2>
+			    </table>
+ <h4 style="margin:0; padding:0;">Yesterday</h4>
+<div style="font-size:13px;">
+
+				    <p style="padding:0; margin:0;margin:2px 0;color:#666;"><span><%= Lead.all_fresh.where(:infu_owner_id => admin.infu_id, :date => (Date.today -1)).count %> </span> Fresh leads</p>
+				    <p style="padding:0; margin:0;margin:2px 0;color:#666;"><span><%= Lead.all_contacting.where(:infu_owner_id => admin.infu_id).count %> </span> Contacting leads</p>
+				    <p style="padding:0; margin:0;color:#666;"><span><%= Lead.all_working.where(:infu_owner_id => admin.infu_id).count %></span> Working leads</p>
+				    <p style="padding:0; margin:0;color:#666;"><span><%= Lead.all_paid.yesterday.where(:infu_owner_id => admin.infu_id).count %></span> Paid leads</p>
+
+				    <p style="padding:0; margin:0;color:#666;"><span><%= Sale.yesterday.where(:infu_owner_id => admin.infu_id).count %> Sale </p>
+
+
+				  </div>
+                          </td>
+                        </tr>
+
+		      </table><!-- Summary -->
+		      
+		      
+		      <!-- Summary --><table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#e6e9ee;font-family: Arial, sans-serif; padding:12px; margin-top:10px;">
+			
+			
+			
+			
+			
+			<tr>
+			  <td>
+			    
+			    
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin:0; padding:0;">
+                              
+			      <tr>
+				<td width="260" valign="top">
+				  <h4 style="margin:0; padding:0;">Previous Week</h4>
+				  
+					 <div style="font-size:13px;">
+
+		  <p style="padding:0; margin:0;margin:2px 0;color:#666;"> Sales: <span> <%= @salecount = Sale.last_week.where(:infu_owner_id => admin.infu_id).all.count %></span></p> 
+		  <% if @salecount != 0 %> 
+		  Sales Cycle: <br>
+		  <% Sale.last_week.where(:infu_owner_id => admin.infu_id).each_with_index do |sale, i| %>
+		  <p style="padding:0; margin:0;margin:2px 0;color:#666;"> <%= i+1 %>. <%= sale.fname %> 
+		    <% if sale.leaddate.nil? %> 
+		    <span class="label label-default"> Unknown cycle</span><br>
+		    <% else %> --
+		    <span class="label label-success"><%= distance_of_time_in_words(sale.leaddate, sale.saledate + 380.minutes)  %></span><br>
+		    <% end %><!-- /salecycle nil? loop-->
+		    <% end %>
+		    <% end %>
+		</div>		  
+				  <br />
+				  
+				  
+				</td>
+				
+				
+				<td style="font-size: 0; line-height: 0;" width="10">&nbsp;
+				  
+				</td>
+				<td width="260" valign="top">
+				  <h4 style="margin:0; padding:0;">Current Week</h4>
+				  
+				 <div style="font-size:13px;">
+
+		  <p style="padding:0; margin:0;margin:2px 0;color:#666;"> Sales: <span> <%= @salecount = Sale.this_week.where(:infu_owner_id => admin.infu_id).all.count %></span></p> 
+		  <% if @salecount != 0 %> 
+	
+				  <h5 style="padding:0; margin:0; margin-top:6px;">Sales Cycle:</h5>
+		  <% Sale.this_week.where(:infu_owner_id => admin.infu_id).each_with_index do |sale, i| %>
+		  <p style="padding:0; margin:0;margin:2px 0;color:#666;"> <%= i+1 %>. <%= sale.fname %> 
+		    <% if sale.leaddate.nil? %> 
+		    <% else %> --
+<%= distance_of_time_in_words(sale.leaddate, sale.saledate)  %>
+		    <% end %><!-- /salecycle nil? loop--><br>
+		    <% end %>
+		    <% end %>
+		</div>	
+			  
+				  
+				  
+				  
+				  
+				  
+				</td>
+			      </tr>
+			    </table>
+			    
+			  </td>
+			</tr>
+			
+			
+		      </table><!-- Summary -->
+		      
+		      <!-- Summary --><table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#e6e9ee;font-family: Arial, sans-serif; padding:12px; margin-top:10px;">
+			
+			
+			
+			
+			
+			<tr>
+			  <td>
+			    
+			    
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin:0; padding:0;">
+                              
+			      <tr>
+				<td width="260" valign="top">
+				  
+				  
+				  <h4 style="margin:0; padding:0;">Previous Month</h4>
+				  
+			
+				  	 <div style="font-size:13px;">
+
+		  <p style="padding:0; margin:0;margin:2px 0;color:#666;"> Sales: <span> <%= @salecount = Sale.last_month.where(:infu_owner_id => admin.infu_id).all.count %></span></p> 
+		  <% if @salecount != 0 %> 
+	
+				  <h5 style="padding:0; margin:0; margin-top:6px;">Sales Cycle:</h5>
+		  <% Sale.last_month.where(:infu_owner_id => admin.infu_id).each_with_index do |sale, i| %>
+		  <p style="padding:0; margin:0;margin:2px 0;color:#666;"> <%= i+1 %>. <%= sale.fname %> 
+		    <% if sale.leaddate.nil? %> 
+		    <% else %> --
+<%= distance_of_time_in_words(sale.leaddate, sale.saledate + 380.minutes)  %>
+		    <% end %><!-- /salecycle nil? loop--><br>
+		    <% end %>
+		    <% end %>
+		</div>		  
+				</td>
+				
+				
+				<td style="font-size: 0; line-height: 0;" width="10">&nbsp;
+				  
+				</td>
+				<td width="260" valign="top">
+				  
+				  <h4 style="margin:0; padding:0;">Current Month</h4>
+				  
+				 	 <div style="font-size:13px;">
+
+		  <p style="padding:0; margin:0;margin:2px 0;color:#666;"> Sales: <span> <%= @salecount = Sale.this_month.where(:infu_owner_id => admin.infu_id).all.count %></span></p> 
+		  <% if @salecount != 0 %> 
+	
+				  <h5 style="padding:0; margin:0; margin-top:6px;">Sales Cycle:</h5>
+		  <% Sale.this_month.where(:infu_owner_id => admin.infu_id).each_with_index do |sale, i| %>
+		  <p style="padding:0; margin:0;margin:2px 0;color:#666;"> <%= i+1 %>. <%= sale.fname %> 
+		    <% if sale.leaddate.nil? %> 
+		    <% else %> --
+<%= distance_of_time_in_words(sale.leaddate, sale.saledate)  %>
+		    <% end %><!-- /salecycle nil? loop--><br>
+		    <% end %>
+		    <% end %>
+		</div>		  
+
+				  
+				</td>
+			      </tr>
+			    </table>
+			    
+			  </td>
+			</tr>
+			
+		      
+
+
+
+                        <br>
+                        <br>
+                        <% end %>        
+                      </table><!-- Summary -->
+
+  <!-- header -->
+                      <tr>
+			<td style="padding: 10px 0 10px 0; color: #ffffff; background:#434a54; text-align:center; font-family: Arial, sans-serif; font-size: 18px; line-height:18px;">		  Over Due - <%= Collection.overdue.count %>!
+			</td>
+                      </tr>
+                      
+                      <!-- Summary --><table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#e6e9ee;font-family: Arial, sans-serif; padding:12px; margin-top:10px;">
+                        
+                       
+                        <tr>
+			  <td> 
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                              <h4 style="margin:0; padding:0;margin-bottom:10px; font-size:10px; border-bottom:1px solid #bbb; padding-bottom:7px;">Unclaimed Teampayments (Finance team to clear off)</h4>
+			    </table>
+
+                          </td>
+                        </tr>
+                        
+                
+                        
+                        <tr>
+			  <td>
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin:0; padding:0;">
+
+<thead>
+    <tr>
+        <th style="text-align:left;" width="260" valign="top">Amount</th>
+        <th style="text-align:left;" width="260" valign="top">Mode</th>
+        <th style="text-align:left;" width="260" valign="top">Details</th>
+    </tr>
+    </thead>
+			      <% @collection.each do |collection| %>
+				<tr>
+				<td width="260" valign="top"><%= collection.amount %></td>
+				 <td width="260" valign="top"> <%= collection.mode %></td>
+				<td width="260" valign="top"><%= collection.payment_details %></td>				
+			      </tr>
+                        <% end %>  
+
+	<td width="140" valign="top" style="background:#434a54;">
+				  <a href="http://treasurehunt.soexcellence.com/sales/dashboard#overdue" style="text-decoration:none;"><h5 style="margin:0; color:#ffffff;padding:0; text-align:center; padding:6px 0;">See all <%= Collection.overdue.count %></h5></a>
+				</td>
+
+      
+			    </table>
+                            
+                          </td>
+                        </tr>
+                        <br>
+
+                      </table><!-- Summary -->
+           
+
+  <!-- header -->
+                      <tr>
+			<td style="padding: 10px 0 10px 0; color: #ffffff; background:#434a54; text-align:center; font-family: Arial, sans-serif; font-size: 18px; line-height:18px;"> Orphan Sales -   <%= @orphan = Sale.orphan.count %>!
+			</td>
+                      </tr>
+                      
+                      <!-- Summary --><table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#e6e9ee;font-family: Arial, sans-serif; padding:12px; margin-top:10px;"> <h4 style="margin:0; padding:0;margin-bottom:10px; font-size:10px; border-bottom:1px solid #bbb; padding-bottom:7px;">Confirmation form filled on Infusionsoft, but Sale not claimed on Treasurehunt</h4>
+                        
+                       <% if @orphan != 0 %>
+                        <tr>
+			  <td> 
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                             
+			    </table>
+
+                          </td>
+                        </tr>
+
+                        
+                
+                        
+                        <tr>
+			  <td>
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin:0; padding:0;">
+
+
+<thead>
+    <tr>
+        <th style="text-align:left;" width="260" valign="top">First Name</th>
+        <th style="text-align:left;" width="260" valign="top">Last Name</th>
+        <th style="text-align:left;" width="260" valign="top">Course</th>
+    </tr>
+    </thead>
+			 <% Sale.orphan.each do |sale| %>
+			      <tr>
+				<td width="260" valign="top"><%= sale.fname %></td>
+<td width="260" valign="top"><%= sale.lname %></td>
+				<td width="260" valign="top"><%= sale.infu_owner_name %></td>
+				<td width="260" valign="top"><%= sale.product.name %></td>
+			      </tr>
+                        <% end %>  
+
+	<td width="140" valign="top" style="background:#434a54;">
+				  <a href="http://treasurehunt.soexcellence.com/sales/dashboard#overdue" style="text-decoration:none;"><h5 style="margin:0; color:#ffffff;padding:0; text-align:center; padding:6px 0;">See  More </h5></a>
+				</td>
+
+      
+			    </table>
+                            
+                          </td>
+                        </tr>
+
+% else %>
+ <div class='alert alert-success'>
+            <strong>Well done!</strong>
+	<td width="140" valign="top" style="background:#434a54;">Sales team, All sales are claimed!</td> 
+        </div>
+
+<% end %>
+
+                        <br>
+
+                      </table><!-- Summary -->
+
+  <!-- header -->
+                      <tr>
+			<td style="padding: 10px 0 10px 0; color: #ffffff; background:#434a54; text-align:center; font-family: Arial, sans-serif; font-size: 18px; line-height:18px;"> Payment Plan not complete - <%= @pendingpplan = Sale.joins(:pplans).group("sale_id").having( 'sum(pplans.amount) != selling_price').having("YEAR(saledate) = ?" ,2014).to_a.count %>!
+			</td>
+                      </tr>
+                      
+                      <!-- Summary --><table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#e6e9ee;font-family: Arial, sans-serif; padding:12px; margin-top:10px;">
+                        
+                       
+                        <tr>
+			  <td> 
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                              <h4 style="margin:0; padding:0;margin-bottom:10px; font-size:10px; border-bottom:1px solid #bbb; padding-bottom:7px;">Respective owner to clear off!</h4>
+			    </table>
+
+                          </td>
+                        </tr>
+                        
+                
+                        
+                        <tr>
+			  <td>
+			    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin:0; padding:0;">
+
+
+<thead>
+    <tr>
+        <th style="text-align:left;" width="260" valign="top">First Name</th>
+        <th style="text-align:left;" width="260" valign="top">Last Name</th>
+        <th style="text-align:left;" width="260" valign="top">Owner</th>
+        <th style="text-align:left;" width="260" valign="top">Product</th>
+    </tr>
+    </thead>
+			 <%  Sale.joins(:pplans).group("sale_id").having( 'sum(pplans.amount) != selling_price').having("YEAR(saledate) = ?" ,2014).each do |sale| %>
+			      <tr>
+				<td width="260" valign="top"><%= sale.fname %></td>
+<td width="260" valign="top"><%= sale.lname %></td>
+				<td width="260" valign="top"><%= sale.infu_owner_name %></td>
+				<td width="260" valign="top"><%= sale.product.name %></td>
+			      </tr>
+                        <% end %>  
+
+	<td width="140" valign="top" style="background:#434a54;">
+				  <a href="http://treasurehunt.soexcellence.com/sales/dashboard#overdue" style="text-decoration:none;"><h5 style="margin:0; color:#ffffff;padding:0; text-align:center; padding:6px 0;">See  More </h5></a>
+				</td>
+
+      
+			    </table>
+                            
+                          </td>
+                        </tr>
+                        <br>
+
+                      </table><!-- Summary -->
+           
+    
+                      <!-- Summary --><table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-family: Arial, sans-serif; padding:0px; margin-top:10px;">
+	
+			      <tr>
+	
+				<td width="140" valign="top" style="background:#434a54;">
+				  <a href="http://treasurehunt.soexcellence.com/sales/dashboard#overdue" style="text-decoration:none;"><h5 style="margin:0; color:#ffffff;padding:0; text-align:center; padding:6px 0;">Click to see  Detailed Performance sheet</h5></a>
+				</td>
+				
+				<td style="font-size: 0; line-height: 0;" width="8">&nbsp;</td>
+				
+				
+				<td style="font-size: 0; line-height: 0;" width="8">&nbsp;</td>
+				
+			      </tr>
+			    </table>
+                            
+                          </td>
+                        </tr>
+                        
+                        
+                      </table><!-- Summary -->
+                      
+                      
+                    </td>
+                  </tr>
+                  
+                  
+                  
+                  
+		</table>
+	      </td>
+	    </tr>
+	    
+	  </table>
+	</td>
+      </tr>
+    </table>
+  </body>
+</html>

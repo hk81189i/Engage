@@ -1,0 +1,90 @@
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script src="abc.js" type="text/javascript"></script>
+</head>
+
+<section id="wrapper" class="wrapper">
+
+  <h1 class="title">Cumulative reports</h1>
+
+  <div id="v-nav">
+
+  <ul>
+    <li tab="tab1" class="first current">Unaccounted Batch Revenue</li>
+    <li tab="tab2">Money not in payment plan</li>
+    <li tab="tab3">Cumulative payment - month</li>
+    <li tab="tab4" class="last">Payment today from Revenue</li>
+ </ul>
+
+ <div class="tab-content">
+   <h4><>Unaccounted Batch Revenue</a></h4>
+<font size="2" color="grey">Revenue not in payment plans or collectables, can  be expected to be collected because the batch is happening</font> </p>
+
+<h1> </h1>
+
+
+<%= form_tag :action => "batchrevreport" %>
+<label for="mydropdown"">Batch:</label><select name="rev_month">
+<option value="Mumbai Nov">Mumbai November 2013</option>
+<option value="Bangalore Dec">Bangalore December 2013</option>
+<option value="Chennai Jun">Chennai Jun 2013</option> 
+<option value="Delhi Dec">Delhi Dec 2013</option> 
+</select>
+ <br> </p>
+<%= submit_tag("See Report") %>
+
+</p>
+<h2>Report:</h2>Unaccounted batch revenue for<strong> <%= @batch%> </strong>batch is Rs: <%= @ubr %>
+</p>
+
+ </div>
+
+ <div class="tab-content">
+   <h4><>Money not in payment plan </a></h4>
+
+<h2>Report:</h2>Money not in payment plan for all month cumulative for the past one year: <%= @npp_cum %> </p>
+
+ </div>
+
+ <div class="tab-content">
+    <h4> Cash expected to be collected</a></h4>   
+<font size="2" color="grey">Cumulative Cash expected to be collected in month as per payment plan:</font> </p>
+<br>
+Choose month:
+<%= form_tag :action => "batchrevreport" %>
+ <%= label_tag(:temp_year, "Year (2013)") %>
+   <%= text_field_tag :exp_cc_month %> </br>
+ <br>
+ <br> </p>
+<%= submit_tag("See Report") %> 
+
+
+<h3>Report:</h3>Cash expected to be collected as per payment plan is: <%= @exp_cc %>  <br> </p>
+
+ </div>
+
+ <div class="tab-content">
+   <h4>Cash expected to be collected as per payment </a></h4>                
+<font size="2" color="grey">Money in payment plan of a given month from revenue month. Eg: Cash in November Plan from June revenue.</font> </p>
+
+<h2></h2>
+<strong>Choose month:</strong>
+<%= form_tag :action => "batchrevreport" %>
+ <%= label_tag(:pm, "Payment Plan Month") %>
+   <%= text_field_tag :pm %> &nbsp;&nbsp
+ <%= label_tag(:rm, " Revenue  Month") %>
+   <%= text_field_tag :rm %> </br>
+ </p>
+<%= submit_tag("See Report") %>
+
+
+<br><h3>Report:</h3>Cash expected to be collected as per payment plan is: <%= @pp_month_rm %>
+ </div>
+
+</div>
+
+</section>
+
+ 

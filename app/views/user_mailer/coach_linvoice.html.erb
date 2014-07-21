@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	  "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css" media="screen">
+      h3 { color: #f00; }
+      ul { list-style: none; }
+    </style>
+  </head>
+
+
+  <% @sale = Sale.find(@invoice.sale_id) %>
+  <% @pplan_now = Pplan.where(:sale_id => @invoice.sale_id) %> 
+  <% @total_pplan = @pplan_now.sum :amount %>
+
+  <% @collection_now = Collection.where(:sale_id => @invoice.sale_id) %> 
+  <% @total_collection = @collection_now.sum :amount %>
+  <body>
+
+    <h2>
+      <img alt="Logo" src="http://www.nlptrainingmasters.com/wp-content/uploads/2012/12/SOELogo_Trademark3-small.png" style="width: 186px; height: 90px; float: left; border-width: 0px; border-style: solid;" /></h2>
+    <p>
+      &nbsp; &nbsp;&nbsp;</p>
+    <p>
+      &nbsp;</p>
+    <p>
+      &nbsp;</p>
+    <div style="color: rgb(34, 34, 34); font-family: arial, sans-serif; font-size: 13px; background-color: rgb(255, 255, 255);">
+      <div style="font-size: 20px; font-weight: bold; font-family: arial; color: rgb(26, 36, 46); margin: 0px; padding: 0px; background-image: none; border: none; overflow: visible;">
+	<div style="margin: 0px; padding: 0px; background-image: none; border: none; overflow: visible;">
+	  Hi  <%= @sale.contact.name %>, </div>
+      </div>
+    </div>
+    <div style="color: rgb(34, 34, 34); font-family: arial, sans-serif; font-size: 13px; background-color: rgb(255, 255, 255);">
+      <div style="min-height: 15px; line-height: 15px;">
+	&nbsp;</div>
+    </div>
+    <div style="color: rgb(34, 34, 34); font-family: arial, sans-serif; font-size: 13px; background-color: rgb(255, 255, 255);">
+      <div style="overflow: visible; background-image: none; font-size: 12px; margin: 0px; font-family: arial; border: none; padding: 0px;">
+	<div style="overflow: visible; background-image: none; font-size: 12px; margin: 0px; border: none; padding: 0px;">
+	  <div>
+	    &nbsp;</div>
+	  <div>
+	
+<span style="font-size: 12pt;">We acknowledge your payment of <%= @invoice.collection_current %> towards uPwithNLP training <%= @invoice.sale.batch.name %> &nbsp;</span></div>
+      <div>
+	&nbsp;</div>
+      <div>
+
+	<h2>
+	  <strong style="color: rgb(34, 34, 34); font-family: arial; font-size: 12px; background-color: rgb(255, 255, 255);"><span style="font-size: 12pt;"><b>Thank you for the Prompt Payment.&nbsp;<span style="font-size: 10pt;">
+
+
+	    <div style="font-family: arial, sans-serif; font-size: 13px;">
+	      <div style="overflow: visible; background-image: none; font-size: 12px; margin: 0px; font-family: arial; border: none; padding: 0px;">
+		<div style="overflow: visible; background-image: none; font-size: 12px; margin: 0px; border: none; padding: 0px;">
+		  <table border="0" cellpadding="0" cellspacing="0" style="width: 789px; background-image: none; font-size: 12px; margin: 0px; border: none; padding: 0px;">
+		    <tbody>
+		      <tr height="15">
+			<td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; width: 224px; height: 15px;" width="224">
+			  <strong>Invoice ID</strong></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; width: 112px;" width="112">
+			  <%= @invoice.id %></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; width: 128px;" width="128">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; width: 65px;" width="65">
+			  &nbsp;</td>
+			<td align="right" colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; width: 65px;" width="65">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; width: 65px;" width="65">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; width: 65px;" width="65">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; width: 65px;" width="65">
+			  &nbsp;</td>
+		      </tr>
+		      <tr height="15">
+			<td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 15px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+
+
+
+
+			  &nbsp;</td>
+		      </tr>
+		      <tr height="18">
+			<td colspan="1" height="18" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 18px;">
+			  <span style="font-size: 14pt;"><strong> <%= @invoice.name %></strong></span></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+		      </tr>
+		      <tr height="15">
+			<td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 15px;">
+			</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+		      </tr>
+		      <tr height="15">
+			<td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 15px;">
+			</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+		      </tr>
+		      <tr height="15">
+			<td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 15px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+		      </tr>
+		      <tr height="18">
+			<td colspan="1" height="18" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 18px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+		      </tr>
+		      <tr height="15">
+			<td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 15px;">
+			  <strong>Item&nbsp;</strong></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  <strong>Cost</strong></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+		      </tr>
+
+
+
+		      <tr height="15">
+			<td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 15px;">
+			  <span style="font-size: 10pt;"><strong>Coach Certification</strong></span></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  <strong>Rs. 80,000/-   + Food </strong></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+		      </tr>
+		      <tr height="15">
+			<td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 15px;">
+			  <strong> Introductory Discount</strong></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  <strong>Minus  <%= 80000 - @invoice.sale.selling_price %></strong></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+		      </tr>
+		      <tr height="15">
+			<td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 15px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  <strong> <%= @invoice.sale.selling_price %></strong></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+		      </tr>
+		      <tr height="18">
+			<td colspan="1" height="18" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 18px;">
+			  <span style="font-size: 10pt;"><strong>Total Price</strong></span></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  <span style="font-size: 10pt;"><span style="font-size: 10pt;"><span style="font-size: 10pt;"><strong>Rs. <%= @invoice.sale.selling_price %>/-</strong></span></span></span></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+		      </tr>
+		      <tr height="18">
+			<td colspan="1" height="18" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 18px;">
+			  <span style="font-size: 10pt;"><strong>Amount Received</strong></span></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  <span style="font-size: 10pt;"><span style="font-size: 10pt;"><span style="font-size: 10pt;"><strong>Rs. <%= @total_collection %> /-</strong></span></span></span></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+		      </tr>
+		      <tr height="18">
+			<td colspan="1" height="18" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 18px;">
+			  <span style="font-size: 10pt;"><strong>Total Due</strong></span></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  <span style="font-size: 10pt;"><span style="font-size: 10pt;"><span style="font-size: 10pt;"><strong>Rs. <%= @sale.selling_price  - @total_collection %>/-</strong></span></span></span></td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+			<td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+			  &nbsp;</td>
+		      </tr>
+		    </tbody>
+		  </table>
+		</div>
+	      </div>
+	    </div>
+	    <div style="font-family: arial, sans-serif; font-size: 13px;">
+	      <div style="overflow: visible; background-image: none; font-size: 12px; margin: 0px; font-family: arial; border: none; padding: 0px;">
+		<div style="overflow: visible; background-image: none; font-size: 12px; margin: 0px; border: none; padding: 0px;">
+		  &nbsp;</div>
+	      </div>
+	    </div>
+	  </div>
+	  <div>
+	    &nbsp;</div>
+	  <div>
+	    &nbsp;</div>
+	  <div>
+	    <div>
+	      <div style="overflow: visible; background-image: none; font-size: 12px; margin: 0px; border: none; padding: 0px;">
+		<div style="overflow: visible; background-image: none; font-size: 12px; margin: 0px; border: none; padding: 0px;">
+		  <div>
+		    &nbsp;</div>
+		  <div>
+* Introductory discount will only be available for the 1st 100 Coaches <br>
+** The Food cost is mandatory and will have to be paid for each term of the Coach Certification <br>
+*** The coach certification can complete in 2 or more batches. This is dependant on a variety of factors. <br>
+**** There is a strict eligibility Criteria and the decision of Antano and Harini are final at each stages.<br>
+</div>
+		  <div>
+		  </div>
+		</div>
+	      </div>
+	    </div>
+  </body>
+</html>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+<div style="overflow: hidden;">
+
+  <div style="float: left;">
+
+
+    <table border="0" cellpadding="0" cellspacing="0" style="width: 336px; background-image: none; font-size: 12px; margin: 0px; border: none; padding: 0px;">
+      <colgroup span="1">
+	<col span="1" width="224" />
+	<col span="1" width="112" />
+      </colgroup>
+      <tbody>
+	<tr height="15">
+	  <td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; width: 224px; height: 15px;" width="224">
+	    <p style="font-size: 12px; font-family: arial; margin: 0px;">
+	      <strong><span style="font-size: 12pt;">Payment History &nbsp;</span></strong></p>
+	    <p style="font-size: 12px; font-family: arial; margin: 0px;">
+	      &nbsp;</p>
+	  </td>
+	  <td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; width: 112px;" width="112">
+	    &nbsp;</td>
+	  <td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; width: 112px;" width="112">
+	    &nbsp;</td>
+	</tr>
+
+	<tr height="15">
+	  <td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 15px;">
+	    <strong>Date Paid</strong></td>
+	  <td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+	    <strong>Amount</strong></td>
+	</tr>   
+	<%       @collection_now.each do |collection|%>
+	<tr height="15">
+	  <td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 15px;">
+	    <strong><span style="font-size: 10pt;"><%= collection.date.strftime("%B %d, %Y")   %></span></strong></td>
+	  <td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+	    <span style="font-size: 10pt;"><strong><%= collection.amount %></strong></span></td>
+	</tr>
+	<%   end    %>
+	<tr height="15">
+	  <td colspan="1" height="15" rowspan="1" style="font-family: arial, sans-serif; margin: 0px; height: 15px;">
+	    <strong>Total</strong></td>
+	  <td colspan="1" rowspan="1" style="font-family: arial, sans-serif; margin: 0px;">
+	    <strong> <%= @total_collection %></strong></td>
+	</tr>   
+	
+      </tbody>
+    </table>
+  </div>
+</div>
+<hr> </hr><br>
+
+ <div style="font-size: 14px; overflow: visible; background-image: none; margin: 0px; border: none; padding: 0px;">
+<p>
+Do you want to bring a Friend Along? Bring a Friend and get exciting benefits for each and both of you. Click here to know more... </p>
+  
+ 	      <strong> 
+
+</body>
+</html>
+Finance & Operations Team <br>
+School of Excellence</strong></div>
+
+

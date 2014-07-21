@@ -1,0 +1,86 @@
+<div class="navbar">
+  <div class="navbar-inner">
+    <form class="navbar-form pull-right">
+      <h5>Choose Batch : <%= form_tag :action => "salecomplete" %> 
+        <%= select_tag "temp_month", options_from_collection_for_select(@batch, "id", "name")  %>
+	<!--            <input type="text" class="span2">  -->
+	<button type="submit" class="btn btn-mini btn-primary">Go</button>
+    </h5>        </form>
+  </div>
+</div>
+
+
+ <legend><%= Batch.find(@batch_id).name %></legend>
+
+<div class="table-responsive">
+  <table class="table table-hover"> 
+    <thead>
+      <tr><div class="row">
+	  <th><div class="col-xs-12 col-sm-12">  First Name</div></th>
+	  <th><div class="col-xs-12 col-sm-12">  Last Name</div></th>      
+	  <th><div class="col-xs-12 col-sm-12">  Selling Price</div></th>     
+	  <th><div class="col-xs-12 col-sm-12">  Batch</div></th>     
+	  <th><div class="col-xs-12 col-sm-12">  Owner</div></th>     
+	  <th><div class="col-xs-12 col-sm-12">  Sale Date</div></th>     
+	  <th><div class="col-xs-12 col-sm-12">  Product</div></th>    
+<!--	  <th><div class="col-xs-12 col-sm-12">  Update</div></th>    -->
+	  <th><div class="col-xs-12 col-sm-12">  Current Status</div></th>     	  <th><div class="col-xs-12 col-sm-12">  Completion</div></th>     
+
+      </tr></div>
+    </thead>
+
+
+    <tbody>
+    <tbody>
+      <% @sales.order("saledate DESC").each do |sale| %>
+
+      <tr><div class="row">
+	  <td><div class="col-xs-12 col-sm-12">  <%= sale.fname %></div></td>
+	  <td><div class="col-xs-12 col-sm-12">  <%= sale.lname %></div></td> 
+	  <td><div class="col-xs-12 col-sm-12">  <%= sale.selling_price  %></div></td>        
+
+	  <td><div class="col-xs-12 col-sm-12">  <%= sale.batch.name %></div></td>        
+
+          <td><div class="col-md-12"><% if sale.owner != nil%>
+	      <%= sale.owner.name %>
+	      <% else %>
+	      <%= sale.infu_owner_name %>
+	      <% end %></div></td>
+
+	  <td><div class="col-md-12">  <%= sale.saledate.strftime("%b %d, %Y") %></div></td> 
+
+	  <td><div class="col-xs-12 col-sm-12">  <%= sale.product.name %></div></td>       
+  
+
+<% if sale.payment_complete.nil? %>
+
+<td> Payment incomplete <td>	        <%= form_for(sale, :html => { :class=> "form-inline", :role=> "form" }) do |f| %>
+<td>		    <%= f.hidden_field :payment_complete, :value => 1  %>
+
+         <div class="actions">
+	<center><%= submit_tag "Complete", :name => "up_sess" ,class:"btn btn-primary"%></center>
+</div>
+	      </td>
+<% end %>
+<% else %>
+
+<td> Payment complete </td>
+<td>	        <%= form_for(sale, :html => { :class=> "form-inline", :role=> "form" }) do |f| %>
+
+		    <%= f.hidden_field :payment_complete, :value => nil  %>
+		   
+         <div class="actions">
+	<center><%= submit_tag "Incomplete", :name => "up_sess" ,class:"btn btn-default"%></center>
+</div>
+</td>
+	  <% end %> <!-- ENd of form -->
+	  <% end %> <!-- end of if -->
+
+ <% end %> <!-- End of do loop -->
+</tbody>
+</table>
+</div>
+
+
+	<%= link_to 'Back to Report', report_four_pplans_path %>
+	

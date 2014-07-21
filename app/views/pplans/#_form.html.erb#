@@ -1,0 +1,47 @@
+<%= form_for(@pplan) do |f| %>
+  <% if @pplan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pplan.errors.count, "error") %> prohibited this pplan from being saved:</h2>
+
+      <ul>
+      <% @pplan.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :paying_date %><br>
+    <%= f.date_select :paying_date %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br>
+    <%= f.number_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :user_Id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :sale_id %><br>
+    <%= f.number_field :sale_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :selling_Price %><br>
+    <%= f.number_field :selling_price %>
+  </div>
+
+  <div class="field">
+    <%= f.label :token %><br>
+    <%= f.number_field :token %>
+  </div>
+  <div class="field">
+    <%= f.label :saledate %><br>
+    <%= f.number_field :saledate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

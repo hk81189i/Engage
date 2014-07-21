@@ -1,0 +1,21 @@
+Total sales revenue : <%= @tsr%></p>
+Total sales: <%= @tsale %> </p>
+Money Not in payment Plan from June revenue  <%= @npp %> </p>
+</p>
+<h3>monthly Distribution</h3>
+
+
+Please enter the month for which the report is to be generated.(1=Jan, 6=Jun)
+<%= form_tag :action => "monthlyreport" %>
+    <%= text_field_tag :temp_month %>
+
+
+<%  %>
+<% %>
+<% %>
+<% %>
+<% %>
+<% %>
+<% %>
+<% %>
+<% %>

@@ -1,0 +1,404 @@
+<div class='row'>
+        <div class='alert alert-info alert-block'>
+<div class="page-header">
+  <h2> <strong>SOE Sales Dashboard!</strong></h2>
+        </div>
+<p style="font-size:14px; color:#000;">
+
+1. Team Performance <br>
+2. Individual Performance <br>
+3. Overdue </br>
+4. Detailed Performance Sheet <br>
+
+
+<br>
+
+Feel free to explore each of them, to the fullest!  <br>
+
+Cheers!
+</p></strong>
+</div>
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+<h3 class="panel-title"> <strong>  Team Performance  </strong>
+  </div>
+  <div class="panel-body">
+<div class="bs-example">
+  <div class="row">
+<h5>    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <div class="caption">
+          <h4>Last week </h4>
+	  <h1><span class="label label-info"><%= Sale.last_week.to_a.count %></span></h1>
+
+  <table class="table table-striped">
+        <thead>
+	        <tr>
+		  <th>Name</th>
+		  <th>Owner</th>
+		        </tr>
+		    </thead>
+	    <tbody>
+	            <% Sale.last_week.order("infu_owner_email ASC").each do |sale| %>
+		          <tr><div class="row">
+			        <td> <%= sale.infu_owner_name %></td> 
+				  <td> <%= sale.fname %></td>
+				    <td> <%= sale.product.code %>
+				            </tr></div>
+			        <% end %>
+				  </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <div class="caption">
+          <h4>This week </h4>
+	  <h1><span class="label label-info"><%= Sale.this_week.to_a.count %></span><small><br>  ..and counting</small></h1>
+	    <% if Sale.this_week.count != 0 %>
+	      <table class="table table-striped">
+		    <thead>
+		            <tr>
+			      <th>Name</th>
+			      <th>Owner</th>
+			            </tr>
+			        </thead>
+		        <tbody>
+			        <% Sale.this_week.order("infu_owner_email ASC").each do |sale| %>
+				      <tr><div class="row">
+					    <td> <%= sale.infu_owner_name %></td>
+					      <td> <%= sale.fname %></td>
+					        <td> <%= sale.product.code %>
+						        </tr></div>
+				            <% end %>
+					      </table>
+	        <% end %>
+       </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <div class="caption">
+          <h4>Yesterday </h4>
+	  <h1><span class="label label-info"><%= Sale.yesterday.to_a.count %></span></h1>
+	    <% if Sale.yesterday.count != 0 %>
+	      <table class="table table-striped">
+		    <thead>
+		            <tr>
+			      <th>Name</th>
+			      <th>Owner</th>
+			            </tr>
+			        </thead>
+		        <tbody>
+			        <% Sale.yesterday.order("infu_owner_email ASC").each do |sale| %>
+				      <tr><div class="row">
+					    <td> <%= sale.infu_owner_name %></td>
+					      <td> <%= sale.fname %> " " <%= sale.lname %></td>
+					        <td> <%= sale.product.code %>
+
+						        </tr></div>
+				            <% end %>
+					      </table>
+	        <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <div class="caption">
+	    <h4><p><strong><%= Date.today.to_time.strftime("%A %n %t  %d %B  %Y") %></strong></p></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- /.bs-example -->
+<br>
+
+<div class="jumbotron">
+<strong>Leads Yesterday: </strong> <br>
+   <h5> Fresh leads to: </strong> <br> <% @leadstoday.each do |lead| %>
+  <%= lead.second %> to 
+  <% if !lead.first.nil? %>
+  <%= lead.first %> <br>
+  <% else %> Technology Team for testing/ Unknown<br>
+  <% end %> 
+  <% end %>
+<br> <br>
+<strong>Leads Today: </strong> <br>
+<% @member.each do |i| %>
+<%= i %>, 
+<% end %>
+
+  </div><!-- / team performance Jumbo -->
+</div>
+</h5></div>  
+
+
+<div class="panel panel-info">
+  <div class="panel-heading">
+<h4 class="panel-title"> <strong> Individual Performance Sheet   </strong>
+  </div>
+  <div class="panel-body">
+
+<div class="bs-example">
+  <% Admin.where.not(:infu_id => 0).each do |admin|  %>
+
+<div class="jumbotron">
+  <h4> <strong><%= admin.admin_name %>'s Summary</strong></h4>
+<h5><strong> Yesterday</strong> <br>
+<p><%= Lead.all_fresh.where(:infu_owner_id => admin.infu_id, :date => (Date.today -1)).count %> Fresh leads <br>
+<%= Lead.all_contacting.where(:infu_owner_id => admin.infu_id).count %> Contacting leads  <br>
+<%= Lead.all_working.where(:infu_owner_id => admin.infu_id).count %> Working leads  <br>
+<%= Lead.all_paid.where(:infu_owner_id => admin.infu_id).count %> Paid leads  <br>
+<%= Sale.yesterday.where(:infu_owner_id => admin.infu_id).count %> Sale  <br>
+</p>
+
+<br>
+  <div class="row">
+    <div class="col-sm-6 col-md-6"> 
+<strong> Previous Week</strong><br>
+Sales: <%= @salecount = Sale.last_week.where(:infu_owner_id => admin.infu_id).to_a.count %> <br>
+<% if @salecount != 0 %> <br>
+  <th>Sales Cycle: </th><br>
+  <% Sale.last_week.where(:infu_owner_id => admin.infu_id).each_with_index do |sale, i| %>
+<%= i+1 %>. <%= sale.fname %> 
+<% if sale.leaddate.nil? %> 
+<span class="label label-default"> </span><br>
+<% else %>
+ <span class="label label-success"><%= distance_of_time_in_words(sale.leaddate, sale.saledate + 380.minutes)  %></span><br> 
+  <% end %><!-- /salecycle nil? loop-->
+  <% end %>
+  <% end %>
+</div>
+   <br>
+<br>    <div class="col-sm-6 col-md-6"> 
+<strong> Current Week</strong><br>
+Sales: <%= @salecount = Sale.this_week.where(:infu_owner_id => admin.infu_id).to_a.count %> <br>
+<% if @salecount != 0 %><br>
+  <th>Sales Cycle: </th><br>
+  <% Sale.this_week.where(:infu_owner_id => admin.infu_id).each_with_index do |sale, i| %>
+<%= i+1 %>.<%= sale.fname %> 
+<% if !sale.leaddate.nil? %> 
+ <span class="label label-success"><%= distance_of_time_in_words(sale.leaddate, sale.saledate)  %></span><br> %>
+  <% end %>
+  <% end %>
+  <% end %>
+   <br>
+</div>  <!-- /col-->
+</div>  <!-- /row-->
+<br>
+  <div class="row"> 
+    <div class="col-sm-6 col-md-6"> 
+<strong> Previous Month</strong><br>
+Sales: <%= @salecount = Sale.last_month.where(:infu_owner_id => admin.infu_id).to_a.count %> <br>
+<% if @salecount != 0 %><br>
+  <th>Sales Cycle: </th><br>
+  <% Sale.last_month.where(:infu_owner_id => admin.infu_id).each_with_index do |sale, i| %>
+<%= i+1 %>.<%= sale.fname %>     
+<% if sale.leaddate.nil? %> 
+<span class="label label-default"> </span><br>
+<% else %>
+<span class="label label-success"><%= distance_of_time_in_words(sale.leaddate, sale.saledate + 380.minutes)  %></span><br>
+  <% end %><!-- /salecycle nil? loop-->
+  <% end %><!-- /sale last month loop-->
+  <% end %><!-- /salecount check-->
+
+   <br>
+</div>  <!-- /col-->
+
+   <div class="col-sm-6 col-md-3"> 
+<strong> Current Month</strong><br>
+Sales: <%= @salecount = Sale.this_month.where(:infu_owner_id => admin.infu_id).to_a.count %> <br>
+<% if @salecount != 0 %><br>
+  <th>Sales Cycle: </th><br>
+  <% Sale.this_month.where(:infu_owner_id => admin.infu_id).each_with_index do |sale, i| %>
+<%= i+1 %>. <%= sale.fname %> 
+<% if sale.leaddate.nil? %> 
+<span class="label label-default"> Unknown cycle</span><br>
+<% else %>
+<span class="label label-success"><%= 
+distance_of_time_in_words(sale.leaddate, sale.saledate + 380.minutes)  %></span><br>
+  <% end %><!-- /salecycle nil? loop-->
+  <% end %>
+  <% end %>
+   <br>
+</div> <!-- /col-->
+</div>  <!-- /row-->
+</h5></div>
+<br>   <% end %>  <!-- /admin loop -->
+  </div>
+  </div>
+  </div><!-- /Individual performance pannel -->
+
+<div class="panel panel-danger">
+<a name="overdue">  <div id="overdue" class="panel-heading"></a> <!-- /For sectional navigation --->
+ <h4 class="panel-title"> <strong>Overdue </strong>
+  </div>
+  <div class="panel-body">
+
+<div class="page-header">
+  <h2> <strong>Payment NOT Claimed <span class="label label-danger">  <%= Collection.overdue.count %>!</span> </strong></h2>(Finance team to clear off)
+</div>
+
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th>Amount</th>
+        <th>Mode</th>
+        <th>Details</th>
+    </tr>
+    </thead>
+<% Collection.overdue.each do |collection| %>
+ <tbody>
+    <tr>
+<td><%= collection.amount %></td>
+<td><%= collection.mode %></td>
+<td><%= collection.payment_details %></td>
+<% end %>
+ </tr>
+    </tbody>
+</table>
+
+
+<a name="orphansales"> <div id="orphansales" class="page-header"></a>
+  <h2> <strong>Orphan Sales <span class="label label-warning">  <%= @orphan = Sale.orphan.count %>!</span> </strong></h2>
+</div>
+<% if @orphan != 0 %>
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th>F Name</th>
+        <th>L Name</th>
+        <th>Details</th>
+    </tr>
+    </thead>
+<% Sale.orphan.each do |sale| %>
+ <tbody>
+    <tr>
+<td><%= sale.fname %></td>
+<td><%= sale.lname %></td>
+<td><%= sale.product.name %></td>
+<% end %>
+</tr>    </tbody>
+<% else %>
+ <div class='alert alert-success'>
+            <strong>Well done!</strong>
+<td>Sales team, All sales are claimed!</td> 
+        </div>
+</table>
+<% end %>
+
+
+
+
+<a name="pplan"> <div id="pplan" class="page-header"></a>
+  <h2> <strong>Payment Plan not complete <span class="label label-warning">  <% @pendingpplan = Sale.joins(:pplans).group("sale_id").having( 'sum(pplans.amount) != selling_price').having("YEAR(saledate) = ?" ,2014) %></span> </strong></h2>
+</div>
+<% if @pendingpplan != 0 %>
+<table class="table table-striped">
+<thead>
+    <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Owner</th>
+        <th>Course</th>
+    </tr>
+    </thead>
+<% Sale.joins(:pplans).group("sale_id").having( 'sum(pplans.amount) != selling_price').having("YEAR(saledate) = ?" ,2014).each do |sale| %>
+ <tbody>
+    <tr>
+<td><%= sale.fname %></td>
+<td><%= sale.lname %></td>
+<td><%= sale.infu_owner_name%></td>
+<td><%= sale.product.name %></td>
+<% end %>
+ </tr>
+    </tbody>
+</table>
+<% end %>
+  </div>
+  </div><!-- pannel ends -->
+<a name="detail"> <div id="detail" class="panel panel-info"></a>
+  <div class="panel-heading">
+    <h4 class="panel-title"> <strong> Detailed Performance Sheet   </strong>
+ </div>  
+  <div class="panel-body">
+
+    <div class="bs-example">
+      <% Admin.where.not(:infu_id => 0).each do |admin|  %>
+      <div class="page-header">
+	<h4> <strong><%= admin.admin_name %></strong></h4>
+  <div class="row">
+    <div class="col-sm-6 col-md-2"> 
+      <td> <strong>FRESH </strong> </td><br>
+      <% Lead.all_fresh.where(:infu_owner_id => admin.infu_id).each_with_index do |lead, i| %>
+<%= i+1 %><%= lead.fname.to_s + " " + lead.lname.to_s %><br>
+<% if lead.reassigned == 1 %>
+<span class="label label-warning"> RA</span><br>
+   <% end %>
+    <% end %>
+    </div>
+
+    <div class="col-sm-6 col-md-2">
+      <td> <strong>CONTACTING </strong> </td><br>
+      <% Lead.all_contacting.where(:infu_owner_id => admin.infu_id).each_with_index do |lead, i| %>
+      <tr class="info"><td> <%= i+1 %></td>
+ <%= lead.name %>
+<% if lead.reassigned == 1 %>
+<span class="label label-warning">RA</span></td></tr>
+   <% end %><br>
+      <% end %>
+    </div>
+
+    <div class="col-sm-6 col-md-2">
+      <td> <strong>WORKING </strong> </td><br>
+      <% Lead.all_working.where(:infu_owner_id => admin.infu_id).each_with_index do |lead, i| %>
+<tr>      <td> <%= i+1 %></td>
+      <td> <%= lead.name %></td></tr><br>
+<% if lead.reassigned == 1 %>
+<span class="label label-warning"> RA</span><br>
+   <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-sm-6 col-md-2">
+      <td> <strong>Booked </strong> </td><br>
+      <% Lead.all_closing.where(:infu_owner_id => admin.infu_id).each do |lead| %>
+      <td> <%= lead.name %></td>
+<% if lead.reassigned == 1 %>
+<span class="label label-warning"> Reassigned</span><br>
+   <% end %>
+      <% end %>
+    </div>
+
+ <div class="col-sm-6 col-md-2">
+      <td> <strong>DND </strong> </td><br>
+      <% Lead.all_dnd.where(:infu_owner_id => admin.infu_id).each_with_index do |lead, i| %>
+<tr>      <td> <%= i+1 %></td>
+      <td> <%= lead.name %></td></tr><br>
+<% if lead.reassigned == 1 %>
+<span class="label label-warning"> Reassigned</span><br>
+   <% end %>
+      <% end %>
+    </div>
+
+ <div class="col-sm-6 col-md-2">
+      <td> <strong>Paid </strong> </td><br>
+      <% Lead.all_dnd.where(:infu_owner_id => admin.infu_id).each_with_index do |lead, i| %>
+<tr>      <td> <%= i+1 %></td>
+      <td> <%= lead.name %></td></tr><br>
+<% if lead.reassigned == 1 %>
+<span class="label label-warning"> RA</span><br>
+   <% end %>
+      <% end %>
+    </div>
+ </div>
+
+      </div>
+      <% end %>
+    </div>
+
+  </div>
+

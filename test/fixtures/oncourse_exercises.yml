@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  prac_name: MyString
+  change_agent: MyString
+  precondition: MyString
+  technique: MyString
+  postcondition: MyString
+  tti_date: MyString
+  test: MyString
+  futurepacing: MyString
+  coach_name: MyString
+
+two:
+  prac_name: MyString
+  change_agent: MyString
+  precondition: MyString
+  technique: MyString
+  postcondition: MyString
+  tti_date: MyString
+  test: MyString
+  futurepacing: MyString
+  coach_name: MyString

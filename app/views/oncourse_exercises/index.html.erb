@@ -1,0 +1,46 @@
+<h3>All exercises</h3>
+
+<table class="table table-striped">
+
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Practitioner  name</th>
+      <th>Change agent</th>
+      <th>Precondition</th>
+      <th>Technique</th>
+      <th>Postcondition</th>
+      <th>Time to Impact</th>
+      <th>Test</th>
+      <th>Futurepacing</th>
+      <th>Coach </th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @oncourse_exercises.each do |oncourse_exercise| %>
+      <tr>
+        <td><%= oncourse_exercise.date.strftime("%Y %B %d ") %></td>
+        <td>  <%= Contact.find_by(:id => oncourse_exercise.prac_id ).name %><td>
+<%= Contact.find_by(:id =>  oncourse_exercise.change_agent_id).name %></td></td>
+        <td><%= oncourse_exercise.precondition %></td>
+        <td><%= oncourse_exercise.technique %></td>
+        <td><%= oncourse_exercise.postcondition %></td>
+        <td><%= oncourse_exercise.tti_date.strftime(" %v ") %></td>
+        <td><%= oncourse_exercise.test %></td>
+        <td><%= oncourse_exercise.futurepacing %></td>
+        <td><%= oncourse_exercise.coach_name %></td>
+        <td><%= link_to 'Show', oncourse_exercise %></td>
+        <td><%= link_to 'Edit', edit_oncourse_exercise_path(oncourse_exercise) %></td>
+        <td><% link_to 'Destroy', oncourse_exercise, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to ' Add New Oncourse exercise', new_oncourse_exercise_path %>
