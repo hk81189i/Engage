@@ -1,21 +1,18 @@
 AHtest::Application.routes.draw do
 
+############
+
   get "marketing/dashboard"
   resources :oncourse_exercises
   get 'research/new', to: 'oncourse_exercises#new'
   
   resources :pconfirms
-
   resources :histories
-
 
   get "/sales/sendmail"
   get "/pplans/sendmail"
 
-
   resources :lead_statuses
-
-  resources :contacts
   get "/sales/salecomplete"
   post "/sales/salecomplete"
   get "/sales/dashboard"
@@ -27,31 +24,27 @@ AHtest::Application.routes.draw do
   post "infusionsoft/lead_reassign"
   post "infusionsoft/lead_status"
   get "admins/index"
-post 'invoices/genetate/:id' => 'invoices#generate'
-get 'invoices/genetate/:id' => 'invoices#generate'
+  post 'invoices/genetate/:id' => 'invoices#generate'
+  get 'invoices/genetate/:id' => 'invoices#generate'
 
 
   resources :owners
   resources :batches
   resources :dashboard
-
   resources :invoices
-
-
   devise_for :admins
+
   resources :collections do
-collection { get :invoice}
-collection { post :invoice}
-end
+    collection { get :invoice}
+    collection { post :invoice}
+  end
   resources :sales do
-collection { get :manualadd}
-collection { post :manualadd}
-end
+    collection { get :manualadd}
+    collection { post :manualadd}
+  end
 
   resources :users
-
   resources :cashtables
-
 
   resources :pplans do 
     collection { post :monthlyreport }
@@ -64,9 +57,9 @@ end
     collection { post :report_two }
     collection { get :report_three}
     collection { post :report_four}
-    collection { get :report_four}
- 
+    collection { get :report_four}    
   end
+
   get 'pplans/:id/new' => 'pplans#new'
 
   resources :payment_plans 
@@ -74,16 +67,78 @@ end
   get 'payment_plans/:id/reportone' => 'payment_plans#reportone'
   get 'cashtables/:id/cashreportone' => 'cashtables#cashreportone'
 
-
   resources :bdms
-
   resources :leads
+
+################
+
+
+
+
+  resources :confirmbookings
+
+get 'confirmbooking', to: 'confirmbookings#new'
+get 'confirmseatbooking', to: 'confirmbookings#newb'
+get 'participationconfirmed', to: 'confirmbookings#participationconfirmed'
+  resources :pconfirms
+
+  resources :uploads
+  get "contactvalues/download"
+  get "/success_dashboard/showbatch"
+  post "/success_dashboard/showbatch"
+  get "/success_dashboard/showcontact"
+  post "/success_dashboard/showcontact"
+
+  post "infusionsoft/expectationform"
+  post "infusionsoft/expectationform_tag"
+  resources :externalformlinks
+
+
+
+  resources :contactvalues do
+    collection { post :showsubmit }
+    collection { get :showsubmit }
+  end
+  resources :dashboards
+
+  resources :formones
+
+  resources :dropboxes
+
+  resources :dropboxfeilds
+
+  resources :internalformfeilds do
+    collection { post :showformfeild }
+    collection { get :showformfeild }
+  end
+
+  get '/infusionsoft/expectationform' => 'infusionsoft#expectationform'
+  post '/infusionsoft/expectationform' => 'infusionsoft#expectationform'
+
+  get '/internalforms/:id/:contact_id/:key' => 'internalforms#show'
+  resources :internalforms do
+    collection { post :selectform }
+    collection { get :selectform }
+  end
+
+
+
+  resources :customfs
+
+  resources :contacts
+
+  resources :customftypes
+
+  root :to => "contacts#index"
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
- root  'dashboard#index'
+  # root 'welcome#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

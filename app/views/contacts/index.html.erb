@@ -4,13 +4,10 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Age</th>
       <th>Email</th>
       <th>Phone</th>
-      <th>Admin</th>
-      <th>Fname</th>
-      <th>Lname</th>
-      <th>Infu</th>
-      <th>Bd</th>
+      <th>Photo</th>
       <th></th>
       <th></th>
       <th></th>
@@ -21,14 +18,8 @@
     <% @contacts.each do |contact| %>
       <tr>
         <td><%= contact.name %></td>
-        <td><%= contact.email %></td>
-        <td><%= contact.phone %></td>
-        <td><%= contact.admin_id %></td>
-        <td><%= contact.fname %></td>
-        <td><%= contact.lname %></td>
-        <td><%= contact.infu_id %></td>
-        <td><%= contact.bd_id %></td>
         <td><%= link_to 'Show', contact %></td>
+        <td><%= link_to 'Form Fill', selectform_internalforms_path(:contact => contact.id)  %></td>
         <td><%= link_to 'Edit', edit_contact_path(contact) %></td>
         <td><%= link_to 'Destroy', contact, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -39,3 +30,5 @@
 <br>
 
 <%= link_to 'New Contact', new_contact_path %>
+<%= link_to 'New Internalform', new_internalform_path %>
+

@@ -3,9 +3,6 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Phone</th>
       <th></th>
       <th></th>
       <th></th>
@@ -15,9 +12,6 @@
   <tbody>
     <% @pconfirms.each do |pconfirm| %>
       <tr>
-        <td><%= pconfirm.name %></td>
-        <td><%= pconfirm.email %></td>
-        <td><%= pconfirm.phone %></td>
         <td><%= link_to 'Show', pconfirm %></td>
         <td><%= link_to 'Edit', edit_pconfirm_path(pconfirm) %></td>
         <td><%= link_to 'Destroy', pconfirm, method: :delete, data: { confirm: 'Are you sure?' } %></td>

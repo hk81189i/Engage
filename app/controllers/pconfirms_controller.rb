@@ -10,8 +10,6 @@ class PconfirmsController < ApplicationController
   # GET /pconfirms/1
   # GET /pconfirms/1.json
   def show
-    @duedate = Date.today + 3
-@duedate =  @duedate.to_time.to_s
   end
 
   # GET /pconfirms/new
@@ -71,6 +69,6 @@ class PconfirmsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pconfirm_params
-      params.require(:pconfirm).permit(:name, :email, :phone)
+      params[:pconfirm]
     end
 end

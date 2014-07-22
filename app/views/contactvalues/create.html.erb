@@ -1,0 +1,60 @@
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>uPwithNLP Platinum Coaching- Expectations</title>
+
+    <!-- Bootstrap core CSS -->
+ <link rel="stylesheet" href="/assets/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="/assets/blog.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+  <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="#">Home</a>
+          <a class="blog-nav-item active" href="http://www.soexcellence.com">School of Excellence</a>
+>
+      </div>
+    </div> 
+<br>
+
+<!-- <div class="alert alert-danger">Hi, All feilds are not filled. Kindly click the back button on your browser or click the link from the email and enter the complete details. 
+</div>  -->
+
+
+  <% if @contactvalue.errors.any? %>
+    <div class="alert alert-danger" >
+      <h4><%= pluralize(@contactvalue.errors.count, "Error") %> prohibited the details from being saved:</h4>
+
+      <ul>
+      <% @contactvalue.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+   <div class="blog-footer">
+     <br> © 2011 Antano Solar John & Harini Ramachandrann of School of Excellence. All Rights Reserved. </small> <br>
+      <p>     
+        <a href="#">Back to top</a>
+      </p>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/docs.min.js"></script>
+  </body>
+</html>

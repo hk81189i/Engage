@@ -1,0 +1,27 @@
+<h1>Listing customfs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customfs.each do |customf| %>
+      <tr>
+        <td><%= customf.name %></td>
+        <td><%= link_to 'Show', customf %></td>
+        <td><%= link_to 'Edit', edit_customf_path(customf) %></td>
+        <td><%= link_to 'Destroy', customf, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Customf', new_customf_path %>

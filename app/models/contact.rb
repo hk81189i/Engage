@@ -1,4 +1,6 @@
 class Contact < ActiveRecord::Base
+has_many :contactvalues
+
 has_many :pplans
 has_many :products
 belongs_to :sale

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @contactvalue.contact_id %>
+</p>
+
+<p>
+  <strong>Customftype:</strong>
+  <%= @contactvalue.customftype %>
+</p>
+
+<p>
+  <strong>Customf:</strong>
+  <%= @contactvalue.customf %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @contactvalue.data %>
+</p>
+
+<%= link_to 'Edit', edit_contactvalue_path(@contactvalue) %> |
+<%= link_to 'Back', contactvalues_path %>

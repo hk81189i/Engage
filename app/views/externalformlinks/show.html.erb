@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Contact:</strong>
+  <%= @externalformlink.contact_id %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @externalformlink.link %>
+</p>
+
+<p>
+  <strong>Form:</strong>
+  <%= @externalformlink.form_id %>
+</p>
+
+<%= link_to 'Edit', edit_externalformlink_path(@externalformlink) %> |
+<%= link_to 'Back', externalformlinks_path %>

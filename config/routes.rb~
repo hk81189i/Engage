@@ -1,23 +1,63 @@
-AHtest::Application.routes.draw do
-  resources :sales
+Success::Application.routes.draw do
+  resources :confirmbookings
 
-  resources :users
+get 'confirmbooking', to: 'confirmbookings#new'
+get 'confirmseatbooking', to: 'confirmbookings#newb'
+get 'participationconfirmed', to: 'confirmbookings#participationconfirmed'
+  resources :pconfirms
 
-  resources :cashtables
+  resources :uploads
+  get "contactvalues/download"
+  get "/success_dashboard/showbatch"
+  post "/success_dashboard/showbatch"
+  get "/success_dashboard/showcontact"
+  post "/success_dashboard/showcontact"
 
-  resources :pplans do 
-  collection { post :monthlyreport }
+  post "infusionsoft/expectationform"
+  post "infusionsoft/expectationform_tag"
+  devise_for :admins
+  resources :externalformlinks
+
+
+
+  resources :contactvalues do
+    collection { post :showsubmit }
+    collection { get :showsubmit }
+  end
+  resources :dashboards
+
+  resources :formones
+
+  resources :dropboxes
+
+  resources :dropboxfeilds
+
+  resources :internalformfeilds do
+    collection { post :showformfeild }
+    collection { get :showformfeild }
   end
 
-  resources :payment_plans 
-  get 'payment_plans/:id/report' => 'payment_plans#movetocash'
-  get 'payment_plans/:id/reportone' => 'payment_plans#reportone'
-  get 'cashtables/:id/cashreportone' => 'cashtables#cashreportone'
+  get '/infusionsoft/expectationform' => 'infusionsoft#expectationform'
+  post '/infusionsoft/expectationform' => 'infusionsoft#expectationform'
+
+  get '/internalforms/:id/:contact_id/:key' => 'internalforms#show'
+  resources :internalforms do
+    collection { post :selectform }
+    collection { get :selectform }
+  end
 
 
-  resources :bdms
 
-  resources :leads
+  resources :customfs
+
+  resources :contacts
+
+  resources :customftypes
+
+  root :to => "contacts#index"
+
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

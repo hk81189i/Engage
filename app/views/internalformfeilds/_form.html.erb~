@@ -1,0 +1,33 @@
+<%= form_for(@internalformfeild) do |f| %>
+  <% if @internalformfeild.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@internalformfeild.errors.count, "error") %> prohibited this internalformfeild from being saved:</h2>
+
+      <ul>
+      <% @internalformfeild.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :internalform_id %><br>
+    <%= f.text_field :internalform_id %>
+  </div>
+  <div class="field">
+    <%= f.label :customftypes_id %><br>
+    <%= f.text_field :customftypes_id %>
+  </div>
+  <div class="field">
+    <%= f.label :customf_id %><br>
+    <%= f.number_field :customf_id %>
+  </div>
+  <div class="field">
+    <%= f.label :required %><br>
+    <%= f.number_field :required %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

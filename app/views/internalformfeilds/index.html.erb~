@@ -1,0 +1,33 @@
+<h1>Listing internalformfeilds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Internalform</th>
+      <th>Customftypes</th>
+      <th>Customf</th>
+      <th>Required</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @internalformfeilds.each do |internalformfeild| %>
+      <tr>
+        <td><%= internalformfeild.internalform_id %></td>
+        <td><%= internalformfeild.customftype_id %></td>
+        <td><%= internalformfeild.cfeild%></td>
+        <td><%= internalformfeild.required %></td>
+        <td><%= link_to 'Show', internalformfeild %></td>
+        <td><%= link_to 'Edit', edit_internalformfeild_path(internalformfeild) %></td>
+        <td><%= link_to 'Destroy', internalformfeild, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Internalformfeild', new_internalformfeild_path %>

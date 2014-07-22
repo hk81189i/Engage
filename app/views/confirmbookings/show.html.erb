@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @confirmbooking.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @confirmbooking.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @confirmbooking.phone %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @confirmbooking.city %>
+</p>
+
+<p>
+  <strong>Batch:</strong>
+  <%= @confirmbooking.batch %>
+</p>
+
+<p>
+  <strong>Transformations:</strong>
+  <%= @confirmbooking.transformations %>
+</p>
+
+<p>
+  <strong>Topthreethings:</strong>
+  <%= @confirmbooking.topthreethings %>
+</p>
+
+<p>
+  <strong>Topthreedreams:</strong>
+  <%= @confirmbooking.topthreedreams %>
+</p>
+
+<%= link_to 'Edit', edit_confirmbooking_path(@confirmbooking) %> |
+<%= link_to 'Back', confirmbookings_path %>

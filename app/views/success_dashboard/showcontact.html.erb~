@@ -1,0 +1,20 @@
+Hey! 
+
+<br>
+<p>
+<%= Contact.find(@contact_id).fname  %>
+<%=  %>
+<%=  %>
+
+</p>
+
+
+<% @forms.each do |internalform| %>
+<td><%= internalform.name %>  </td> 
+<td><%= link_to 'Show details', showsubmit_contactvalues_path(:contact_id => @contact_id, :internalform_id => internalform.id) %></td> 
+        <td><%= link_to 'Fill form', internalform_path(:contact_id => @contact_id, :id => internalform.id) %></td> <br>
+<% end %>
+<%  %>
+
+
+

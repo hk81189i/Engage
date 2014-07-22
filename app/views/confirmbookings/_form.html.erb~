@@ -1,0 +1,49 @@
+<%= form_for(@confirmbooking) do |f| %>
+  <% if @confirmbooking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@confirmbooking.errors.count, "error") %> prohibited this confirmbooking from being saved:</h2>
+
+      <ul>
+      <% @confirmbooking.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </div>
+  <div class="field">
+    <%= f.label :batch %><br>
+    <%= f.text_field :batch %>
+  </div>
+  <div class="field">
+    <%= f.label :transformations %><br>
+    <%= f.text_field :transformations %>
+  </div>
+  <div class="field">
+    <%= f.label :topthreethings %><br>
+    <%= f.text_field :topthreethings %>
+  </div>
+  <div class="field">
+    <%= f.label :topthreedreams %><br>
+    <%= f.text_field :topthreedreams %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,55 @@
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+ <%=   wicked_pdf_stylesheet_link_tag  "application", media: "all", "data-turbolinks-track" => true %>
+  <%=  wicked_pdf_javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+  </head>
+ <body>
+   <div align=center>
+     <%=  wicked_pdf_image_tag_for_public('SOELogo_Trademark3-small.png') %>
+     <p>
+       <h3><strong>uPwithNLP Expectations & Questionnaire</strong> </h3>
+       All records are kept completely confidential by the SOE Team. <br>
+     </p>
+     <br>
+   </div>
+
+<% @contactvalues.each do |contactvalue| %>
+    <p>
+        <strong><%= contactvalue.customf %></strong> <br>
+        <%= contactvalue.data %> <br><br>
+      
+    <% end %>
+
+</p>
+       <h3><strong>Self Declaration</strong> </h3>
+
+<p>I hereby confirm the information I have provided above is true and accurate to the best of my knowledge. <br> <br>
+
+By completing this form - I declare that I agree to the Terms and Conditions mentioned at:
+http://www.soexcellence.com/NLP_Practitioner_Certification_Course-Terms_and_Conditions 
+including policies on Certification, Photography and Audio/Video Recording and Rights of Reservation.<br><br>
+</p>
+<p>Signature: <br><br>
+
+
+Date: <br><br>
+
+Place:<br><br>
+
+</p>
+
+<!--    Panel cloding divs -->
+
+<br>
+
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/docs.min.js"></script>
+  </body>
+</html>

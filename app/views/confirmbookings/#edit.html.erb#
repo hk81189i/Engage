@@ -1,0 +1,9 @@
+
+
+
+<h1>Editing confirmbooking</h1>
+
+<%= render 'form' %>
+
+<%= link_to 'Show', @confirmbooking %> |
+<%= link_to 'Back', confirmbookings_path %>

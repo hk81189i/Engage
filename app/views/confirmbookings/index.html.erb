@@ -1,0 +1,41 @@
+<h1>Listing confirmbookings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>City</th>
+      <th>Batch</th>
+      <th>Transformations</th>
+      <th>Topthreethings</th>
+      <th>Topthreedreams</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @confirmbookings.each do |confirmbooking| %>
+      <tr>
+        <td><%= confirmbooking.name %></td>
+        <td><%= confirmbooking.email %></td>
+        <td><%= confirmbooking.phone %></td>
+        <td><%= confirmbooking.city %></td>
+        <td><%= confirmbooking.batch %></td>
+        <td><%= confirmbooking.transformations %></td>
+        <td><%= confirmbooking.topthreethings %></td>
+        <td><%= confirmbooking.topthreedreams %></td>
+        <td><%= link_to 'Show', confirmbooking %></td>
+        <td><%= link_to 'Edit', edit_confirmbooking_path(confirmbooking) %></td>
+        <td><%= link_to 'Destroy', confirmbooking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Confirmbooking', new_confirmbooking_path %>

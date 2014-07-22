@@ -1,0 +1,81 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>uPwithNLP Platinum Coaching- Expectations</title>
+
+    <!-- Bootstrap core CSS -->
+ <link rel="stylesheet" href="/assets/bootstrap.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="/assets/blog.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+  <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="#">Home</a>
+          <a class="blog-nav-item active" href="http://www.soexcellence.com">School of Excellence</a>
+
+      </div>
+    </div> 
+
+  <link href="blog.css" rel="stylesheet">
+
+<div class="panel panel-success">
+<% if !admin_signed_in? %>
+  <div class="panel-heading"> Congrats!You have successfully submitted the below details.</div>
+<% end %>
+
+  <div class="panel-body">
+<% @contactvalues.each do |contactvalue| %>
+      
+<p>
+        <strong><%= contactvalue.customf %></strong> <br>
+        <%= contactvalue.data %> </p>
+<br>
+      
+    <% end %>
+<p>
+  <h4> <strong> Self Declaration </strong> </h4> 
+
+I hereby confirm the information I have provided above is true and accurate to the best of my knowledge.<br>
+<br>
+By completing this form - I declare that I agree to the Terms and Conditions mentioned at http://www.soexcellence.com/NLP_Practitioner_Certification_Course-Terms_and_Conditions
+</p>
+<br>
+<p>
+
+Signature:  _________________________ <br><br>
+Name:
+<br>
+</p>
+<!--    Panel cloding divs -->
+  </div>
+</div>
+</div> <!-- panel closed -->
+
+<br>
+
+
+
+
+   <div class="blog-footer">
+     <br> © 2011 Antano Solar John & Harini Ramachandrann of School of Excellence. All Rights Reserved. </small> <br>
+      <p>     
+        <a href="#">Back to top</a>
+      </p>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/docs.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<%= form_for(@dropbox) do |f| %>
+  <% if @dropbox.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dropbox.errors.count, "error") %> prohibited this dropbox from being saved:</h2>
+
+      <ul>
+      <% @dropbox.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :customftype_id %><br>
+    <%= f.number_field :customftype_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

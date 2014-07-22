@@ -1,0 +1,11 @@
+Hello..! 
+
+
+<%= form_tag "selectform" do %>
+
+<%= select_tag 'internalform_id', options_for_select(@internalforms.collect{ |u| [u.name, u.id] } )%>
+<%= hidden_field_tag 'contact', @contact_id %>
+
+<%= submit_tag "Submit" %>
+<% end %>
+

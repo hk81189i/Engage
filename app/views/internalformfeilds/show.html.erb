@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Internalform:</strong>
+  <%= @internalformfeild.internalform.name %>
+</p>
+
+<p>
+  <strong>Custom Feild Type:</strong>
+  <%= @internalformfeild.customftype.name %>
+</p>
+
+<p>
+  <strong>Custom feild Name:</strong>
+  <%= @internalformfeild.cfeild %>
+</p>
+
+<p>
+  <strong>Required:</strong>
+  <%= @internalformfeild.required %>
+</p>
+
+  <% if @internalformfeild.customftype_id == 4 %>
+
+
+    <% @dropfeild = Dropboxfeild.where(:internalformfeild_id => @internalformfeild.id) %>
+<% @dropfeild.each_with_index do | feild, i|   %>
+<%= i +1  %> <%= feild.options   %> <br>
+       <!--  <td><%= link_to 'Edit', edit_dropboxfeild_path(feild) %></td>
+        <td><%= link_to 'Destroy', feild, method: :delete, data: { confirm: 'Are you sure?' } %></td>  -->
+<% end   %>
+
+</p>
+
+<%= form_for(@dropboxfeild) do |f| %>
+  <% if @dropboxfeild.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dropboxfeild.errors.count, "error") %> prohibited this dropboxfeild from being saved:</h2>
+
+      <ul>
+      <% @dropboxfeild.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+  <strong>    <%= f.label :Dropbox_option_name %><br></strong>
+    <%= f.text_field :options %>
+  </div>
+  <div class="field">
+    <%= f.hidden_field :internalformfeild_id, :value => @internalformfeild.id %>
+
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+<% end %>
+
+
+
+
+
+<%= link_to 'Edit', edit_internalformfeild_path(@internalformfeild) %> |
+
+<%= button_to 'Next >>', new_internalformfeild_path(:internalform_id => @internalformfeild.internalform_id) %>
+<%= button_to 'Back >>', showformfeild_internalformfeilds_path(:internalform_id => @internalformfeild.internalform_id) %>

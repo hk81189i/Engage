@@ -1,0 +1,52 @@
+HI!
+
+<h1>Listing internalformfeilds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Internalform</th>
+      <th>Customftypes</th>
+      <th>Customf</th>
+      <th>Required</th>
+      <th>Sort</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+
+<%= form_tag({controller: "/internalformfeilds"}, method: "patch") do %>
+    <% @internalformfeilds.each do |internalformfeild| %>
+      <tr>
+        <td><%= internalformfeild.internalform.name %></td>
+        <td><%= internalformfeild.customftype.name %></td>
+        <td><%= internalformfeild.cfeild%></td>
+        <td><%= internalformfeild.required %></td>
+        <td><%= internalformfeild.sort %></td>
+
+
+<td><%= number_field_tag 'internalformfeild[][sort]' %>  </td>
+<td><%= hidden_field_tag 'internalformfeild[]', value = internalformfeild.internalform_id %>  </td>
+
+<% end %>
+	<p><%= submit_tag "Submit Form" %>
+</div>
+
+
+<% end %>
+
+
+
+</tr>
+
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', internalforms_path %>
+

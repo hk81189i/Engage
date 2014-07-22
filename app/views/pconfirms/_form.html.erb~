@@ -1,0 +1,17 @@
+<%= form_for(@pconfirm) do |f| %>
+  <% if @pconfirm.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@pconfirm.errors.count, "error") %> prohibited this pconfirm from being saved:</h2>
+
+      <ul>
+      <% @pconfirm.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

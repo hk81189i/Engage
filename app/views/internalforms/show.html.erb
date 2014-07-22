@@ -1,0 +1,116 @@
+
+<% if !@check.empty? %>
+
+<% @internal = Internalformfeild.where(:internalform_id => @internalform.id).order("sort ASC") %>
+
+<% @errors = params[:error] %>
+
+ <% if @errors.kind_of?(Array) %>
+<div class="alert alert-danger" >
+      <h4><%= pluralize(@errors.count, "Error") %> prohibited the details from being saved:</h4>
+
+      <ul>
+      <% @errors.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+<% else %>
+  <% end %>
+
+
+
+<div class="panel panel-default">
+  <div class="panel-heading"> Fill out the below form.</div>
+  <div class="panel-body">
+
+<%= form_tag @contactvalue do %>
+<form role="form">
+<% @internal.each do |i| %>
+<% case i.customftype_id %>
+<%  when 1  %>
+ <%=  i.cfeild %><br>
+<small> <%=  i.helptext %></small>
+ <div class="form-group">
+<input type="text" class="form-control" placeholder=" " name="contactvalue[][data]">
+<%= hidden_field_tag 'contactvalue[][internalform_id]', @internalform.id , class: 'form-control'%>
+<%= hidden_field_tag 'contactvalue[][contact_id]', @contact_id %>
+<%= hidden_field_tag 'contactvalue[][customf]', i.cfeild %>
+<%= hidden_field_tag 'contactvalue[][customftype]', i.customftype_id %>  <br>
+<%= hidden_field_tag 'contactvalue[][required]', i.required %>  </div>
+<%  when 2  %>
+ <%=  i.cfeild %><br>
+<small> <%=  i.helptext %></small>
+<div class="form-group">
+<textarea class="form-control" rows="5" name="contactvalue[][data]"></textarea>
+<%= hidden_field_tag 'contactvalue[][internalform_id]', @internalform.id %>
+<%= hidden_field_tag 'contactvalue[][contact_id]', @contact_id %>
+<%= hidden_field_tag 'contactvalue[][customf]', i.cfeild %>
+<%= hidden_field_tag 'contactvalue[][customftype]', i.customftype_id %>  <br>
+<%= hidden_field_tag 'contactvalue[][required]', i.required %> </div>
+<%  when 3  %>
+<div class="form-group"> <%=  i.cfeild %><br>
+<small> <%=  i.helptext %></small>
+<%= check_box_tag 'contactvalue[][data]', "Yes" %>
+<%= hidden_field_tag 'contactvalue[][internalform_id]', @internalform.id %>
+<%= hidden_field_tag 'contactvalue[][contact_id]', @contact_id %>
+<%= hidden_field_tag 'contactvalue[][customf]', i.cfeild %>
+<%= hidden_field_tag 'contactvalue[][customftype]', i.customftype_id %>  <br>
+<%= hidden_field_tag 'contactvalue[][required]', i.required %> </div>
+<%  when 4  %>
+<div class="form-group">
+ <%=  i.cfeild %><br>
+<small> <%=  i.helptext %></small>
+<% @dropbox = Dropboxfeild.where(:internalformfeild_id => i.id ) %>
+<!--  collection_select( :contactvalue, :data, @dropbox, :options, :options ) -->
+<%= select_tag "contactvalue[][data]", options_from_collection_for_select(@dropbox, "options", "options"),{ :class => 'form-control' ,multiple: true}  %>
+<%= hidden_field_tag 'contactvalue[][internalform_id]', @internalform.id %>
+<%= hidden_field_tag 'contactvalue[][contact_id]', @contact_id %>
+<%= hidden_field_tag 'contactvalue[][customf]', i.cfeild %>
+<%= hidden_field_tag 'contactvalue[][customftype]', i.customftype_id %>
+<%= hidden_field_tag 'contactvalue[][required]', i.required %>   <br>
+</div>
+<%  when 5  %>
+<div class="jumbotron">
+  <p>  <% @dicy = i.cfeild %>
+<%=  @dicy %>
+</p>
+</div>
+<%  when 6  %>
+
+<div class="page-header">
+  <h4> <strong>  <%=  i.cfeild %> </strong></h4>
+<small> <%=  i.helptext %></small>
+</div>
+
+
+
+
+<%  when 7  %>
+  <p>  <%= i.cfeild %>
+</p>
+<%  else  %>
+Enter the  <%=  i.cfeild %> <%= text_field_tag 'contactvalue[][data]' %>
+<%= hidden_field_tag 'contactvalue[][customf]', i.cfeild %>  <br>
+<%= hidden_field_tag 'contactvalue[][internalform_id]', @internalform.id %>
+<%= hidden_field_tag 'contactvalue[][contact_id]', @contact_id %>
+<%= hidden_field_tag 'contactvalue[][required]', i.required %>  <br>
+<br>
+<% end   %>
+<% end %>
+<%= submit_tag "Submit Form" %>
+</div>
+<% end %>
+</form>
+<!--    Panel cloding divs -->
+  </div>
+</div>
+</div> <!-- panel closed -->
+
+<% else %>
+
+Sorry! Invalid link. Please check the link you are sent.
+
+<% end %>
+
+<p>

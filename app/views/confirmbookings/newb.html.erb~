@@ -1,0 +1,919 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>uPwithNLP | Confirmation Form</title>
+<!-- <link href="reset.css" rel="stylesheet" type="text/css" />
+<link href="style.css" rel="stylesheet" type="text/css" /> -->
+<style>
+
+/*! normalize.css v3.0.1 | MIT License | git.io/normalize */
+
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+  font-family: sans-serif; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+
+body {
+  margin: 0;
+
+}
+
+/* HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+
+[hidden],
+template {
+  display: none;
+}
+
+/* Links
+   ========================================================================== */
+
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+
+a {
+  background: transparent;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+
+figure {
+  margin: 1em 40px;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+ * Contain overflow in all browsers.
+ */
+
+pre {
+  overflow: auto;
+}
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit; /* 1 */
+  font: inherit; /* 2 */
+  margin: 0; /* 3 */
+}
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+
+button {
+  overflow: visible;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button; /* 2 */
+  cursor: pointer; /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+input {
+  line-height: normal;
+}
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box; /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+
+legend {
+  border: 0; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+
+optgroup {
+  font-weight: bold;
+}
+
+/* Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+
+
+/* Reset */
+								   @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);html,body,div,span,applet,object,iframe,input,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{-webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; 
+								   margin:0;
+								   padding:0;
+								   }
+								   .clear { clear:both; }
+								   input:focus, a:focus { outline: none; }
+								   /* General Section */
+								   
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before, .clearfix:after { content: " "; display: table; }
+								   .clearfix:after { clear: both; }
+								   
+body {
+  
+  margin: 0;
+  font-family: 'Lato', Calibri, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  /*background: #ffcb08;/*yellow*/
+  background:#fafafa;
+
+
+}
+								   
+/** The wrapper that will contain our two forms **/
+
+.form-login {
+								   background:#fff;
+								   right: 0px;
+								   margin: 0px auto;
+								   margin-top:10px;
+								   width: 90%;
+								   max-width:960px;
+								   padding:26px 30px 30px;
+								   margin-bottom:50px;
+								   margin-top:30px;
+								   -webkit-box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
+								   box-shadow: 0 0 6px 0 rgba(0,0,0,0.2);
+}
+/* header */
+.header {
+								   background:#b90089;
+								   text-align:center;
+								   font-size:22px;
+								   font-weight:300;
+								   color:#fff;
+								   margin-bottom:30px;
+								   padding:20px;
+								   position:relative;
+								   margin-top:60px;
+}
+.header p{
+								   text-align:right;
+								   line-height:22px;
+								   float:right;
+								   padding-top:50px;
+								   font-weight:300;
+}
+.link-head-left {
+								   display:block;
+								   float:left;
+								   height:60px;
+								   width:60px;
+								   border-right:1px solid #232323;
+}
+.link-head-right {
+								   display:block;
+								   float:right;
+								   height:60px;
+								   width:60px;
+								   border-left:1px solid #232323;
+}
+
+/* inputs */
+.inputs {
+								   margin-top:10px;
+								   color:#4d4d4d;
+}
+
+
+.inputs label{/*text-transform:uppercase; */font-weight:400; color:#222; display:block; margin-top:10px; margin-bottom:4px;}
+.inputs label span{font-size:14px; text-transform: none; float:left; margin-left:350px; color:#999; font-weight:300;}
+.inputs input[type="text"], .inputs [type="password"], .inputs [type="email"], .inputs [type="number"]{
+								   width:340px;
+								   height:36px;
+								   background:#fff;
+								   color:#4d4d4d;
+								   font-size:14px;
+								   margin-top:15px;
+								   border:1px solid #d8d8d8;
+								   padding:0px 10px;
+								   margin:0px 0 5px;
+								   border-radius:2px;
+								   /*-webkit-box-shadow:inset 0 1px 5px 0 rgba(0,0,0,0.05);
+								   box-shadow:inset 0 1px 5px 0 rgba(0,0,0,0.05);*/
+}
+
+.inputs input[type="text"]:hover, .inputs [type="email"]:hover {
+								   border:1px solid #b2b2b2;
+}
+
+.inputs input[type="text"]:focus, .inputs [type="email"]:focus {
+								   border:1px solid #b90089;
+}
+
+								   select{
+								   width:165px;
+								   height:36px;
+								   background:#fff;
+								   color:#4d4d4d;
+								   font-size:14px;
+								   margin-top:15px;
+								   border:1px solid #d8d8d8;
+								   padding:0px 10px;
+								   margin:0px 0 5px;
+								   border-radius:2px;
+								   margin-right:10px;
+								   outline:none;
+								   }
+
+select:hover {
+								   border:1px solid #b2b2b2;
+}
+
+select:focus {
+								   border:1px solid #b90089;
+}
+
+/* info box */
+.link-1 {
+								   margin-top:15px;
+								   margin-left:20px;
+								   float:left;
+								   color:#4d4d4d;
+}
+input[type="checkbox"] {
+								   display:none;
+}
+
+input[type="checkbox"] + label {
+								   font-size:13px;
+}
+input[type="checkbox"] + label span {
+								   display:inline-block;
+								   width:22px;
+								   height:22px;
+								   vertical-align:middle;
+								   background:url(../images/check_radio_sheet.png) -1px top no-repeat;
+								   background-position:-0px 0px; 
+								   cursor:pointer;
+}
+input[type="checkbox"]:checked + label span {
+								   background:url(../images/check_radio_sheet.png) -23px top no-repeat;
+}
+.link-2 {
+								   float:right;
+								   margin-top:15px;
+								   margin-right:20px;
+}
+.link-2 a, .link-2 a:hover {
+								   color:#4d4d4d;
+}
+.link-2 a:hover {
+								   text-decoration:none;
+}
+
+/* send button */
+.button-login input[type="submit"] {
+								   width:340px;
+								   height:36px;
+								   margin-top:25px;
+								   font-size:16px;
+								   font-weight:300;
+								   text-transform:uppercase;
+								   outline: none;
+								   position: relative;
+								   cursor: pointer;
+								   color: #fff;
+								   border:0;
+								   background: #d71a36;
+								   border-radius:2px;
+								   
+								   background-image:-webkit-linear-gradient(top, #4387FD, #4683EA);
+  background-position:initial initial;
+  background-repeat:initial initial;
+  border:1px solid #4285F4;
+  font-weight:bold;
+  outline:none;
+}
+}
+.button-login input[type="submit"]:hover { opacity:0.9; }
+.button-login input[type="submit"]:active {
+								   top: 3px;
+								   background: #e84c3d;
+								   box-shadow: inset 0 1px 2px #ba3c30;
+}
+
+
+.tngl{width: 0px;
+height: 0px;
+border-style: solid;
+border-width: 15px 15px 0 15px;
+border-color: #b80088 transparent transparent transparent;
+line-height: 0px;
+_border-color: #b80088 #000000 #000000 #000000;
+_filter: progid:DXImageTransform.Microsoft.Chroma(color='#b80088');
+position:absolute;
+bottom:-15px;
+left:50%;
+margin-left:-15px;
+}
+
+.inf{float:left;}
+.infp p{ padding-top:13px; padding-left:10px; float:left;}
+
+
+.logo{background:url(logo.jpg) no-repeat;
+height:80px;
+width:126px;
+float:left;
+margin-top:16px;
+}
+
+.uptext{background:url(sci.jpg) no-repeat;
+width:421px;
+height:36px;
+float:right;
+margin-top:50px;
+}
+
+.container{width:90%;
+max-width:960px;
+margin:0 auto;
+position:relative;
+}
+
+
+
+
+/*ribbon*/
+/* ribbon style */
+
+ .ribbon-wrapper {
+								   position: relative;
+								   margin-top:0px;
+								   margin-bottom:30px;
+								   
+}
+  .ribbon-front {
+								   background-color: #b90089;height: 120px;
+								   width: 1000px;
+								   position: relative;
+								   left:-50px;
+								   z-index: 2;
+}
+
+  .ribbon-front,
+  .ribbon-back-left,
+  .ribbon-back-right
+{
+								   -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+								   -khtml-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+								   -webkit-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+								   -o-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
+}
+
+  .ribbon-edge-topleft,
+  .ribbon-edge-topright,
+  .ribbon-edge-bottomleft,
+  .ribbon-edge-bottomright {
+								   position: absolute;
+								   z-index: 1;
+								   border-style:solid;
+								   height:0px;
+								   width:0px;
+}
+
+  .ribbon-edge-topleft,
+  .ribbon-edge-topright {
+}
+
+  .ribbon-edge-bottomleft,
+  .ribbon-edge-bottomright {
+								   top: 120px;
+}
+
+  .ribbon-edge-topleft,
+  .ribbon-edge-bottomleft {
+								   left: -50px;
+								   border-color: transparent #760057 transparent transparent;
+}
+
+  .ribbon-edge-topleft {
+								   top: -10px;
+								   border-width: 10px 20px 0 0;
+}
+  .ribbon-edge-bottomleft {
+								   border-width: 0 20px 0px 0;
+}
+
+  .ribbon-edge-topright,
+  .ribbon-edge-bottomright {
+								   left: 930px;
+								   border-color: transparent transparent transparent #760057;
+}
+
+  .ribbon-edge-topright {
+								   top: -10px;
+								   border-width: 10px 0 0 20px;
+}
+  .ribbon-edge-bottomright {
+								   border-width: 0 0 0px 20px;
+}
+
+  .ribbon-back-left {
+								   position: absolute;
+								   top: -10px;
+								   left: 0px;
+								   width: 0px;
+								   height: 120px;
+								   z-index: 0;
+}
+
+  .ribbon-back-right {
+								   position: absolute;
+								   top: -10px;
+								   right: 0px;
+								   width: 0px;
+								   height: 120px;
+								   z-index: 0;
+}
+
+
+::-webkit-input-placeholder {
+   color: #777;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: #777;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #777;  
+}
+
+:-ms-input-placeholder {  
+   color: #777;  
+}
+
+
+.rightlist{float:left; width:540px; margin-left:0px; margin-top:-4px; padding:14px; border-radius:2px; background:rgba(255,255,255,0.5); margin-bottom:30px;}
+.rightlist p{margin-top:5px;}
+.rightlist ul{list-style:inside; margin-top:12px;}
+.rightlist ul li{margin:3px 0; width:50%; float:left;}
+.rightlist ul li span{ color:#b90089; cursor:default;}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+
+  
+
+
+
+ <div id="wrapper">
+
+   
+                <form action="" class="form-login" method="post"> 
+                
+                <div class="ribbon-wrapper">
+		  <div class="ribbon-front">
+		    <!-- ribbon text goes here -->
+            
+            
+            <div class="container clearfix"><div class="logo clearfix"></div><div class="uptext clearfix"></div></div>
+                            
+                            <div class="tngl"></div>
+            
+			    </div>
+		  <div class="ribbon-edge-topleft"></div>
+		  <div class="ribbon-edge-topright"></div>
+		  <div class="ribbon-edge-bottomleft"></div>
+		  <div class="ribbon-edge-bottomright"></div>
+		  <div class="ribbon-back-left"></div>
+		  <div class="ribbon-back-right"></div>
+		  </div>
+                
+               
+  
+                        <div class="inputs">
+                          <label>Your Name</label>
+                            <input name="" type="text" required placeholder="Username">
+                            
+                            <label>Email</label>
+                            <input name="" type="email" required placeholder="name@domain.com">
+                            
+                            <label>Phone</label>
+                            <input name="" type="text" required placeholder="Phone Number">
+                            
+                            <label>Choose Your City & Batch</label>
+                            <select style="float:left">
+			      <option>City</option>
+			      <option>Bangalore</option>
+			      </select>
+                            
+                            <select>
+			      <option>Batch</option>
+			      <option>Bangalore</option>
+			      </select>
+                            
+                            <br /><br />
+                            <div style="width:360px; float:left;">
+                            <label>What are three most important transformation or changes you desire during the 6 days?</label><br />
+                            <input name="" type="text" required placeholder="1" class="inf" style="margin-bottom:16px;">
+                            <input name="" type="text" required placeholder="2" class="inf" style="margin-bottom:16px;">
+                            <input name="" type="text" required placeholder="3" class="inf" style="margin-bottom:16px;">
+                            </div>
+                            
+                            <div class="rightlist">
+                            <h3>What are some transformations you desire?</h3>
+                            <p>Most Popular Transformations among our Participants</p>
+                            
+                            
+                            <ul>
+                            <li><span>Discover Trance</span></li>
+                            <li><span>Get Over Blocks</span></li>
+                            <li><span>Positive Thinking</span></li>
+                            <li><span>Improve Efficiency</span></li>
+                            <li><span>Master My Emotions</span></li>
+                            <li><span>Explore My Potential</span></li>
+                            <li><span>Communicate powerfully</span></li>
+                            <li><span>Understand People deeper</span></li>
+                            <li><span>Peak Performance & Confidence</span></li>
+                            <li><span>Grow Charisma & Better Relationships</span></li>
+                            </ul>
+                            
+                            </div>
+                            
+                            
+                            <div style="width:360px; float:left;">
+                            <label>What are the top three things that you want to Learn during the 6 Days?</label><br />
+                            <input name="" type="text" required placeholder="1" class="inf" style="margin-bottom:16px;">
+                            <input name="" type="text" required placeholder="2" class="inf" style="margin-bottom:16px;">
+                            <input name="" type="text" required placeholder="3" class="inf" style="margin-bottom:16px;">
+                            </div>
+                            
+                            <div class="rightlist">
+                            <h3>What are your big dreams for this year?</h3>
+                            <p>What our Alumni Accomplished with Success on AutoPilot</p>
+                            
+                            
+                            <ul>
+                            <li><span>Publish a Book</span></li>
+                            <li><span>Financial Abundance</span></li>
+                            <li><span>Become an Entrepreneur</span></li>
+                            <li><span>Find Love & Manage Relationships</span></li>
+                            <li><span>Grow Professionally and Double my Income</span></li>
+                            </ul>
+                            
+                            </div>
+                            
+                        <div class="clear"></div>
+                        
+                        <div class="button-login"><input type="submit" value="I Confirm my Participation"></div>
+                    </div>
+                    
+                   
+                </form>
+
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<h1>Listing dropboxfeilds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Options</th>
+      <th>Dropbox</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dropboxfeilds.each do |dropboxfeild| %>
+      <tr>
+        <td><%= dropboxfeild.options %></td>
+        <td><%= dropboxfeild.dropbox_id %></td>
+        <td><%= link_to 'Show', dropboxfeild %></td>
+        <td><%= link_to 'Edit', edit_dropboxfeild_path(dropboxfeild) %></td>
+        <td><%= link_to 'Destroy', dropboxfeild, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dropboxfeild', new_dropboxfeild_path %>

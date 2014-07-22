@@ -1,0 +1,21 @@
+<%= form_for(@customf) do |f| %>
+  <% if @customf.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@customf.errors.count, "error") %> prohibited this customf from being saved:</h2>
+
+      <ul>
+      <% @customf.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

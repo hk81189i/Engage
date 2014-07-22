@@ -1,0 +1,31 @@
+<h1>Listing externalformlinks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Contact</th>
+      <th>Link</th>
+      <th>Form</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @externalformlinks.each do |externalformlink| %>
+      <tr>
+        <td><%= externalformlink.contact_id %></td>
+        <td><%= externalformlink.link %></td>
+        <td><%= externalformlink.form_id %></td>
+        <td><%= link_to 'Show', externalformlink %></td>
+        <td><%= link_to 'Edit', edit_externalformlink_path(externalformlink) %></td>
+        <td><%= link_to 'Destroy', externalformlink, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Externalformlink', new_externalformlink_path %>

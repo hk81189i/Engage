@@ -1,0 +1,55 @@
+HI!
+
+<h1>Listing internalformfeilds</h1>
+
+<table class="table table-striped">>
+  <thead>
+    <tr>
+      <th>Internalform</th>
+      <th>Customftypes</th>
+      <th>Customf</th>
+      <th>Required</th>
+      <th>Edit</th>
+
+      <th>Sort</th>
+
+      <th>New Sort</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+
+<%= form_tag "showformfeild" do %>
+    <% @internalformfeilds.each do |internalformfeild| %>
+      <tr>
+        <td><%= internalformfeild.internalform.name %></td>
+        <td><%= internalformfeild.customftype.name %></td>
+        <td><%= internalformfeild.cfeild%></td>
+        <td><%= internalformfeild.required %></td>
+        <td><%= link_to 'Edit', edit_internalformfeild_path(internalformfeild, :internalform_id => internalformfeild.internalform_id) %></td>
+        <td><%= internalformfeild.sort %></td>
+
+<td><%= number_field_tag 'internalformfeild[][sort]' %>  </td>
+<td><%= hidden_field_tag 'internalformfeild[][internalform_id]', internalformfeild.id %>  </td>
+
+<% end %>
+	<p><%= submit_tag "Submit Form" %>
+</div>
+
+
+<% end %>
+
+
+
+</tr>
+
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', internalforms_path %>
+

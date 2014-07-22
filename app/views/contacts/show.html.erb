@@ -6,6 +6,11 @@
 </p>
 
 <p>
+  <strong>Age:</strong>
+  <%= @contact.age %>
+</p>
+
+<p>
   <strong>Email:</strong>
   <%= @contact.email %>
 </p>
@@ -16,28 +21,8 @@
 </p>
 
 <p>
-  <strong>Admin:</strong>
-  <%= @contact.admin_id %>
-</p>
-
-<p>
-  <strong>Fname:</strong>
-  <%= @contact.fname %>
-</p>
-
-<p>
-  <strong>Lname:</strong>
-  <%= @contact.lname %>
-</p>
-
-<p>
-  <strong>Infu:</strong>
-  <%= @contact.infu_id %>
-</p>
-
-<p>
-  <strong>Bd:</strong>
-  <%= @contact.bd_id %>
+  <strong>Photo:</strong>
+  <%= @contact.photo %>
 </p>
 
 <%= link_to 'Edit', edit_contact_path(@contact) %> |

@@ -1,0 +1,46 @@
+
+
+<div class="navbar">
+    <div class="navbar-inner">
+        <form class="navbar-form pull-right">
+<h5>Choose Batch : <%= form_tag :action => "showbatch" %> 
+              <%= select_tag "temp_month", options_from_collection_for_select(@batch, "id", "name"), include_blank: true  %>
+<!--            <input type="text" class="span2">  -->
+<button type="submit" class="btn btn-mini btn-primary">Go</button>
+</h5>        </form>
+    </div>
+</div>
+
+            <!--    <p>
+<%= form_tag :action => "showbatch" %>
+ <%= label_tag(:temp_month, "Choose Batch") %>
+<%= select_tag "temp_month", options_from_collection_for_select(@batch, "id", "name"), include_blank: true  %>
+<%= submit_tag("See") %>    -->
+
+ <legend><%= Batch.find(@batch_id).name %></legend>
+
+<table class="table table-striped">
+    <tr>
+      <th>First Name</th>
+ <th>Last Name</th>
+ <th>View</th> 
+ <th>Expectation Sheet</th> 
+<tr>
+<% @sales.each do |sale| %>
+<td><%= sale.fname %>  </td> 
+<td><%= sale.lname %>  </td> 
+<td><%= link_to 'Show', success_dashboard_showcontact_path(:contact_id => sale.contact_id) %></td>
+<td><%= link_to 'Download', showsubmit_contactvalues_path(:contact_id => sale.contact_id, :internalform_id => 65) %></td>
+<td><p id="pdf_link"><%= link_to "Download (PDF)",  showsubmit_contactvalues_path(:contact_id => sale.contact_id, :internalform_id => 65, :format => "pdf") %>
+<td><%= link_to "Download (PDF)",  contactvalues_download_path(:contact_id => sale.contact_id, :internalform_id => 65) %></td>
+
+</tr><% end %>
+ </table>
+<%  %>
+
+
+
+
+
+
+</p>

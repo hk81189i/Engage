@@ -1,5 +1,6 @@
 AHtest::Application.configure do
-  config.action_mailer.default_url_options = { :host => 'treasurehunt.soexcellence.com' }
+#added by hari from success Coaching App. 
+  config.action_mailer.default_url_options = { :host => 'engage.soexcellence.com' }
   config.action_mailer.smtp_settings = {
     :address   => "smtp.mandrillapp.com",
     :port      => 25, # ports 587 and 2525 are also supported with STARTTLS
@@ -7,12 +8,10 @@ AHtest::Application.configure do
     :user_name => "harikrishnan@soexcellence.com",
     :password  => "K_BSD_BCZDxpusNCmpoChQ", # SMTP password is any valid API key
     :authentication => 'login', # Mandrill supports 'plain' or 'login'
-    :domain => 'treasurehunt.soexcellence.com', # your domain to identify your server when connecting
+    :domain => 'engage.soexcellence.com', # your domain to identify your server when connecting
   }
-
   # Settings specified here will take precedence over those in config/application.rb.
-  config.logger = Logger.new("log/production.log")
-  config.action_view.logger = false
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -72,7 +71,7 @@ AHtest::Application.configure do
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   # config.assets.precompile += %w( search.js )
-
+  config.assets.precompile = ['*.js', '*.css', '*.css.erb']
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false

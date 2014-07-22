@@ -4,6 +4,10 @@ gem 'rb-readline', '~> 0.4.2'
 gem 'mandrill-api'
 gem 'devise'
 
+#PDF generation
+gem 'wicked_pdf'  
+gem 'wkhtmltopdf-binary'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'simple_form'
 gem 'rails', '4.0.0'
@@ -11,10 +15,10 @@ gem 'rails', '4.0.0'
 #for pagination
 gem 'will_paginate', '~> 3.0'
 
-# Use sqlite3 as the database for Active Record
+# Use mysql2 as the database for Active Record
 gem 'mysql2'
 
-
+#for lead data from spreadsheet
 # gem 'google-api-client', '~> 0.4.3', :require => 'google/api_client'
 gem 'google_drive'
 

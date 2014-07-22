@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<%= @internalform_id %>
+<%= @contact_id %>
+
+
+
+<h1>Listing contactvalues</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contactvalues.each do |contactvalue| %>
+      <tr>
+
+
+        <td><%= contactvalue.customf %></td>
+        <th><%= contactvalue.data %></th>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contactvalue', new_contactvalue_path %>
+

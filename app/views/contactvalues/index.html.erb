@@ -1,0 +1,33 @@
+<h1>Listing contactvalues</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Contact</th>
+      <th>Customftype</th>
+      <th>Customf</th>
+      <th>Data</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contactvalues.each do |contactvalue| %>
+      <tr>
+        <td><%= contactvalue.contact_id %></td>
+        <td><%= contactvalue.customftype %></td>
+        <td><%= contactvalue.customf %></td>
+        <td><%= contactvalue.data %></td>
+        <td><%= link_to 'Show', contactvalue %></td>
+        <td><%= link_to 'Edit', edit_contactvalue_path(contactvalue) %></td>
+        <td><%= link_to 'Destroy', contactvalue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Contactvalue', new_contactvalue_path %>

@@ -1,7 +1,13 @@
 class InfusionsoftController < ApplicationController
-  protect_from_forgery :only => []
+#filters
+#from TH 
+ protect_from_forgery :only => []
   skip_before_filter  :authenticate_admin!
   skip_before_filter :only_authenticated_admins_are_welcome
+
+# from Success Coaching
+  skip_before_action :verify_authenticity_token, except: [:expectationform,:expectationform_tag ]
+  skip_before_filter :verify_authenticity_token
 
   def batchshifted
     @sale = Sale.new(sale_params)
@@ -172,7 +178,81 @@ class InfusionsoftController < ApplicationController
 
   def lead_params
     params.permit(:infu_id, :name, :fname, :lname, :email, :infu_owner_id, :owner, :reassigned, :gacontent, :gasource, :gamedium, :gaterm, :gacampaign, :pcity, :lead_status_id)
+  end
+
+# Success Coaching codes - Added by Hari
+  def expectationform_tag
+    @internalform = Contact.new(internalform_params)
+    @infu_id =  @internalform.infu_id
+    logger.debug @contact_id
+    @contact_id = Contact.find_by(:infu_id => @infu_id).id
+    @internalform_id  = 65
+    puts ("contact is #@contact_id")
+    puts ("internal form id is #@internalform_id")
+    puts ("internal form id is #@internalform")
+
+    # generate and save url in DB 
+    a = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
+    @string = a.shuffle.first(16).join
+    @link1 = "internalforms/" 
+    @link2 =  @internalform_id.to_s
+    @link3 =  "?contact_id=" 
+    @link4 = @contact_id.to_s 
+    @link5 = "&key="
+    @link = @link1.to_s + @link2 + @link3 + @link4.to_s + @link5.to_s + @string 
+    Externalformlink.create(:contact_id => @contact_id.to_i, :link => @link, :form_id => @internalform_id, :string => @string)
+
+    # fetch the saved url
+    @url =  Externalformlink.find_by(:contact_id => @contact_id, :form_id => @internalform_id).link
+
+    # Code for Integration - send the url to IS
+    require 'xmlrpc/client'
+    @key="693a317c912f96cca8ac329986fe7663"
+    @server = XMLRPC::Client.new2("https://zh160.infusionsoft.com:443/api/xmlrpc")
+    @server.call("ContactService.update",@key, @infu_id, {"_ExpectationSheet" => @url} )
+  end
+
+  def expectationform
+    @internalform = Contact.new(internalform_params)
+    @infu_id =   internalform_params[:infu_id]
+    logger.debug @contact_id
+    @contact_id = Contact.find_by(:infu_id => @infu_id).id
+    @internalform_id  = 65
+    puts ("contact is #@contact_id")
+    puts ("internal form id is #@internalform_id")
+    puts ("internal form id is #@internalform")
+
+    # generate and save url in DB 
+    a = ('a'..'z').to_a + ('A'..'Z').to_a + ('0'..'9').to_a
+    @string = a.shuffle.first(16).join
+    @link1 = "internalforms/" 
+    @link2 =  @internalform_id.to_s
+    @link3 =  "?contact_id=" 
+    @link4 = @contact_id.to_s 
+    @link5 = "&key="
+    @link = @link1.to_s + @link2 + @link3 + @link4.to_s + @link5.to_s + @string 
+    Externalformlink.create(:contact_id => @contact_id.to_i, :link => @link, :form_id => @internalform_id, :string => @string)
+
+    # fetch the saved url
+    @url =  Externalformlink.find_by(:contact_id => @contact_id, :form_id => @internalform_id).link
+
+
+
+    # Code for Integration - send the url to Infusionsoft
+    require 'xmlrpc/client'
+    @key="693a317c912f96cca8ac329986fe7663"
+    @server = XMLRPC::Client.new2("https://zh160.infusionsoft.com:443/api/xmlrpc")
+    @server.call("ContactService.update",@key, @infu_id, {"_ExpectationSheet" => @url} )
+    @server.call("FunnelService.achieveGoal",@key,'zh160','esheetavailable', @infu_id)
 
   end
+
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def internalform_params
+    params.permit( :goal, :infu_id)
+  end
+
+
 
 end

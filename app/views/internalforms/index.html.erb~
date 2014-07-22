@@ -1,0 +1,30 @@
+<h1>Listing internalforms</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Form Type</th>
+      <th>Campaign </th>
+      <th>Goal </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @internalforms.each do |internalform| %>
+      <tr>
+        <td><%= internalform.name %></td>
+        <td><%= internalform.formtype %></td>
+        <td><%= internalform.campaign %></td>
+        <td><%= internalform.goal %></td>
+        <td><%= link_to 'Show', internalform %></td>
+        <td><%= link_to 'Edit', edit_internalform_path(internalform) %></td>
+        <td><%= link_to 'Destroy', internalform, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to ' Create New form', new_internalform_path %>
